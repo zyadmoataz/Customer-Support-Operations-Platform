@@ -33,6 +33,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/support/",
               "budgets": [
                 {
                   "type": "initial",

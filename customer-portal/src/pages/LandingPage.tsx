@@ -26,7 +26,7 @@ export function LandingPage() {
 
           <div className="flex items-center gap-3">
             <a 
-              href="http://localhost:4200" 
+              href="/support" 
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/40 text-xs font-semibold transition-all"
             >
               <Headphones className="w-3.5 h-3.5" />
@@ -152,7 +152,7 @@ export function LandingPage() {
 
             <div className="mt-8 pt-4 border-t border-slate-800 flex items-center justify-between">
               <a
-                href="http://localhost:4200"
+                href="/support"
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-all shadow-md shadow-emerald-600/20"
               >
                 <span>Launch Staff Workspace</span>

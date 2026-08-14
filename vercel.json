@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/support/:path*",
+      "destination": "/support/index.html"
+    },
+    {
+      "source": "/support",
+      "destination": "/support/index.html"
+    },
+    {
+      "source": "/((?!support|assets|public|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
