@@ -1,0 +1,55 @@
+<div class="min-h-screen w-full bg-brand-bg bg-radial-glow bg-no-repeat text-slate-100 flex flex-col">
+  <app-workspace-header 
+    [profile]="profile()" 
+    (signOut)="handleSignOut()"
+    (profileClick)="isProfileOpen.set(true)"
+  ></app-workspace-header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <app-stats-overview [tickets]="tickets()"></app-stats-overview>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2">
+        <app-ticket-queue
+          [tickets]="tickets()"
+          [loading]="loading()"
+          (statusChange)="handleStatusChange($event)"
+        ></app-ticket-queue>
+      </div>
+
+      <div class="space-y-6">
+        @if (profile()?.role === 'manager') {
+          <app-manager-panel 
+            [tickets]="tickets()" 
+            (reassignAll)="handleAutoAssign()"
+          ></app-manager-panel>
+        }
+
+        <div class="rounded-3xl glass-panel p-6 border border-white/5 shadow-card">
+          <h3 class="text-sm font-semibold text-white mb-3">Operational Guidelines</h3>
+          <ul class="text-xs text-slate-400 space-y-2.5">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">1.</span>
+              <span>Respond to <strong>Urgent</strong> priority tickets within 15 minutes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">2.</span>
+              <span>Mark tickets as <strong>In Progress</strong> once actively triaging.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">3.</span>
+              <span>Confirm resolution before setting status to <strong>Resolved</strong>.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-profile-modal
+    [isOpen]="isProfileOpen()"
+    [profile]="profile()"
+    (close)="isProfileOpen.set(false)"
+    (save)="handleUpdateProfile($event)"
+  ></app-profile-modal>
+</div>

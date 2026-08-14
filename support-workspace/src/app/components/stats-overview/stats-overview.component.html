@@ -1,0 +1,40 @@
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+  <div class="relative overflow-hidden rounded-2xl glass-panel p-5 border border-indigo-500/20 transition-all duration-300 hover:scale-[1.01]">
+    <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500/10 to-transparent blur-xl pointer-events-none"></div>
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-medium text-slate-400">Total In Queue</span>
+      <div class="p-2 rounded-xl bg-slate-900/60 border border-white/5 text-indigo-400">
+        <lucide-icon [name]="'inbox'" class="w-5 h-5"></lucide-icon>
+      </div>
+    </div>
+    <div class="mt-3">
+      <span class="text-2xl font-bold text-white tracking-tight">{{ totalCount() }}</span>
+    </div>
+  </div>
+
+  <div class="relative overflow-hidden rounded-2xl glass-panel p-5 border border-amber-500/20 transition-all duration-300 hover:scale-[1.01]">
+    <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-gradient-to-br from-amber-500/10 to-transparent blur-xl pointer-events-none"></div>
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-medium text-slate-400">Pending Actions</span>
+      <div class="p-2 rounded-xl bg-slate-900/60 border border-white/5 text-amber-400">
+        <lucide-icon [name]="'clock'" class="w-5 h-5"></lucide-icon>
+      </div>
+    </div>
+    <div class="mt-3">
+      <span class="text-2xl font-bold text-white tracking-tight">{{ pendingCount() }}</span>
+    </div>
+  </div>
+
+  <div class="relative overflow-hidden rounded-2xl glass-panel p-5 border border-emerald-500/20 transition-all duration-300 hover:scale-[1.01]">
+    <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500/10 to-transparent blur-xl pointer-events-none"></div>
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-medium text-slate-400">Resolved Today</span>
+      <div class="p-2 rounded-xl bg-slate-900/60 border border-white/5 text-emerald-400">
+        <lucide-icon [name]="'check-circle-2'" class="w-5 h-5"></lucide-icon>
+      </div>
+    </div>
+    <div class="mt-3">
+      <span class="text-2xl font-bold text-white tracking-tight">{{ resolvedCount() }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="rounded-3xl glass-panel p-6 border border-emerald-500/30 shadow-card bg-gradient-to-b from-emerald-950/20 to-slate-900/60">
+  <div class="flex items-center justify-between mb-4 pb-3 border-b border-emerald-500/20">
+    <div class="flex items-center gap-2">
+      <div class="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400">
+        <lucide-icon [name]="'shield'" class="w-4 h-4"></lucide-icon>
+      </div>
+      <h3 class="text-sm font-bold text-white tracking-tight">Manager Operations Console</h3>
+    </div>
+    <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+      Executive Privilege
+    </span>
+  </div>
+
+  <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+    <div class="p-3 rounded-2xl bg-slate-900/80 border border-white/5">
+      <span class="text-slate-400 block text-[11px]">Unassigned Queue</span>
+      <span class="text-lg font-bold text-amber-400">{{ unassignedCount() }}</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-slate-900/80 border border-white/5">
+      <span class="text-slate-400 block text-[11px]">Urgent Escalations</span>
+      <span class="text-lg font-bold text-rose-400">{{ urgentCount() }}</span>
+    </div>
+  </div>
+
+  <div class="space-y-2">
+    <button
+      (click)="reassignAll.emit()"
+      class="w-full py-2 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 text-xs font-semibold border border-emerald-500/30 transition-all text-left flex items-center justify-between"
+    >
+      <span class="flex items-center gap-1.5">
+        <lucide-icon [name]="'zap'" class="w-3.5 h-3.5"></lucide-icon>
+        Auto-Distribute Unassigned Work
+      </span>
+      <span class="text-[10px] bg-emerald-500/30 px-1.5 py-0.5 rounded">Triage</span>
+    </button>
+  </div>
+</div>

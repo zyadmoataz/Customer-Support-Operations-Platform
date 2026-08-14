@@ -1,0 +1,78 @@
+<div class="rounded-3xl glass-panel p-6 border border-white/5 shadow-card">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900/80 border border-white/5 w-fit">
+      @for (tab of ['all', 'open', 'in_progress', 'resolved']; track tab) {
+        <button
+          (click)="activeTab.set(tab)"
+          [class]="'px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ' + (activeTab() === tab ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')"
+        >
+          {{ tab.replace('_', ' ') }}
+        </button>
+      }
+    </div>
+
+    <div class="relative w-full sm:w-64">
+      <input
+        type="text"
+        [ngModel]="searchQuery()"
+        (ngModelChange)="searchQuery.set($event)"
+        placeholder="Search tickets by subject..."
+        class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+      />
+      <lucide-icon [name]="'search'" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"></lucide-icon>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="space-y-3">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="h-28 rounded-2xl bg-slate-900/40 animate-pulse border border-white/5"></div>
+      }
+    </div>
+  } @else if (filteredTickets().length === 0) {
+    <div class="py-12 text-center border border-dashed border-slate-800 rounded-2xl">
+      <p class="text-sm text-slate-400">No tickets found matching current filters.</p>
+    </div>
+  } @else {
+    <div class="space-y-3">
+      @for (ticket of filteredTickets(); track ticket.id) {
+        <div class="group p-4 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-emerald-500/30 transition-all">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span [class]="'px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ' + getStatusClass(ticket.status)">
+                {{ ticket.status.replace('_', ' ') }}
+              </span>
+              <span [class]="'px-2 py-0.5 rounded-md text-[10px] uppercase font-bold tracking-wider ' + getPriorityClass(ticket.priority)">
+                {{ ticket.priority }}
+              </span>
+              @if (ticket.category) {
+                <span class="text-[11px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-white/5">
+                  {{ ticket.category }}
+                </span>
+              }
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-slate-500">{{ ticket.created_at | date:'short' }}</span>
+              <select
+                [ngModel]="ticket.status"
+                (ngModelChange)="statusChange.emit({ ticketId: ticket.id, newStatus: $event })"
+                class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-xs text-white font-medium focus:outline-none focus:border-emerald-500"
+              >
+                <option value="open">Open</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+          </div>
+
+          <h4 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">
+            {{ ticket.title || ticket.description.slice(0, 50) }}
+          </h4>
+          <p class="text-xs text-slate-400 mt-1 line-clamp-2">{{ ticket.description }}</p>
+        </div>
+      }
+    </div>
+  }
+</div>
