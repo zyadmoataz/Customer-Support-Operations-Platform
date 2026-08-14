@@ -11,7 +11,7 @@
       "destination": "/support/index.html"
     },
     {
-      "source": "/((?!support|assets|public|.*\\..*).*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
