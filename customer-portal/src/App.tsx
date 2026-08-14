@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { LandingPage } from './pages/LandingPage'
 import { LoginPage } from './pages/LoginPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { AnimatePresence } from 'framer-motion'
@@ -22,7 +23,7 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
   }
 
   if (!session) {
-    return <Navigate to="/" replace />
+    return <Navigate to="/login" replace />
   }
 
   if (role && role !== 'customer') {
@@ -55,13 +56,14 @@ function AppRoutes() {
     <div className="min-h-screen bg-brand-bg bg-radial-glow bg-no-repeat text-slate-100 flex flex-col selection:bg-indigo-500/30">
       <AnimatePresence mode="wait">
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route 
-            path="/" 
+            path="/login" 
             element={
               session ? (
                 <Navigate to="/dashboard" replace />
               ) : (
-                <div className="flex-1 flex items-center justify-center p-4">
+                <div className="min-h-screen flex items-center justify-center p-4">
                   <LoginPage />
                 </div>
               )
@@ -75,6 +77,7 @@ function AppRoutes() {
               </ProtectedRoute>
             } 
           />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>
     </div>

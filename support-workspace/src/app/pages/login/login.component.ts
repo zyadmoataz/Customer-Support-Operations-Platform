@@ -33,6 +33,11 @@ export class LoginPageComponent {
     password: ['', [Validators.required]]
   });
 
+  fillDemo(email: string, pass: string) {
+    this.loginForm.patchValue({ email, password: pass });
+    this.toast.success(`Loaded credentials for ${email.split('@')[0]}!`);
+  }
+
   async onSubmit() {
     this.formErrors.set({});
     

@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import toast from 'react-hot-toast'
-import { User, Eye, EyeOff } from 'lucide-react'
+import { User, Eye, EyeOff, Sparkles, ArrowLeft, Headphones } from 'lucide-react'
 
 const authSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -23,10 +23,17 @@ export function LoginPage() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
   })
+
+  const handleFillDemoCustomer = () => {
+    setValue('email', 'customer@portal.com')
+    setValue('password', 'password123')
+    toast.success('Filled Demo Customer Credentials!')
+  }
 
   const onSubmit = async (data: AuthFormValues) => {
     try {
@@ -61,8 +68,28 @@ export function LoginPage() {
       transition={{ duration: 0.4 }}
       className="w-full max-w-md p-8 rounded-3xl glass-panel shadow-glow mx-auto"
     >
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 mb-4">
+      <div className="flex items-center justify-between mb-6 pb-2 border-b border-slate-800/60">
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Home</span>
+        </button>
+        <button
+          type="button"
+          onClick={handleFillDemoCustomer}
+          className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-[11px] font-semibold border border-indigo-500/30 transition-all"
+          title="Autofill test credentials"
+        >
+          <Sparkles className="w-3 h-3 text-indigo-400" />
+          <span>Fill Demo User</span>
+        </button>
+      </div>
+
+      <div className="text-center mb-6">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 mb-3">
           <User className="w-6 h-6" />
         </div>
         <h2 className="text-2xl font-bold text-white tracking-tight">{isSignUp ? 'Create Customer Account' : 'Customer Portal'}</h2>
@@ -127,14 +154,22 @@ export function LoginPage() {
         </button>
       </form>
 
-      <div className="mt-6 text-center pt-4 border-t border-slate-800/80">
+      <div className="mt-6 text-center space-y-3 pt-4 border-t border-slate-800/80">
         <button 
           type="button"
           onClick={() => setIsSignUp(!isSignUp)}
-          className="text-xs text-slate-400 hover:text-indigo-400 transition-colors font-medium"
+          className="block w-full text-xs text-slate-400 hover:text-indigo-400 transition-colors font-medium"
         >
           {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
         </button>
+
+        <a 
+          href="http://localhost:4200" 
+          className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+        >
+          <Headphones className="w-3.5 h-3.5" />
+          <span>Support Staff? Switch to Support Workspace &rarr;</span>
+        </a>
       </div>
     </motion.div>
   )
