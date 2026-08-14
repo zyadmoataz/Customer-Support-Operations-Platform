@@ -49,14 +49,3 @@ body {
   background: #334155;
 }
 
-/* Hot Toast Styling Enhancement */
-.hot-toast-bar-base-container {
-  border-radius: 1rem !important;
-  font-size: 0.875rem !important;
-  font-weight: 500 !important;
-  line-height: 1.25rem !important;
-}
-
-.hot-toast-message {
-  margin: 0 0.5rem !important;
-}
