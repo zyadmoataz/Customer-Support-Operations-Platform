@@ -14,5 +14,5 @@ export class StatsOverviewComponent {
 
   totalCount = computed(() => this.tickets().length);
   pendingCount = computed(() => this.tickets().filter(t => t.status === 'open' || t.status === 'in_progress').length);
-  resolvedCount = computed(() => this.tickets().filter(t => t.status === 'resolved' || t.status === 'closed').length);
+  resolvedCount = computed(() => this.tickets().filter(t => t.status === 'resolved').length);
 }

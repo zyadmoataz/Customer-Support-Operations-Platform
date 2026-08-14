@@ -8,7 +8,7 @@ interface StatsCardsProps {
 export function StatsCards({ tickets }: StatsCardsProps) {
   const total = tickets.length
   const openCount = tickets.filter(t => t.status === 'open' || t.status === 'in_progress').length
-  const resolvedCount = tickets.filter(t => t.status === 'resolved' || t.status === 'closed').length
+  const resolvedCount = tickets.filter(t => t.status === 'resolved').length
 
   const stats = [
     {

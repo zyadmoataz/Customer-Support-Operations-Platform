@@ -41,7 +41,7 @@ export function DashboardPage() {
       ? true 
       : activeTab === 'open' 
         ? t.status === 'open' || t.status === 'in_progress' 
-        : t.status === 'resolved' || t.status === 'closed'
+        : t.status === 'resolved'
 
     const matchesSearch = (t.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
       t.description.toLowerCase().includes(searchQuery.toLowerCase())

@@ -8,7 +8,6 @@ const statusBadgeStyles: Record<TicketStatus, { bg: string; text: string; dot: s
   open: { bg: 'bg-sky-500/10 border-sky-500/20', text: 'text-sky-400', dot: 'bg-sky-400', label: 'Open' },
   in_progress: { bg: 'bg-amber-500/10 border-amber-500/20', text: 'text-amber-400', dot: 'bg-amber-400', label: 'In Progress' },
   resolved: { bg: 'bg-emerald-500/10 border-emerald-500/20', text: 'text-emerald-400', dot: 'bg-emerald-400', label: 'Resolved' },
-  closed: { bg: 'bg-slate-500/10 border-slate-500/20', text: 'text-slate-400', dot: 'bg-slate-400', label: 'Closed' },
 }
 
 const priorityBadgeStyles: Record<TicketPriority, { text: string; bg: string }> = {
