@@ -1,40 +1,54 @@
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-  <div class="relative overflow-hidden rounded-2xl glass-panel p-5 border border-indigo-500/20 transition-all duration-300 hover:scale-[1.01]">
-    <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500/10 to-transparent blur-xl pointer-events-none"></div>
-    <div class="flex items-center justify-between">
-      <span class="text-xs font-medium text-slate-400">Total In Queue</span>
-      <div class="p-2 rounded-xl bg-slate-900/60 border border-white/5 text-indigo-400">
-        <lucide-icon [name]="'inbox'" class="w-5 h-5"></lucide-icon>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-glow flex flex-col justify-between">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat1Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20">
+        <lucide-icon [name]="'inbox'" class="w-4 h-4"></lucide-icon>
       </div>
     </div>
-    <div class="mt-3">
-      <span class="text-2xl font-bold text-white tracking-tight">{{ totalCount() }}</span>
+    <div>
+      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat1Value() }}</div>
+      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat1Subtext() }}</span>
     </div>
   </div>
 
-  <div class="relative overflow-hidden rounded-2xl glass-panel p-5 border border-amber-500/20 transition-all duration-300 hover:scale-[1.01]">
-    <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-gradient-to-br from-amber-500/10 to-transparent blur-xl pointer-events-none"></div>
-    <div class="flex items-center justify-between">
-      <span class="text-xs font-medium text-slate-400">Pending Actions</span>
-      <div class="p-2 rounded-xl bg-slate-900/60 border border-white/5 text-amber-400">
-        <lucide-icon [name]="'clock'" class="w-5 h-5"></lucide-icon>
+  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-glow flex flex-col justify-between">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat2Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <lucide-icon [name]="'clock'" class="w-4 h-4"></lucide-icon>
       </div>
     </div>
-    <div class="mt-3">
-      <span class="text-2xl font-bold text-white tracking-tight">{{ pendingCount() }}</span>
+    <div>
+      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat2Value() }}</div>
+      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat2Subtext() }}</span>
     </div>
   </div>
 
-  <div class="relative overflow-hidden rounded-2xl glass-panel p-5 border border-emerald-500/20 transition-all duration-300 hover:scale-[1.01]">
-    <div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500/10 to-transparent blur-xl pointer-events-none"></div>
-    <div class="flex items-center justify-between">
-      <span class="text-xs font-medium text-slate-400">Resolved Today</span>
-      <div class="p-2 rounded-xl bg-slate-900/60 border border-white/5 text-emerald-400">
-        <lucide-icon [name]="'check-circle-2'" class="w-5 h-5"></lucide-icon>
+  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-glow flex flex-col justify-between">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat3Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <lucide-icon [name]="'check-circle-2'" class="w-4 h-4"></lucide-icon>
       </div>
     </div>
-    <div class="mt-3">
-      <span class="text-2xl font-bold text-white tracking-tight">{{ resolvedCount() }}</span>
+    <div>
+      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat3Value() }}</div>
+      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat3Subtext() }}</span>
+    </div>
+  </div>
+
+  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-glow flex flex-col justify-between">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat4Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        <lucide-icon [name]="'star'" class="w-4 h-4 fill-amber-400 text-amber-400"></lucide-icon>
+      </div>
+    </div>
+    <div>
+      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat4Value() }}</div>
+      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat4Subtext() }}</span>
     </div>
   </div>
 </div>
+

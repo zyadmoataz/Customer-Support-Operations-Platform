@@ -1,55 +1,96 @@
-<div class="min-h-screen w-full bg-brand-bg bg-radial-glow bg-no-repeat text-slate-100 flex flex-col">
-  <app-workspace-header 
-    [profile]="profile()" 
+<div class="h-screen w-full bg-brand-bg bg-radial-glow bg-no-repeat text-slate-100 flex flex-col lg:flex-row overflow-hidden selection:bg-emerald-500/30">
+  <app-workspace-sidebar
+    [profile]="profile()"
+    [activeTab]="activeNavTab()"
+    (tabChange)="activeNavTab.set($event)"
     (signOut)="handleSignOut()"
-    (profileClick)="isProfileOpen.set(true)"
-  ></app-workspace-header>
+    class="flex-shrink-0"
+  ></app-workspace-sidebar>
 
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <app-stats-overview [tickets]="tickets()"></app-stats-overview>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div class="lg:col-span-2">
-        <app-ticket-queue
-          [tickets]="tickets()"
-          [loading]="loading()"
-          (statusChange)="handleStatusChange($event)"
-        ></app-ticket-queue>
-      </div>
-
-      <div class="space-y-6">
-        @if (profile()?.role === 'manager') {
-          <app-manager-panel 
-            [tickets]="tickets()" 
-            (reassignAll)="handleAutoAssign()"
-          ></app-manager-panel>
-        }
-
-        <div class="rounded-3xl glass-panel p-6 border border-white/5 shadow-card">
-          <h3 class="text-sm font-semibold text-white mb-3">Operational Guidelines</h3>
-          <ul class="text-xs text-slate-400 space-y-2.5">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">1.</span>
-              <span>Respond to <strong>Urgent</strong> priority tickets within 15 minutes.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">2.</span>
-              <span>Mark tickets as <strong>In Progress</strong> once actively triaging.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400 font-bold">3.</span>
-              <span>Confirm resolution before setting status to <strong>Resolved</strong>.</span>
-            </li>
-          </ul>
+  <main class="flex-1 h-full overflow-y-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-10 pb-16">
+    <div class="max-w-6xl w-full mx-auto">
+      <!-- Top Header with Generous Spacing -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/5">
+        <div>
+          <p class="text-xs text-slate-400 font-medium mb-1">
+            Welcome back, <span class="text-white font-semibold">{{ profile()?.full_name || 'Staff Member' }}</span>
+            <span class="text-slate-500"> • {{ isManager() ? 'Operations Manager' : 'Support Specialist' }}</span>
+          </p>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            @if (activeNavTab() === 'queue') { Triage Ticket Queue & Workload }
+            @else if (activeNavTab() === 'analytics') { Operations & SLA Intelligence }
+            @else if (activeNavTab() === 'staff') { Staff Directory & Onboarding }
+            @else if (activeNavTab() === 'settings') { Staff Security & Preferences }
+          </h1>
         </div>
       </div>
+
+      <!-- VIEW 1: Ticket Queue -->
+      @if (activeNavTab() === 'queue') {
+        <app-stats-overview [tickets]="tickets()" [userRole]="profile()?.role || null" [currentUserId]="currentUser()?.id || null"></app-stats-overview>
+        <div class="mt-8">
+          <app-ticket-queue
+            [tickets]="tickets()"
+            [agents]="agents()"
+            [loading]="loading()"
+            [userRole]="profile()?.role || null"
+            [currentUserId]="currentUser()?.id || null"
+            (statusChange)="handleStatusChange($event)"
+            (requestResolve)="openResolutionModal($event)"
+            (openFeedback)="openManagerFeedback($event)"
+            (claimTicket)="handleClaimTicket($event)"
+            (assignTicket)="handleAssignTicket($event)"
+          ></app-ticket-queue>
+        </div>
+      }
+
+      <!-- VIEW 2: Operations & SLA Intelligence (Delegated to AnalyticsViewComponent) -->
+      @if (activeNavTab() === 'analytics') {
+        <app-stats-overview [tickets]="tickets()" [userRole]="profile()?.role || null" [currentUserId]="currentUser()?.id || null"></app-stats-overview>
+        <div class="mt-8">
+          <app-analytics-view
+            [tickets]="tickets()"
+            [agents]="agents()"
+            [userRole]="profile()?.role || null"
+            [currentUserId]="currentUser()?.id || null"
+          ></app-analytics-view>
+        </div>
+      }
+
+      <!-- VIEW 3: Staff Management (Manager Only) -->
+      @if (activeNavTab() === 'staff' && isManager()) {
+        <app-manager-panel 
+          [agents]="agents()"
+          (createAgent)="handleCreateAgent($event)"
+          (updateAgent)="handleUpdateAgent($event)"
+          (toggleStatus)="handleToggleAgentStatus($event)"
+          (deleteAgent)="handleDeleteAgent($event)"
+        ></app-manager-panel>
+      }
+
+      <!-- VIEW 4: Account Settings -->
+      @if (activeNavTab() === 'settings') {
+        <app-settings-view
+          [profile]="profile()"
+          (save)="handleUpdateProfile($event)"
+        ></app-settings-view>
+      }
     </div>
   </main>
 
-  <app-profile-modal
-    [isOpen]="isProfileOpen()"
-    [profile]="profile()"
-    (close)="isProfileOpen.set(false)"
-    (save)="handleUpdateProfile($event)"
-  ></app-profile-modal>
+  <app-resolution-modal
+    [isOpen]="isResolutionOpen()"
+    [ticketId]="resolvingTicketId()"
+    (close)="isResolutionOpen.set(false)"
+    (resolve)="handleConfirmResolve($event)"
+  ></app-resolution-modal>
+
+  <app-feedback-modal
+    [isOpen]="isFeedbackOpen()"
+    [ticketId]="feedbackTicketId()"
+    [currentFeedback]="currentFeedbackText()"
+    [currentRating]="currentRatingValue()"
+    (close)="isFeedbackOpen.set(false)"
+    (saveFeedback)="handleSaveFeedback($event)"
+  ></app-feedback-modal>
 </div>

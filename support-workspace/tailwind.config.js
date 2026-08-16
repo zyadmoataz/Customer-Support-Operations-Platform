@@ -7,27 +7,39 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          bg: '#090d16',
-          surface: '#0f172a',
-          card: 'rgba(15, 23, 42, 0.75)',
-          border: 'rgba(255, 255, 255, 0.08)',
-          'border-hover': 'rgba(99, 102, 241, 0.3)',
-          primary: '#6366f1',
-          'primary-hover': '#4f46e5',
-          accent: '#8b5cf6',
-          muted: '#94a3b8',
+          bg: 'var(--bg-canvas)',
+          surface: 'var(--bg-elevated)',
+          card: 'var(--bg-surface-1)',
+          elevated: 'var(--bg-surface-2)',
+          border: 'var(--border-default)',
+          'border-subtle': 'var(--border-subtle)',
+          'border-hover': 'var(--border-hover)',
+          primary: 'var(--brand-primary)',
+          'primary-hover': 'var(--brand-primary-hover)',
+          accent: 'var(--brand-accent)',
+        },
+        status: {
+          open: 'var(--status-open)',
+          'open-bg': 'var(--status-open-bg)',
+          inprogress: 'var(--status-in-progress)',
+          'inprogress-bg': 'var(--status-in-progress-bg)',
+          resolved: 'var(--status-resolved)',
+          'resolved-bg': 'var(--status-resolved-bg)',
+          urgent: 'var(--status-urgent)',
+          'urgent-bg': 'var(--status-urgent-bg)',
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        glow: '0 0 25px -5px rgba(99, 102, 241, 0.25)',
-        'glow-lg': '0 0 35px -5px rgba(99, 102, 241, 0.4)',
+        glow: '0 0 30px -5px var(--brand-glow)',
+        'glow-lg': '0 0 45px -5px var(--brand-glow-lg)',
         card: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'card-elevated': '0 12px 40px 0 rgba(0, 0, 0, 0.45)',
       },
       backgroundImage: {
-        'radial-glow': 'radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15), transparent 70%)',
+        'radial-glow': 'radial-gradient(circle at 50% 0%, var(--brand-glow), transparent 70%)',
       }
     },
   },

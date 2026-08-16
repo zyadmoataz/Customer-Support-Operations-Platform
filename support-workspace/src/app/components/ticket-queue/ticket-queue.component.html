@@ -1,75 +1,158 @@
-<div class="rounded-3xl glass-panel p-6 border border-white/5 shadow-card">
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-    <div class="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900/80 border border-white/5 w-fit">
-      @for (tab of ['all', 'open', 'in_progress', 'resolved']; track tab) {
-        <button
-          (click)="activeTab.set(tab)"
-          [class]="'px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ' + (activeTab() === tab ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')"
-        >
-          {{ tab.replace('_', ' ') }}
+<div class="space-y-6">
+  <!-- Standalone Controls Toolbar -->
+  <div class="p-4 sm:p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    @if (userRole() !== 'manager') {
+      <div class="flex items-center gap-1 sm:gap-1.5 p-1 rounded-2xl bg-slate-950/80 border border-slate-800 overflow-x-auto max-w-full flex-nowrap scrollbar-none w-full sm:w-auto">
+        <button (click)="agentViewTab.set('available')" [class]="'flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ' + (agentViewTab() === 'available' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+          <lucide-icon [name]="'inbox'" class="w-3.5 h-3.5 flex-shrink-0"></lucide-icon><span>Available</span>
         </button>
-      }
-    </div>
+        <button (click)="agentViewTab.set('active')" [class]="'flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ' + (agentViewTab() === 'active' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+          <lucide-icon [name]="'zap'" class="w-3.5 h-3.5 flex-shrink-0"></lucide-icon><span>Active Tasks</span>
+        </button>
+        <button (click)="agentViewTab.set('history')" [class]="'flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ' + (agentViewTab() === 'history' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+          <lucide-icon [name]="'check-circle-2'" class="w-3.5 h-3.5 flex-shrink-0"></lucide-icon><span>History</span>
+        </button>
+      </div>
+    } @else {
+      <div class="flex items-center gap-1 p-1 rounded-2xl bg-slate-950/80 border border-slate-800 overflow-x-auto max-w-full flex-nowrap scrollbar-none w-full sm:w-auto">
+        @for (tab of ['all', 'open', 'in_progress', 'resolved']; track tab) {
+          <button (click)="managerStatusTab.set(tab)" [class]="'flex-1 sm:flex-initial px-3 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ' + (managerStatusTab() === tab ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+            {{ tab.replace('_', ' ') }}
+          </button>
+        }
+      </div>
+    }
 
-    <div class="relative w-full sm:w-64">
-      <input
-        type="text"
-        [ngModel]="searchQuery()"
-        (ngModelChange)="searchQuery.set($event)"
-        placeholder="Search tickets by subject..."
-        class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-      />
-      <lucide-icon [name]="'search'" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"></lucide-icon>
+    <!-- Search Container -->
+    <div class="flex items-center px-3.5 py-2 rounded-xl bg-slate-950/90 border border-slate-800 focus-within:border-emerald-500 transition-all w-full md:w-72 shadow-inner">
+      <lucide-icon [name]="'search'" class="w-4 h-4 text-slate-400 flex-shrink-0 mr-2.5"></lucide-icon>
+      <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" placeholder="Search tickets by keyword..." class="w-full bg-transparent border-0 p-0 text-xs text-white placeholder-slate-500 focus:outline-none" />
     </div>
   </div>
 
+  <!-- Loading State -->
   @if (loading()) {
-    <div class="space-y-3">
+    <div class="space-y-4">
       @for (i of [1, 2, 3]; track i) {
-        <div class="h-28 rounded-2xl bg-slate-900/40 animate-pulse border border-white/5"></div>
+        <div class="h-36 rounded-3xl bg-slate-900 border border-slate-800 p-6 flex flex-col justify-between">
+          <div class="flex items-center justify-between"><div class="w-32 h-5 rounded-full animate-shimmer"></div><div class="w-24 h-4 rounded animate-shimmer"></div></div>
+          <div class="w-3/4 h-5 rounded animate-shimmer"></div>
+          <div class="w-full h-4 rounded animate-shimmer"></div>
+        </div>
       }
     </div>
   } @else if (filteredTickets().length === 0) {
-    <div class="py-12 text-center border border-dashed border-slate-800 rounded-2xl">
-      <p class="text-sm text-slate-400">No tickets found matching current filters.</p>
+    <!-- Empty State -->
+    <div class="py-16 text-center border-2 border-dashed border-slate-800 rounded-3xl bg-slate-900/50 p-8">
+      <div class="w-12 h-12 rounded-2xl bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
+        <lucide-icon [name]="'inbox'" class="w-6 h-6"></lucide-icon>
+      </div>
+      <h4 class="text-sm font-bold text-white mb-1">No Tickets Found</h4>
+      <p class="text-xs text-slate-400">
+        @if (userRole() !== 'manager') {
+          @if (agentViewTab() === 'available') { No unassigned tickets in queue. All caught up! }
+          @else if (agentViewTab() === 'active') { You have no active tasks. Claim one from the available queue! }
+          @else { No resolved tickets in your history yet. }
+        } @else {
+          No tickets match your selected filters.
+        }
+      </p>
     </div>
   } @else {
-    <div class="space-y-3">
+    <!-- Standalone Ticket Cards -->
+    <div class="space-y-6">
       @for (ticket of filteredTickets(); track ticket.id) {
-        <div class="group p-4 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-emerald-500/30 transition-all">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <div class="flex items-center gap-2">
-              <span [class]="'px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ' + getStatusClass(ticket.status)">
-                {{ ticket.status.replace('_', ' ') }}
+        <div class="rounded-3xl bg-slate-900 border-2 border-slate-800/90 hover:border-emerald-500/50 p-6 shadow-2xl shadow-black/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow flex flex-col justify-between">
+          <!-- Header -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-800/80">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-mono text-xs font-bold text-indigo-300 bg-indigo-500/15 px-2.5 py-1 rounded-lg border border-indigo-500/30">#{{ ticket.id.slice(0, 8) }}</span>
+              <span [class]="'flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ' + getStatusClass(ticket.status)">
+                <span [class]="'w-2 h-2 rounded-full ' + (ticket.status === 'resolved' ? 'bg-emerald-400' : ticket.status === 'in_progress' ? 'bg-amber-400' : 'bg-sky-400') + ' animate-pulse'"></span>
+                <span>{{ ticket.status === 'resolved' ? 'Resolved & Locked' : ticket.status.replace('_', ' ') }}</span>
               </span>
-              <span [class]="'px-2 py-0.5 rounded-md text-[10px] uppercase font-bold tracking-wider ' + getPriorityClass(ticket.priority)">
-                {{ ticket.priority }}
-              </span>
-              @if (ticket.category) {
-                <span class="text-[11px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-white/5">
-                  {{ ticket.category }}
-                </span>
-              }
+              <span [class]="'px-2.5 py-1 rounded-lg text-[10px] uppercase font-extrabold tracking-wider border ' + getPriorityClass(ticket.priority)">{{ ticket.priority }}</span>
+              @if (ticket.category) { <span class="text-xs text-slate-300 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">{{ ticket.category }}</span> }
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="text-[11px] text-slate-500">{{ ticket.created_at | date:'short' }}</span>
-              <select
-                [ngModel]="ticket.status"
-                (ngModelChange)="statusChange.emit({ ticketId: ticket.id, newStatus: $event })"
-                class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-xs text-white font-medium focus:outline-none focus:border-emerald-500"
-              >
-                <option value="open">Open</option>
-                <option value="in_progress">In Progress</option>
-                <option value="resolved">Resolved</option>
-              </select>
+              <span class="text-xs text-slate-400 font-medium">{{ ticket.created_at | date:'short' }}</span>
+              @if (ticket.status === 'resolved') {
+                <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-950/80 text-emerald-300 text-xs font-bold border border-emerald-500/40">
+                  <lucide-icon [name]="'check-circle-2'" class="w-4 h-4 text-emerald-400"></lucide-icon><span>Resolved</span>
+                </span>
+              } @else {
+                <div class="w-44">
+                  <app-custom-select [options]="statusOptions" [value]="ticket.status" (valueChange)="handleSelectChange(ticket, $event)"></app-custom-select>
+                </div>
+              }
             </div>
           </div>
 
-          <h4 class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">
-            {{ ticket.title || ticket.description.slice(0, 50) }}
-          </h4>
-          <p class="text-xs text-slate-400 mt-1 line-clamp-2">{{ ticket.description }}</p>
+          <!-- Description -->
+          <div class="mb-4">
+            <h3 class="text-base sm:text-lg font-bold text-white tracking-tight mb-2">{{ ticket.title || ticket.description.slice(0, 50) }}</h3>
+            <div class="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{{ ticket.description }}</div>
+          </div>
+
+          <!-- Resolution -->
+          @if (ticket.resolution_note) {
+            <div class="mb-4 p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-xs">
+              <div class="flex items-center gap-1.5 font-bold text-emerald-400 mb-1.5"><lucide-icon [name]="'check'" class="w-4 h-4"></lucide-icon><span>Official Resolution Report:</span></div>
+              <p class="text-slate-200 leading-relaxed">{{ ticket.resolution_note }}</p>
+            </div>
+          }
+
+          <!-- Manager Review -->
+          @if (ticket.manager_feedback || ticket.manager_rating) {
+            <div class="mb-4 p-4 rounded-2xl bg-amber-950/40 border border-amber-500/30 text-xs flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 font-bold text-amber-400"><lucide-icon [name]="'message-square'" class="w-4 h-4"></lucide-icon><span>Operations Quality Audit:</span></div>
+                @if (ticket.manager_rating) {
+                  <div class="flex items-center gap-1 text-amber-300 font-bold bg-amber-900/40 px-2.5 py-0.5 rounded-lg border border-amber-500/30">
+                    <lucide-icon [name]="'star'" class="w-4 h-4 fill-amber-400 text-amber-400"></lucide-icon><span>{{ ticket.manager_rating }} / 5</span>
+                  </div>
+                }
+              </div>
+              @if (ticket.manager_feedback) { <p class="text-slate-200 leading-relaxed">{{ ticket.manager_feedback }}</p> }
+            </div>
+          }
+
+          <!-- Footer -->
+          <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+            @if (userRole() === 'manager' && ticket.status !== 'resolved') {
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-slate-400 font-semibold flex items-center gap-1.5">
+                  <lucide-icon [name]="'headphones'" class="w-3.5 h-3.5 text-emerald-400"></lucide-icon>
+                  <span>Assign Specialist:</span>
+                </span>
+                <div class="w-60">
+                  <app-custom-select
+                    [options]="assignAgentOptions()"
+                    [value]="ticket.assigned_to || 'unassigned'"
+                    (valueChange)="handleAssignAgent(ticket.id, $event)"
+                  ></app-custom-select>
+                </div>
+              </div>
+            } @else {
+              <div class="flex items-center gap-1.5">
+                <span>Assigned Specialist:</span>
+                <span class="font-bold text-white px-2.5 py-0.5 rounded-md bg-slate-950 border border-slate-800">{{ ticket.assigned_agent_name || (ticket.assigned_to ? 'Staff Member' : 'Unassigned (In Queue)') }}</span>
+              </div>
+            }
+            <div class="flex items-center gap-2">
+              @if (userRole() !== 'manager' && !ticket.assigned_to && ticket.status !== 'resolved') {
+                <button (click)="claimTicket.emit(ticket.id)" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/25 transition-all">
+                  <lucide-icon [name]="'zap'" class="w-4 h-4"></lucide-icon><span>Claim Task</span>
+                </button>
+              }
+              @if (userRole() === 'manager' && ticket.status === 'resolved') {
+                <button (click)="openFeedback.emit(ticket)" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/40 transition-all">
+                  <lucide-icon [name]="'star'" class="w-4 h-4"></lucide-icon><span>{{ ticket.manager_feedback ? 'Edit Quality Audit' : 'Audit & Rate Task' }}</span>
+                </button>
+              }
+            </div>
+          </div>
         </div>
       }
     </div>

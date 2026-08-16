@@ -1,0 +1,158 @@
+@if (isManager()) {
+  <!-- MANAGER VIEW: Organization-Wide Operations Intelligence -->
+  <div class="space-y-6">
+    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-white/10">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-white/10">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">Organization Operations & SLA Health</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Enterprise telemetry across team resolution rates, workload balance, and manager QA audits</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 w-fit">
+          Live Executive Telemetry
+        </span>
+      </div>
+
+      <!-- KPI Metric Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">SLA Resolution Rate</span>
+          <span class="text-3xl font-extrabold text-emerald-400">{{ orgResolutionRate() }}</span>
+          <p class="text-xs text-slate-400 mt-1">{{ resolvedTicketsCount() }} of {{ totalTicketsCount() }} requests completed</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Audited CSAT Score</span>
+          <div class="flex items-center gap-1.5 text-3xl font-extrabold text-amber-400">
+            <lucide-icon [name]="'star'" class="w-6 h-6 fill-amber-400 text-amber-400"></lucide-icon>
+            <span>{{ orgAvgRating() }}</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">{{ orgReviewedCount() }} verified supervisor audits</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Active Queue Workload</span>
+          <span class="text-3xl font-extrabold text-sky-400">{{ inProgressCount() }} Active</span>
+          <p class="text-xs text-slate-400 mt-1">{{ openQueueCount() }} unassigned • {{ urgentCount() }} urgent</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Workforce Capacity</span>
+          <span class="text-3xl font-extrabold text-indigo-400">{{ activeStaffCount() }} Staff</span>
+          <p class="text-xs text-slate-400 mt-1">{{ avgLoadPerAgent() }} active tasks / specialist avg</p>
+        </div>
+      </div>
+
+      <!-- Detailed Breakdown Grids -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4 border-t border-white/10">
+        <!-- Category Breakdown -->
+        <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <lucide-icon [name]="'folder'" class="w-4 h-4 text-emerald-400"></lucide-icon>
+            <span>Inquiry Inflow by Category</span>
+          </h3>
+          <div class="space-y-3">
+            @for (cat of categoryBreakdown(); track cat.category) {
+              <div>
+                <div class="flex items-center justify-between text-xs font-medium mb-1">
+                  <span class="text-slate-300">{{ cat.category }}</span>
+                  <span class="text-slate-400 font-mono">{{ cat.count }} ({{ cat.percent }}%)</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div class="h-full bg-emerald-500 rounded-full transition-all duration-500" [style.width.%]="cat.percent"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Priority SLA Distribution -->
+        <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
+          <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+            <lucide-icon [name]="'shield'" class="w-4 h-4 text-indigo-400"></lucide-icon>
+            <span>Priority & SLA Target Compliance</span>
+          </h3>
+          <div class="space-y-3">
+            @for (pri of priorityBreakdown(); track pri.key) {
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800/80 text-xs">
+                <span [class]="'px-2.5 py-0.5 rounded-md font-bold uppercase tracking-wider border ' + pri.color">
+                  {{ pri.label }}
+                </span>
+                <div class="flex items-center gap-3">
+                  <span class="text-slate-300 font-semibold">{{ pri.count }} Requests</span>
+                  <span class="text-slate-500 font-mono">{{ pri.percent }}%</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- SUPPORT AGENT VIEW: Personal Operations Performance Scorecard -->
+  <div class="space-y-6">
+    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-white/10">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-white/10">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">Personal Specialist Scorecard & Metrics</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Real-time telemetry on personal ticket throughput, resolution compliance, and supervisor QA reviews</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 w-fit">
+          Specialist Scorecard
+        </span>
+      </div>
+
+      <!-- Agent KPI Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Supervisor QA Score</span>
+          <div class="flex items-center gap-1.5 text-3xl font-extrabold text-amber-400">
+            <lucide-icon [name]="'star'" class="w-6 h-6 fill-amber-400 text-amber-400"></lucide-icon>
+            <span>{{ myAvgRating() }}</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">{{ myReviewedCount() }} tasks reviewed</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">My Resolution Rate</span>
+          <span class="text-3xl font-extrabold text-emerald-400">{{ myResolutionRate() }}</span>
+          <p class="text-xs text-slate-400 mt-1">{{ myResolvedCount() }} of {{ myClaimedTickets().length }} tasks closed</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">My Active Tasks</span>
+          <span class="text-3xl font-extrabold text-amber-400">{{ myActiveCount() }} In Flight</span>
+          <p class="text-xs text-slate-400 mt-1">Currently investigating</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 interactive-card">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Queue Inflow</span>
+          <span class="text-3xl font-extrabold text-sky-400">{{ openQueueCount() }} In Queue</span>
+          <p class="text-xs text-slate-400 mt-1">Ready for claiming</p>
+        </div>
+      </div>
+
+      <!-- Agent SLA Guidelines -->
+      <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80">
+        <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+          <lucide-icon [name]="'shield'" class="w-4 h-4 text-emerald-400"></lucide-icon>
+          <span>Specialist Operational Protocols & Resolution SLA</span>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="text-rose-400 font-bold block mb-1">Urgent SLA Target</span>
+            <p class="text-slate-400 leading-relaxed">Triage within <strong class="text-slate-200">15 minutes</strong>. Notify manager if assistance is required.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="text-amber-400 font-bold block mb-1">Resolution Standard</span>
+            <p class="text-slate-400 leading-relaxed">Provide detailed resolution summary notes to ensure audit compliance.</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800">
+            <span class="text-emerald-400 font-bold block mb-1">Quality Assurance</span>
+            <p class="text-slate-400 leading-relaxed">Operations Manager reviews all closed tasks and assigns 1–5 star ratings.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

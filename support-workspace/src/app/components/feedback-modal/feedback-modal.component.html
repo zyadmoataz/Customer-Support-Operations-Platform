@@ -1,0 +1,62 @@
+@if (isOpen()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+    <div class="w-full max-w-md p-5 sm:p-6 rounded-3xl glass-panel shadow-glow border border-amber-500/30 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+        <div>
+          <h3 class="text-base font-bold text-white tracking-tight">Manager QA & Performance Rating</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Rate agent resolution and provide constructive feedback</p>
+        </div>
+        <button (click)="close.emit()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+          <lucide-icon [name]="'x'" class="w-4 h-4"></lucide-icon>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <!-- 1 to 5 Star Rating Selection -->
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+            Performance Score (1 - 5 Stars)
+          </label>
+          <div class="flex items-center gap-2">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <button
+                type="button"
+                (click)="rating.set(star)"
+                class="p-1 rounded-lg hover:bg-slate-800 transition-transform hover:scale-110 focus:outline-none"
+              >
+                <lucide-icon
+                  [name]="'star'"
+                  [class]="'w-6 h-6 ' + (rating() >= star ? 'fill-amber-400 text-amber-400' : 'text-slate-600')"
+                ></lucide-icon>
+              </button>
+            }
+            <span class="ml-2 text-xs font-bold text-amber-300">{{ rating() }} / 5 Stars</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+            Manager Review Comment / Coaching Notes
+          </label>
+          <textarea
+            [(ngModel)]="feedback"
+            rows="3"
+            placeholder="e.g. Great speed! Next time, provide an FAQ link for self-service."
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-amber-500"
+          ></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-800">
+          <button (click)="close.emit()" class="px-3 py-1.5 rounded-xl text-slate-400 hover:text-white text-xs font-medium">Cancel</button>
+          <button
+            (click)="handleConfirm()"
+            [disabled]="!feedback.trim()"
+            class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold shadow-md shadow-amber-600/20 disabled:opacity-50"
+          >
+            Save Rating & Feedback
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

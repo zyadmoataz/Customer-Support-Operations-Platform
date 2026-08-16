@@ -3,13 +3,12 @@ import { CanActivateFn, Router } from '@angular/router';
 import { SupabaseService } from '../services/supabase.service';
 import { ToastService } from '../services/toast.service';
 
-export const authGuard: CanActivateFn = (route) => {
+export const authGuard: CanActivateFn = async (route) => {
   const supabase = inject(SupabaseService);
   const router = inject(Router);
   const toast = inject(ToastService);
 
-  const user = supabase.currentUser();
-  const profile = supabase.currentProfile();
+  const { user, profile } = await supabase.ensureAuthInitialized();
 
   if (!user) {
     return router.parseUrl('/login');

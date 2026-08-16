@@ -18,7 +18,19 @@ import {
   X, 
   Check, 
   AlertCircle, 
-  Info 
+  Info,
+  Folder,
+  Star,
+  MessageSquare,
+  Users,
+  BarChart3,
+  Settings,
+  Lock,
+  Menu,
+  ChevronDown,
+  ChevronUp,
+  Filter,
+  Plus
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -42,7 +54,19 @@ export const appConfig: ApplicationConfig = {
         X, 
         Check, 
         AlertCircle, 
-        Info 
+        Info,
+        Folder,
+        Star,
+        MessageSquare,
+        Users,
+        BarChart3,
+        Settings,
+        Lock,
+        Menu,
+        ChevronDown,
+        ChevronUp,
+        Filter,
+        Plus
       })
     )
   ]

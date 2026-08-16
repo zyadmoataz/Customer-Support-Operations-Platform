@@ -8,8 +8,8 @@ import { ToastService } from '../../core/services/toast.service';
 import { z } from 'zod';
 
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters')
+  email: z.string().email('Please enter a valid email address').transform(v => v.trim()),
+  password: z.string().min(6, 'Password must be at least 6 characters').transform(v => v.trim())
 });
 
 @Component({
@@ -67,7 +67,7 @@ export class LoginPageComponent {
       this.toast.success('Successfully logged in!');
       this.router.navigate(['/dashboard']);
     } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : 'Login failed';
+      const errorMessage = err instanceof Error ? err.message : 'Invalid login credentials';
       this.toast.error(errorMessage);
     } finally {
       this.loading.set(false);

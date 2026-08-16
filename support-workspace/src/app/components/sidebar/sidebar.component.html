@@ -1,0 +1,106 @@
+<!-- Mobile Top Navigation Bar (Shown on < lg screens) -->
+<div class="lg:hidden sticky top-0 z-40 w-full h-16 bg-slate-950/95 backdrop-blur-md border-b border-white/5 px-4 flex items-center justify-between">
+  <div class="flex items-center gap-2.5">
+    <div class="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 shadow-glow text-white font-bold">
+      <lucide-icon [name]="'headphones'" class="w-4 h-4"></lucide-icon>
+    </div>
+    <span class="font-bold text-white text-base tracking-tight">Optima</span>
+  </div>
+
+  <button
+    (click)="isMobileOpen.set(!isMobileOpen())"
+    class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+    aria-label="Toggle Navigation"
+  >
+    <lucide-icon [name]="isMobileOpen() ? 'x' : 'menu'" class="w-5 h-5"></lucide-icon>
+  </button>
+</div>
+
+<!-- Mobile Drawer Backdrop -->
+@if (isMobileOpen()) {
+  <div
+    (click)="isMobileOpen.set(false)"
+    class="lg:hidden fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-opacity"
+  ></div>
+}
+
+<!-- Fixed Desktop Sidebar -->
+<aside
+  [class]="'fixed lg:sticky top-0 left-0 z-50 w-64 h-screen bg-slate-950 border-r border-slate-800/80 flex flex-col justify-between p-5 sm:p-6 flex-shrink-0 transition-transform duration-300 ease-in-out ' + (isMobileOpen() ? 'translate-x-0' : '-translate-x-full lg:translate-x-0')"
+>
+  <div>
+    <!-- Logo & Brand Header -->
+    <div class="flex items-center justify-between px-1 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-emerald-600 to-teal-600 shadow-glow text-white font-bold flex-shrink-0">
+          <lucide-icon [name]="'headphones'" class="w-5 h-5 text-white"></lucide-icon>
+        </div>
+        <span class="font-extrabold text-white text-xl tracking-tight">Optima</span>
+      </div>
+      <button (click)="isMobileOpen.set(false)" class="lg:hidden text-slate-400 hover:text-white p-1">
+        <lucide-icon [name]="'x'" class="w-5 h-5"></lucide-icon>
+      </button>
+    </div>
+
+    <!-- User Profile Pill -->
+    <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800/80 mb-6 flex items-center gap-3 shadow-md shadow-black/20">
+      <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-sm border border-emerald-500/30 flex-shrink-0">
+        {{ profile()?.full_name?.charAt(0)?.toUpperCase() || 'S' }}
+      </div>
+      <div class="overflow-hidden">
+        <p class="text-xs font-bold text-white truncate">{{ profile()?.full_name || 'Staff Member' }}</p>
+        <span class="text-[10px] text-slate-400 font-medium">
+          {{ profile()?.role === 'manager' ? 'Operations Manager' : 'Support Specialist' }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="space-y-1.5">
+      <button
+        (click)="selectTab('queue')"
+        [class]="'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ' + (activeTab() === 'queue' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25' : 'text-slate-400 hover:text-white hover:bg-slate-900')"
+      >
+        <lucide-icon [name]="'inbox'" class="w-4 h-4"></lucide-icon>
+        <span>Triage Queue</span>
+      </button>
+
+      <button
+        (click)="selectTab('analytics')"
+        [class]="'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ' + (activeTab() === 'analytics' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25' : 'text-slate-400 hover:text-white hover:bg-slate-900')"
+      >
+        <lucide-icon [name]="'bar-chart-3'" class="w-4 h-4"></lucide-icon>
+        <span>Ops Analytics</span>
+      </button>
+
+      @if (profile()?.role === 'manager') {
+        <button
+          (click)="selectTab('staff')"
+          [class]="'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ' + (activeTab() === 'staff' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25' : 'text-slate-400 hover:text-white hover:bg-slate-900')"
+        >
+          <lucide-icon [name]="'users'" class="w-4 h-4"></lucide-icon>
+          <span>Staff Directory</span>
+        </button>
+      }
+
+      <button
+        (click)="selectTab('settings')"
+        [class]="'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ' + (activeTab() === 'settings' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25' : 'text-slate-400 hover:text-white hover:bg-slate-900')"
+      >
+        <lucide-icon [name]="'settings'" class="w-4 h-4"></lucide-icon>
+        <span>Account & Security</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Sign Out Button -->
+  <div class="pt-4 border-t border-slate-900">
+    <button
+      (click)="signOut.emit()"
+      class="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-white hover:bg-rose-950/40 border border-rose-500/20 transition-all shadow-sm"
+    >
+      <lucide-icon [name]="'log-out'" class="w-4 h-4"></lucide-icon>
+      <span>Sign Out</span>
+    </button>
+  </div>
+</aside>
