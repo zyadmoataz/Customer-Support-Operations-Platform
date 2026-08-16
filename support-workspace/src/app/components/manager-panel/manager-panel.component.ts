@@ -5,10 +5,12 @@ import { LucideAngularModule } from 'lucide-angular';
 import { AgentOverview } from '../../core/models/ticket.model';
 import { ToastService } from '../../core/services/toast.service';
 
+import { PasswordComplexityComponent } from '../password-complexity/password-complexity.component';
+
 @Component({
   selector: 'app-manager-panel',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, PasswordComplexityComponent],
   templateUrl: './manager-panel.component.html'
 })
 export class ManagerPanelComponent {

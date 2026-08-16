@@ -5,12 +5,6 @@ import { Router } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { SupabaseService } from '../../core/services/supabase.service';
 import { ToastService } from '../../core/services/toast.service';
-import { z } from 'zod';
-
-const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address').transform(v => v.trim()),
-  password: z.string().min(6, 'Password must be at least 6 characters').transform(v => v.trim())
-});
 
 @Component({
   selector: 'app-login-page',
@@ -26,12 +20,19 @@ export class LoginPageComponent {
 
   loading = signal(false);
   showPassword = signal(false);
-  formErrors = signal<Record<string, string>>({});
 
   loginForm = this.fb.nonNullable.group({
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
+
+  get emailControl() {
+    return this.loginForm.controls.email;
+  }
+
+  get passwordControl() {
+    return this.loginForm.controls.password;
+  }
 
   fillDemo(email: string, pass: string) {
     this.loginForm.patchValue({ email, password: pass });
@@ -39,32 +40,23 @@ export class LoginPageComponent {
   }
 
   async onSubmit() {
-    this.formErrors.set({});
-    
-    const raw = this.loginForm.getRawValue();
-    const cleaned = { email: raw.email.trim(), password: raw.password.trim() };
-
-    const result = loginSchema.safeParse(cleaned);
-    if (!result.success) {
-      const errors: Record<string, string> = {};
-      result.error.issues.forEach((err: z.ZodIssue) => {
-        if (err.path[0]) errors[err.path[0].toString()] = err.message;
-      });
-      this.formErrors.set(errors);
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
       return;
     }
 
     this.loading.set(true);
-    
+    const { email, password } = this.loginForm.getRawValue();
+
     try {
       const { error } = await this.supabase.auth.signInWithPassword({
-        email: result.data.email,
-        password: result.data.password
+        email: email.trim(),
+        password: password.trim()
       });
-      
+
       if (error) throw error;
-      
-      this.toast.success('Successfully logged in!');
+
+      this.toast.success('Successfully logged into Workspace!');
       this.router.navigate(['/dashboard']);
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Invalid login credentials';
