@@ -8,14 +8,27 @@ const supportDistDir = path.join(distDir, 'support')
 
 console.log('🚀 Building Customer Support Operations Platform (Unified Deployment)...')
 
-// 1. Clean root dist
+// 1. Ensure dependencies are installed in subdirectories if missing
+const reactNodeModules = path.join(rootDir, 'customer-portal', 'node_modules')
+if (!fs.existsSync(reactNodeModules)) {
+  console.log('\n📦 Installing Customer Portal dependencies...')
+  execSync('npm --prefix customer-portal install', { stdio: 'inherit' })
+}
+
+const angularNodeModules = path.join(rootDir, 'support-workspace', 'node_modules')
+if (!fs.existsSync(angularNodeModules)) {
+  console.log('\n📦 Installing Support Workspace dependencies...')
+  execSync('npm --prefix support-workspace install', { stdio: 'inherit' })
+}
+
+// 2. Clean root dist
 if (fs.existsSync(distDir)) {
   fs.rmSync(distDir, { recursive: true, force: true })
 }
 fs.mkdirSync(distDir, { recursive: true })
 fs.mkdirSync(supportDistDir, { recursive: true })
 
-// 2. Build Customer Portal (React 19 + Vite)
+// 3. Build Customer Portal (React 19 + Vite)
 console.log('\n📦 [1/2] Building Customer Portal (React)...')
 execSync('npm --prefix customer-portal run build', { stdio: 'inherit' })
 

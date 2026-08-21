@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "node scripts/build-all.mjs",
+  "installCommand": "npm --prefix customer-portal install && npm --prefix support-workspace install",
   "outputDirectory": "dist",
   "rewrites": [
     {
@@ -16,3 +18,4 @@
     }
   ]
 }
+
