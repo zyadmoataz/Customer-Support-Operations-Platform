@@ -36,7 +36,7 @@ export function SettingsView() {
 
     setSaving(true)
     try {
-      if (trimmedName && user?.id) await authApi.updateProfile(user.id, trimmedName)
+      if (trimmedName) await authApi.updateProfile(trimmedName)
       if (password) await authApi.updatePassword(password)
       notify.success('Account preferences saved successfully!')
       setPassword('')

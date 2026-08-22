@@ -18,7 +18,6 @@ export class AnalyticsViewComponent {
   isManager = computed(() => this.userRole() === 'manager');
   myId = computed(() => this.currentUserId());
 
-  // Overall counts
   totalTicketsCount = computed(() => this.tickets().length);
   resolvedTicketsCount = computed(() => this.tickets().filter(t => t.status === 'resolved').length);
   inProgressCount = computed(() => this.tickets().filter(t => t.status === 'in_progress').length);
@@ -26,7 +25,6 @@ export class AnalyticsViewComponent {
   urgentCount = computed(() => this.tickets().filter(t => t.priority === 'urgent' && t.status !== 'resolved').length);
   activeStaffCount = computed(() => this.agents().filter(a => a.is_active).length);
 
-  // Manager Quality & CSAT metrics
   orgReviewedCount = computed(() => this.tickets().filter(t => typeof t.manager_rating === 'number' && (t.manager_rating as number) > 0).length);
   orgAvgRating = computed(() => {
     const list = this.tickets().filter(t => typeof t.manager_rating === 'number' && (t.manager_rating as number) > 0);
@@ -42,7 +40,6 @@ export class AnalyticsViewComponent {
     return (this.inProgressCount() / staff).toFixed(1);
   });
 
-  // Agent Personal metrics
   myClaimedTickets = computed(() => this.tickets().filter(t => t.assigned_to === this.myId()));
   myActiveCount = computed(() => this.tickets().filter(t => t.assigned_to === this.myId() && t.status === 'in_progress').length);
   myResolvedCount = computed(() => this.tickets().filter(t => t.assigned_to === this.myId() && t.status === 'resolved').length);
@@ -57,7 +54,6 @@ export class AnalyticsViewComponent {
     return total === 0 ? '100%' : `${Math.round((this.myResolvedCount() / total) * 100)}%`;
   });
 
-  // Category breakdown for analytics
   categoryBreakdown = computed(() => {
     const categories = ['Technical Issue', 'Billing & Plans', 'Account Access', 'Feature Request'];
     const total = this.tickets().length || 1;
@@ -71,7 +67,6 @@ export class AnalyticsViewComponent {
     });
   });
 
-  // Priority breakdown for analytics
   priorityBreakdown = computed(() => {
     const priorities = [
       { key: 'urgent', label: 'Urgent SLA (15m)', color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },

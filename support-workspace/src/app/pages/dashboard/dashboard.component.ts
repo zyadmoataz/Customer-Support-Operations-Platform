@@ -1,7 +1,6 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { LucideAngularModule } from 'lucide-angular';
 import { SupabaseService } from '../../core/services/supabase.service';
 import { ToastService } from '../../core/services/toast.service';
 import { TicketService } from '../../core/services/ticket.service';
@@ -19,9 +18,15 @@ import { FeedbackModalComponent } from '../../components/feedback-modal/feedback
   selector: 'app-dashboard-page',
   standalone: true,
   imports: [
-    CommonModule, LucideAngularModule, WorkspaceSidebarComponent,
-    StatsOverviewComponent, TicketQueueComponent, AnalyticsViewComponent,
-    ManagerPanelComponent, SettingsViewComponent, ResolutionModalComponent, FeedbackModalComponent
+    CommonModule,
+    WorkspaceSidebarComponent,
+    StatsOverviewComponent,
+    TicketQueueComponent,
+    AnalyticsViewComponent,
+    ManagerPanelComponent,
+    SettingsViewComponent,
+    ResolutionModalComponent,
+    FeedbackModalComponent
   ],
   templateUrl: './dashboard.component.html'
 })

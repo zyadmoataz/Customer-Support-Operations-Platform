@@ -13,13 +13,18 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   private _currentUser = signal<User | null | undefined>(undefined);
-  public currentUser = computed(() => this._currentUser() === undefined ? null : this._currentUser());
+  public currentUser = computed(() =>
+    this._currentUser() === undefined ? null : this._currentUser(),
+  );
 
   private _currentProfile = signal<Profile | null>(null);
   public currentProfile = this._currentProfile.asReadonly();
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+    this.supabase = createClient(
+      environment.supabaseUrl,
+      environment.supabaseKey,
+    );
 
     this.supabase.auth.getSession().then(({ data: { session } }) => {
       this._currentUser.set(session?.user ?? null);
@@ -36,11 +41,20 @@ export class SupabaseService {
     });
   }
 
-  async ensureAuthInitialized(): Promise<{ user: User | null; profile: Profile | null }> {
+  //when user refresh page, this will check from its servers and figure out if the user is actually logged in or not.
+  async ensureAuthInitialized(): Promise<{
+    user: User | null;
+    profile: Profile | null;
+  }> {
     if (this._currentUser() !== undefined && this._currentProfile() !== null) {
-      return { user: this._currentUser() ?? null, profile: this.currentProfile() };
+      return {
+        user: this._currentUser() ?? null,
+        profile: this.currentProfile(),
+      };
     }
-    const { data: { session } } = await this.supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await this.supabase.auth.getSession();
     const user = session?.user ?? null;
     this._currentUser.set(user);
     if (user) {
@@ -55,18 +69,23 @@ export class SupabaseService {
     const { data, error } = await this.supabase.rpc('create_staff_agent', {
       agent_email: email.trim().toLowerCase(),
       agent_password: pass.trim(),
-      agent_name: name.trim()
+      agent_name: name.trim(),
     });
     if (error) throw error;
     return data;
   }
 
-  async updateStaffAgent(userId: string, email: string, name: string, pass?: string) {
+  async updateStaffAgent(
+    userId: string,
+    email: string,
+    name: string,
+    pass?: string,
+  ) {
     const { data, error } = await this.supabase.rpc('update_staff_agent', {
       target_user_id: userId,
       new_email: email.trim().toLowerCase(),
       new_name: name.trim(),
-      new_password: pass ? pass.trim() : null
+      new_password: pass ? pass.trim() : null,
     });
     if (error) throw error;
     return data;
@@ -74,7 +93,11 @@ export class SupabaseService {
 
   private async fetchProfile(userId: string) {
     try {
-      const { data, error } = await this.supabase.from('profiles').select('*').eq('id', userId).single();
+      const { data, error } = await this.supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
       if (error) throw error;
       this._currentProfile.set(data as Profile);
     } catch (err) {
@@ -82,8 +105,17 @@ export class SupabaseService {
     }
   }
 
-  get rpc() { return this.supabase.rpc.bind(this.supabase); }
-  get auth() { return this.supabase.auth; }
-  get from() { return this.supabase.from.bind(this.supabase); }
-  get client() { return this.supabase; }
+  //shotrcuts for supabase methods
+  get rpc() {
+    return this.supabase.rpc.bind(this.supabase);
+  }
+  get auth() {
+    return this.supabase.auth;
+  }
+  get from() {
+    return this.supabase.from.bind(this.supabase);
+  }
+  get client() {
+    return this.supabase;
+  }
 }

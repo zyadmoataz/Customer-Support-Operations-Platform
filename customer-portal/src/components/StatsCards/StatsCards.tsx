@@ -3,10 +3,11 @@ import { Inbox, Clock, CheckCircle2 } from 'lucide-react'
 
 interface StatsCardsProps {
   tickets: SupportTicket[]
+  totalCount?: number
 }
 
-export function StatsCards({ tickets }: StatsCardsProps) {
-  const total = tickets.length
+export function StatsCards({ tickets, totalCount }: StatsCardsProps) {
+  const total = totalCount ?? tickets.length
   const openCount = tickets.filter(
     (t) => t.status === 'open' || t.status === 'in_progress',
   ).length

@@ -1,34 +1,41 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { ticketApi } from '@/api'
+import type { TicketFilters } from '@/api/tickets'
 import { notify } from '@/lib/toast'
-import type { SupportTicket, NewTicketInput } from '@/types'
+import type { NewTicketInput } from '@/types'
 
-// 1. Custom Hook for Fetching Customer Support Tickets
-export function useTicketsQuery(userId?: string) {
-  const query = useQuery<SupportTicket[]>({
-    queryKey: ['support_requests', userId],
+const PAGE_SIZE = 10
+
+export function useTicketsQuery(
+  userId?: string,
+  page: number = 1,
+  filters: TicketFilters = {}
+) {
+  const query = useQuery({
+    queryKey: ['support_requests', userId, page, filters],
     queryFn: async () => {
-      try {
-        return await ticketApi.getTickets()
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : 'Failed to load tickets'
-        notify.error(msg)
-        throw err
-      }
+      if (!userId) throw new Error('User not authenticated')
+      return await ticketApi.getTicketsPaginated(userId, page, PAGE_SIZE, filters)
     },
     enabled: Boolean(userId),
   })
 
   return {
-    tickets: query.data || [],
+    tickets: query.data?.tickets || [],
+    totalCount: query.data?.totalCount || 0,
+    totalPages: Math.ceil((query.data?.totalCount || 0) / PAGE_SIZE),
+    currentPage: page,
+    pageSize: PAGE_SIZE,
     isLoading: query.isLoading,
     isError: query.isError,
     refetch: query.refetch,
   }
 }
 
-// 2. Custom Hook for Creating a New Support Ticket
-export function useCreateTicketMutation(userId?: string, options?: { onSuccess?: () => void }) {
+export function useCreateTicketMutation(
+  userId?: string,
+  options?: { onSuccess?: () => void }
+) {
   const queryClient = useQueryClient()
 
   const mutation = useMutation({

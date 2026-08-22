@@ -1,5 +1,10 @@
+/**
+ * Environment configuration for the Support Workspace.
+ * Copy environment.example.ts to environment.ts and insert your project credentials.
+ * This file is excluded from version control via .gitignore.
+ */
 export const environment = {
   production: false,
-  supabaseUrl: 'https://knwneggzbirqrixhuuyj.supabase.co',
-  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtud25lZ2d6YmlycXJpeGh1dXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY3MjI2NTUsImV4cCI6MjEwMjI5ODY1NX0.ymxdyPsuQ9F9o7YZSJ_nDB0m9G4DCW1vyN27nnrVS-8'
+  supabaseUrl: 'REPLACE_WITH_YOUR_SUPABASE_URL',
+  supabaseKey: 'REPLACE_WITH_YOUR_SUPABASE_ANON_KEY'
 };
