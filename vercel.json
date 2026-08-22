@@ -1,13 +1,16 @@
 {
   "buildCommand": "node scripts/build-all.mjs",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/support",
+      "destination": "/support/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/support/(.*)",
-      "destination": "/support/index.html"
-    },
-    {
-      "source": "/support",
       "destination": "/support/index.html"
     },
     {
