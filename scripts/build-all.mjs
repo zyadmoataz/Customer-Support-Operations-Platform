@@ -50,7 +50,7 @@ console.log('\n📦 [2/2] Building Support Workspace (Angular)...')
 execSync('npm --prefix support-workspace run build', { cwd: rootDir, stdio: 'inherit' })
 
 // Copy Angular build to root dist/support
-const angularDist = path.join(rootDir, 'support-workspace', 'dist', 'support-workspace')
+const angularDist = path.join(rootDir, 'support-workspace', 'dist')
 const angularSource = fs.existsSync(path.join(angularDist, 'browser'))
   ? path.join(angularDist, 'browser')
   : angularDist
