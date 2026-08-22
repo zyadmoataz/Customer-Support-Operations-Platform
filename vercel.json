@@ -3,7 +3,7 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/support/:path*",
+      "source": "/support/(.*)",
       "destination": "/support/index.html"
     },
     {
@@ -11,7 +11,7 @@
       "destination": "/support/index.html"
     },
     {
-      "source": "/:path*",
+      "source": "/((?!support).*)",
       "destination": "/index.html"
     }
   ]
