@@ -126,7 +126,7 @@ export function LoginPage() {
         <button type="button" onClick={() => setIsSignUp(!isSignUp)} className="block w-full text-xs text-slate-400 hover:text-indigo-400 transition-colors font-medium">
           {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
         </button>
-        <a href="/support" className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
+        <a href="/support/" className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
           <Headphones className="w-3.5 h-3.5" />
           <span>Support Staff? Switch to Support Workspace &rarr;</span>
         </a>

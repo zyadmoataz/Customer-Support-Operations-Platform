@@ -66,7 +66,7 @@ export function LandingFooter() {
             <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">Workspaces</h4>
             <ul className="space-y-2.5">
               <li><a href="/login" className="hover:text-white transition-colors">Customer Portal</a></li>
-              <li><a href="/support" className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">Support Staff Workspace</a></li>
+              <li><a href="/support/" className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">Support Staff Workspace</a></li>
               <li><a href="#faq" className="hover:text-white transition-colors">Frequently Asked Questions</a></li>
               <li><a href="/login" className="hover:text-white transition-colors">Developer REST APIs</a></li>
             </ul>

@@ -80,7 +80,7 @@ export function LandingNav() {
         {/* Action CTAs */}
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <a 
-            href="/support" 
+            href="/support/" 
             className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3 sm:px-5 rounded-xl sm:rounded-2xl bg-slate-900/90 hover:bg-slate-800/90 border border-slate-700/80 hover:border-emerald-500/50 text-slate-200 hover:text-white text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-emerald-500/20 hover:scale-[1.02]"
           >
             <span className="relative flex h-2 w-2">

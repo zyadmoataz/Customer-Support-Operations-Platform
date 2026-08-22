@@ -34,7 +34,7 @@ export function CtaBanner() {
             </button>
 
             <a
-              href="/support"
+              href="/support/"
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-emerald-500/30 font-semibold text-sm transition-all hover:scale-[1.02]"
             >
               <Headphones className="w-4 h-4 text-emerald-400" />
