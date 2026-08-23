@@ -69,10 +69,10 @@ export class AnalyticsViewComponent {
 
   priorityBreakdown = computed(() => {
     const priorities = [
-      { key: 'urgent', label: 'Urgent SLA (15m)', color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },
-      { key: 'high', label: 'High Priority (2h)', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
-      { key: 'medium', label: 'Medium Priority (4h)', color: 'text-sky-400 bg-sky-500/10 border-sky-500/20' },
-      { key: 'low', label: 'Low Priority (24h)', color: 'text-slate-400 bg-slate-500/10 border-slate-500/20' },
+      { key: 'urgent', label: 'Urgent SLA (15m)', color: 'text-state-danger bg-state-danger/10 border-state-danger' },
+      { key: 'high', label: 'High Priority (2h)', color: 'text-state-warning bg-state-warning-bg border-state-warning' },
+      { key: 'medium', label: 'Medium Priority (4h)', color: 'text-state-info bg-state-info-bg border-state-info' },
+      { key: 'low', label: 'Low Priority (24h)', color: 'text-text-tertiary bg-brand-elevated border-brand-border' },
     ];
     const total = this.tickets().length || 1;
     return priorities.map(p => {

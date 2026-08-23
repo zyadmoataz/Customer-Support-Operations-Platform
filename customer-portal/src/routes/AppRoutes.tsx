@@ -11,14 +11,14 @@ export function AppRoutes() {
 
   if (loading) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center bg-brand-bg text-indigo-400">
-        <div className="w-8 h-8 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
+      <div className="flex h-screen w-screen items-center justify-center bg-brand-bg text-brand-primary">
+        <div className="w-8 h-8 rounded-full border-2 border-brand-primary border-t-transparent animate-spin" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-brand-bg bg-radial-glow bg-no-repeat text-slate-100 flex flex-col selection:bg-indigo-500/30">
+    <div className="min-h-screen bg-brand-bg bg-radial-glow bg-no-repeat text-text-primary flex flex-col selection:bg-brand-primary-bg">
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/" element={<LandingPage />} />

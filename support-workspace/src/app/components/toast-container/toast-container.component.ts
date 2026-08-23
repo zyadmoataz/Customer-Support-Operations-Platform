@@ -15,11 +15,11 @@ export class ToastContainerComponent {
   getStyles(type: ToastItem['type']): string {
     switch (type) {
       case 'success':
-        return 'bg-slate-950/95 border-emerald-500/40 shadow-emerald-500/10 text-slate-100';
+        return 'bg-brand-bg/95 border-state-success shadow-none text-text-primary';
       case 'error':
-        return 'bg-slate-950/95 border-rose-500/40 shadow-rose-500/10 text-slate-100';
+        return 'bg-brand-bg/95 border-state-danger shadow-none text-text-primary';
       case 'info':
-        return 'bg-slate-950/95 border-amber-500/40 shadow-amber-500/10 text-slate-100';
+        return 'bg-brand-bg/95 border-state-warning shadow-none text-text-primary';
     }
   }
 }

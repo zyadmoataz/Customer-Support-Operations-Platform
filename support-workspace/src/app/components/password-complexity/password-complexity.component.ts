@@ -8,15 +8,15 @@ import { LucideAngularModule } from 'lucide-angular';
   imports: [CommonModule, LucideAngularModule],
   template: `
     @if (password().length > 0) {
-      <div class="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 text-[11px] space-y-1.5 mt-2 animate-fade-in">
-        <p class="text-slate-400 font-semibold uppercase tracking-wider text-[10px] mb-1">Password Requirements:</p>
+      <div class="p-3 rounded-2xl bg-brand-bg/80 border border-brand-border text-[11px] space-y-1.5 mt-2 animate-fade-in">
+        <p class="text-text-tertiary font-semibold uppercase tracking-wider text-[10px] mb-1">Password Requirements:</p>
         @for (rule of rules(); track rule.label) {
           <div class="flex items-center gap-2 transition-all">
             <lucide-icon 
               [name]="rule.passed ? 'check-circle-2' : 'circle'" 
-              [class]="'w-3.5 h-3.5 ' + (rule.passed ? 'text-emerald-400' : 'text-slate-600')"
+              [class]="'w-3.5 h-3.5 ' + (rule.passed ? 'text-state-success' : 'text-text-muted')"
             ></lucide-icon>
-            <span [class]="rule.passed ? 'text-emerald-300 font-medium' : 'text-slate-400'">{{ rule.label }}</span>
+            <span [class]="rule.passed ? 'text-state-success font-medium' : 'text-text-tertiary'">{{ rule.label }}</span>
           </div>
         }
       </div>

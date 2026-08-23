@@ -11,7 +11,7 @@ import { LandingFooter } from '@/components/Landing/LandingFooter'
 
 export function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-brand-bg text-slate-100 overflow-x-hidden selection:bg-indigo-500/30">
+    <div className="relative min-h-screen bg-brand-bg text-text-primary overflow-x-hidden selection:bg-brand-primary-bg">
       <LandingNav />
       <main>
         <HeroSection />

@@ -1,18 +1,18 @@
 <div class="space-y-5">
   <!-- Upload Zone -->
-  <label class="block p-4 rounded-2xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 bg-slate-950/60 text-center cursor-pointer transition-all hover:bg-slate-900/40">
+  <label class="block p-4 rounded-2xl border-2 border-dashed border-brand-border hover:border-state-success bg-brand-bg/60 text-center cursor-pointer transition-all hover:bg-brand-surface/40">
     <input type="file" (change)="handleFileInput($event)" [disabled]="attachmentService.uploading()" class="hidden" />
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs font-semibold text-slate-300">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs font-semibold text-text-secondary">
       @if (attachmentService.uploading()) {
-        <lucide-icon [name]="'loader-2'" class="w-4 h-4 text-emerald-400 animate-spin"></lucide-icon>
-        <span class="text-emerald-400">Uploading file to secure cloud storage...</span>
+        <lucide-icon [name]="'loader-2'" class="w-4 h-4 text-state-success animate-spin"></lucide-icon>
+        <span class="text-state-success">Uploading file to secure cloud storage...</span>
       } @else {
-        <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+        <div class="w-8 h-8 rounded-xl bg-state-success-bg border border-state-success text-state-success flex items-center justify-center">
           <lucide-icon [name]="'upload'" class="w-4 h-4"></lucide-icon>
         </div>
         <div>
-          <span class="text-slate-200">Click to upload document or diagnostic log</span>
-          <span class="text-slate-500 block text-[11px] font-normal">PNG, JPEG, PDF, TXT up to 10MB</span>
+          <span class="text-text-secondary">Click to upload document or diagnostic log</span>
+          <span class="text-text-muted block text-[11px] font-normal">PNG, JPEG, PDF, TXT up to 10MB</span>
         </div>
       }
     </div>
@@ -21,27 +21,27 @@
   <!-- Attachment Content Sections -->
   @if (attachmentService.loading()) {
     <div class="space-y-3 py-2">
-      <div class="h-16 rounded-2xl bg-slate-950/60 animate-shimmer"></div>
-      <div class="h-16 rounded-2xl bg-slate-950/60 animate-shimmer"></div>
+      <div class="h-16 rounded-2xl bg-brand-bg/60 animate-shimmer"></div>
+      <div class="h-16 rounded-2xl bg-brand-bg/60 animate-shimmer"></div>
     </div>
   } @else if (attachmentService.attachments().length === 0) {
-    <div class="py-10 text-center rounded-2xl bg-slate-950/40 border border-dashed border-slate-800 p-6">
-      <lucide-icon [name]="'paperclip'" class="w-8 h-8 text-slate-500 mx-auto mb-2 opacity-60"></lucide-icon>
-      <p class="text-xs font-semibold text-slate-300">No Documents Attached</p>
-      <p class="text-[11px] text-slate-500 mt-0.5">Use the upload box above to share logs, screenshots, or receipts.</p>
+    <div class="py-10 text-center rounded-2xl bg-brand-bg/40 border border-dashed border-brand-border p-6">
+      <lucide-icon [name]="'paperclip'" class="w-8 h-8 text-text-muted mx-auto mb-2 opacity-60"></lucide-icon>
+      <p class="text-xs font-semibold text-text-secondary">No Documents Attached</p>
+      <p class="text-[11px] text-text-muted mt-0.5">Use the upload box above to share logs, screenshots, or receipts.</p>
     </div>
   } @else {
     <!-- 1. Customer Submissions Section -->
     <div class="space-y-2">
       <div class="flex items-center justify-between">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-state-info flex items-center gap-1.5">
           <lucide-icon [name]="'user'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Customer Submissions ({{ customerAttachments().length }})</span>
         </h4>
       </div>
 
       @if (customerAttachments().length === 0) {
-        <p class="text-[11px] text-slate-500 italic px-2 py-1">No files attached by the customer at creation.</p>
+        <p class="text-[11px] text-text-muted italic px-2 py-1">No files attached by the customer at creation.</p>
       } @else {
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           @for (file of customerAttachments(); track file.id) {
@@ -49,17 +49,17 @@
               [href]="getDownloadUrl(file.file_path)"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between p-3 rounded-2xl bg-slate-950/90 border border-slate-800 hover:border-sky-500/50 hover:bg-slate-900 transition-all group">
+              class="flex items-center justify-between p-3 rounded-2xl bg-brand-bg/90 border border-brand-border hover:border-state-info hover:bg-brand-surface transition-all group">
               <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-8 h-8 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center flex-shrink-0 text-sky-400">
+                <div class="w-8 h-8 rounded-xl bg-state-info-bg border border-state-info flex items-center justify-center flex-shrink-0 text-state-info">
                   <lucide-icon [name]="file.file_type.startsWith('image/') ? 'image' : 'file-text'" class="w-4 h-4"></lucide-icon>
                 </div>
                 <div class="min-w-0">
-                  <p class="text-xs font-semibold text-white group-hover:text-sky-300 truncate transition-colors">{{ file.file_name }}</p>
-                  <p class="text-[10px] text-slate-500">{{ formatFileSize(file.file_size) }} • Customer File</p>
+                  <p class="text-xs font-semibold text-text-primary group-hover:text-state-info truncate transition-colors">{{ file.file_name }}</p>
+                  <p class="text-[10px] text-text-muted">{{ formatFileSize(file.file_size) }} • Customer File</p>
                 </div>
               </div>
-              <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-400 flex-shrink-0 ml-2"></lucide-icon>
+              <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-text-tertiary group-hover:text-state-info flex-shrink-0 ml-2"></lucide-icon>
             </a>
           }
         </div>
@@ -67,16 +67,16 @@
     </div>
 
     <!-- 2. Support Operations & Staff Documents Section -->
-    <div class="space-y-2 pt-2 border-t border-slate-800/80">
+    <div class="space-y-2 pt-2 border-t border-brand-border/80">
       <div class="flex items-center justify-between">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-state-success flex items-center gap-1.5">
           <lucide-icon [name]="'shield'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Support Staff Documents ({{ staffAttachments().length }})</span>
         </h4>
       </div>
 
       @if (staffAttachments().length === 0) {
-        <p class="text-[11px] text-slate-500 italic px-2 py-1">No additional documentation uploaded by support staff.</p>
+        <p class="text-[11px] text-text-muted italic px-2 py-1">No additional documentation uploaded by support staff.</p>
       } @else {
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           @for (file of staffAttachments(); track file.id) {
@@ -84,17 +84,17 @@
               [href]="getDownloadUrl(file.file_path)"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between p-3 rounded-2xl bg-slate-950/90 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-900 transition-all group">
+              class="flex items-center justify-between p-3 rounded-2xl bg-brand-bg/90 border border-brand-border hover:border-state-success hover:bg-brand-surface transition-all group">
               <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400">
+                <div class="w-8 h-8 rounded-xl bg-state-success-bg border border-state-success flex items-center justify-center flex-shrink-0 text-state-success">
                   <lucide-icon [name]="file.file_type.startsWith('image/') ? 'image' : 'file-text'" class="w-4 h-4"></lucide-icon>
                 </div>
                 <div class="min-w-0">
-                  <p class="text-xs font-semibold text-white group-hover:text-emerald-300 truncate transition-colors">{{ file.file_name }}</p>
-                  <p class="text-[10px] text-slate-500">{{ formatFileSize(file.file_size) }} • By {{ file.uploader_name || 'Staff' }}</p>
+                  <p class="text-xs font-semibold text-text-primary group-hover:text-state-success truncate transition-colors">{{ file.file_name }}</p>
+                  <p class="text-[10px] text-text-muted">{{ formatFileSize(file.file_size) }} • By {{ file.uploader_name || 'Staff' }}</p>
                 </div>
               </div>
-              <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 flex-shrink-0 ml-2"></lucide-icon>
+              <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-text-tertiary group-hover:text-state-success flex-shrink-0 ml-2"></lucide-icon>
             </a>
           }
         </div>

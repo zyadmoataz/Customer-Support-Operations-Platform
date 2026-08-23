@@ -11,8 +11,8 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   if (loading) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center bg-brand-bg text-indigo-400">
-        <div className="w-8 h-8 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin" />
+      <div className="flex h-screen w-screen items-center justify-center bg-brand-bg text-brand-primary">
+        <div className="w-8 h-8 rounded-full border-2 border-brand-primary border-t-transparent animate-spin" />
       </div>
     )
   }
@@ -23,30 +23,30 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   if (role && role !== 'customer') {
     return (
-      <div className="flex flex-col h-screen w-screen items-center justify-center text-center space-y-5 bg-brand-bg text-slate-100 p-6">
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 max-w-md w-full shadow-glow space-y-4">
-          <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mx-auto text-xl font-bold">
+      <div className="flex flex-col h-screen w-screen items-center justify-center text-center space-y-5 bg-brand-bg text-text-primary p-6">
+        <div className="p-4 rounded-2xl bg-brand-surface border border-brand-border max-w-md w-full shadow-glow space-y-4">
+          <div className="w-12 h-12 rounded-2xl bg-state-danger/10 border border-state-danger text-state-danger flex items-center justify-center mx-auto text-xl font-bold">
             🛡️
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white tracking-tight">Staff Account Detected</h1>
-            <p className="text-slate-400 text-xs mt-1">
-              You are currently authenticated as a Staff Member (<strong className="text-indigo-400 uppercase">{role}</strong>: {user?.email || profile?.full_name}).
+            <h1 className="text-xl font-bold text-text-primary tracking-tight">Staff Account Detected</h1>
+            <p className="text-text-tertiary text-xs mt-1">
+              You are currently authenticated as a Staff Member (<strong className="text-brand-primary uppercase">{role}</strong>: {user?.email || profile?.full_name}).
             </p>
           </div>
-          <p className="text-slate-400 text-xs bg-slate-950 p-3 rounded-xl border border-slate-800/80 leading-relaxed">
+          <p className="text-text-tertiary text-xs bg-brand-bg p-3 rounded-xl border border-brand-border/80 leading-relaxed">
             The <strong>Customer Portal</strong> is reserved for client ticket submissions. Staff triage and operations take place inside the <strong>Support Workspace</strong>.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-2 pt-2">
             <a
               href="/support/"
-              className="w-full flex-1 py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/25 transition-all text-center"
+              className="w-full flex-1 py-2.5 px-4 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary text-xs font-bold shadow-md shadow-glow transition-all text-center"
             >
               Open Support Workspace
             </a>
             <button
               onClick={() => signOut()}
-              className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold border border-slate-700 transition-all text-center"
+              className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-brand-elevated hover:bg-brand-elevated text-text-secondary hover:text-text-primary text-xs font-bold border border-brand-subtle transition-all text-center"
             >
               Switch / Sign Out
             </button>

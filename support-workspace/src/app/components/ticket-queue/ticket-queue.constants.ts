@@ -34,17 +34,17 @@ export const STATUS_OPTIONS: SelectOption[] = [
 
 export function getStatusBadgeClass(status: TicketStatus): string {
   switch (status) {
-    case 'open': return 'bg-sky-500/15 border-sky-500/30 text-sky-300';
-    case 'in_progress': return 'bg-amber-500/15 border-amber-500/30 text-amber-300';
-    case 'resolved': return 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300';
+    case 'open': return 'bg-state-info-bg border-state-info text-state-info';
+    case 'in_progress': return 'bg-state-warning-bg border-state-warning text-state-warning';
+    case 'resolved': return 'bg-state-success-bg border-state-success text-state-success';
   }
 }
 
 export function getPriorityBadgeClass(priority: TicketPriority): string {
   switch (priority) {
-    case 'urgent': return 'bg-rose-500/20 text-rose-300 border-rose-500/30';
-    case 'high': return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-    case 'medium': return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
-    default: return 'bg-slate-800 text-slate-300 border-slate-700';
+    case 'urgent': return 'bg-state-danger/20 text-state-danger border-state-danger';
+    case 'high': return 'bg-state-warning-bg text-state-warning border-state-warning';
+    case 'medium': return 'bg-state-info-bg text-state-info border-state-info';
+    default: return 'bg-brand-elevated text-text-secondary border-brand-subtle';
   }
 }

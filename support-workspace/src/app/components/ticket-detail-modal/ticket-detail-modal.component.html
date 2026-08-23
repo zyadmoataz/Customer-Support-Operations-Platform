@@ -1,11 +1,11 @@
 @if (isOpen() && ticket()) {
   <div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md">
-    <div class="w-full max-w-4xl min-h-[580px] max-h-[92vh] p-5 sm:p-6 rounded-3xl bg-slate-900 border border-emerald-500/30 shadow-2xl shadow-black/80 flex flex-col">
+    <div class="w-full max-w-4xl min-h-[580px] max-h-[92vh] p-5 sm:p-6 rounded-3xl bg-brand-surface border border-state-success shadow-2xl shadow-black/80 flex flex-col">
       <!-- Header -->
-      <div class="flex items-center justify-between pb-4 border-b border-slate-800 flex-shrink-0">
+      <div class="flex items-center justify-between pb-4 border-b border-brand-border flex-shrink-0">
         <div>
           <div class="flex flex-wrap items-center gap-2 mb-1">
-            <span class="font-mono text-xs font-bold text-indigo-300 bg-indigo-500/15 px-2.5 py-0.5 rounded-lg border border-indigo-500/30">
+            <span class="font-mono text-xs font-bold text-brand-primary bg-brand-primary-bg px-2.5 py-0.5 rounded-lg border border-brand-hover">
               #{{ ticket()!.id.slice(0, 8) }}
             </span>
             <span [class]="'px-2.5 py-0.5 rounded-full text-xs font-semibold border ' + getStatusClass(ticket()!.status)">
@@ -15,24 +15,24 @@
               {{ ticket()!.priority }}
             </span>
             @if (ticket()!.category) {
-              <span class="text-xs text-slate-300 bg-slate-950 px-2 py-0.5 rounded-lg border border-slate-800">{{ ticket()!.category }}</span>
+              <span class="text-xs text-text-secondary bg-brand-bg px-2 py-0.5 rounded-lg border border-brand-border">{{ ticket()!.category }}</span>
             }
           </div>
-          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight truncate max-w-[500px]">
+          <h2 class="text-lg sm:text-xl font-bold text-text-primary tracking-tight truncate max-w-[500px]">
             {{ ticket()!.title || ticket()!.description.slice(0, 50) }}
           </h2>
         </div>
-        <button (click)="closeModal.emit()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
+        <button (click)="closeModal.emit()" class="text-text-tertiary hover:text-text-primary p-2 rounded-xl hover:bg-brand-elevated transition-colors">
           <lucide-icon [name]="'x'" class="w-5 h-5"></lucide-icon>
         </button>
       </div>
 
       <!-- Tabs Bar -->
-      <div class="flex items-center gap-1.5 p-1 my-3 rounded-2xl bg-slate-950/80 border border-slate-800 flex-shrink-0">
+      <div class="flex items-center gap-1.5 p-1 my-3 rounded-2xl bg-brand-bg/80 border border-brand-border flex-shrink-0">
         <button
           (click)="activeTab.set('discussion')"
           [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all ' + 
-            (activeTab() === 'discussion' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+            (activeTab() === 'discussion' ? 'bg-state-success text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary')">
           <lucide-icon [name]="'message-square'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Live Discussion & Notes</span>
         </button>
@@ -40,7 +40,7 @@
         <button
           (click)="activeTab.set('attachments')"
           [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all ' + 
-            (activeTab() === 'attachments' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+            (activeTab() === 'attachments' ? 'bg-state-success text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary')">
           <lucide-icon [name]="'paperclip'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Attachments</span>
         </button>
@@ -48,7 +48,7 @@
         <button
           (click)="activeTab.set('info')"
           [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all ' + 
-            (activeTab() === 'info' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white')">
+            (activeTab() === 'info' ? 'bg-state-success text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary')">
           <lucide-icon [name]="'info'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Issue Info & Audit</span>
         </button>
@@ -68,52 +68,52 @@
           <div class="space-y-4">
             <!-- Issue Description -->
             <div>
-              <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-                <lucide-icon [name]="'file-text'" class="w-3.5 h-3.5 text-emerald-400"></lucide-icon>
+              <h4 class="text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-1.5 flex items-center gap-1.5">
+                <lucide-icon [name]="'file-text'" class="w-3.5 h-3.5 text-state-success"></lucide-icon>
                 <span>Customer Description</span>
               </h4>
-              <div class="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">
+              <div class="p-4 rounded-2xl bg-brand-bg/70 border border-brand-border text-xs sm:text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">
                 {{ ticket()!.description }}
               </div>
             </div>
 
             <!-- Resolution Report -->
             @if (ticket()!.resolution_note) {
-              <div class="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-xs">
-                <div class="flex items-center gap-1.5 font-bold text-emerald-400 mb-1.5">
+              <div class="p-4 rounded-2xl bg-state-success-bg border border-state-success text-xs">
+                <div class="flex items-center gap-1.5 font-bold text-state-success mb-1.5">
                   <lucide-icon [name]="'check'" class="w-4 h-4"></lucide-icon>
                   <span>Official Resolution Report:</span>
                 </div>
-                <p class="text-slate-200 leading-relaxed">{{ ticket()!.resolution_note }}</p>
+                <p class="text-text-secondary leading-relaxed">{{ ticket()!.resolution_note }}</p>
               </div>
             }
 
             <!-- Operations Audit -->
             @if (ticket()!.manager_feedback || ticket()!.manager_rating) {
-              <div class="p-4 rounded-2xl bg-amber-950/40 border border-amber-500/30 text-xs flex flex-col gap-1.5">
+              <div class="p-4 rounded-2xl bg-state-warning-bg border border-state-warning text-xs flex flex-col gap-1.5">
                 <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-1.5 font-bold text-amber-400">
+                  <div class="flex items-center gap-1.5 font-bold text-state-warning">
                     <lucide-icon [name]="'star'" class="w-4 h-4"></lucide-icon>
                     <span>Operations QA Audit</span>
                   </div>
                   @if (ticket()!.manager_rating) {
-                    <span class="text-amber-300 font-bold bg-amber-900/40 px-2 py-0.5 rounded-lg border border-amber-500/30">
+                    <span class="text-state-warning font-bold bg-state-warning-bg px-2 py-0.5 rounded-lg border border-state-warning">
                       {{ ticket()!.manager_rating }} / 5 Stars
                     </span>
                   }
                 </div>
                 @if (ticket()!.manager_feedback) {
-                  <p class="text-slate-200 leading-relaxed">{{ ticket()!.manager_feedback }}</p>
+                  <p class="text-text-secondary leading-relaxed">{{ ticket()!.manager_feedback }}</p>
                 }
               </div>
             }
 
             <!-- Actions Bar inside Info Tab -->
-            <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="p-4 rounded-2xl bg-brand-bg/80 border border-brand-border flex flex-wrap items-center justify-between gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <span>Status:</span>
                 @if (ticket()!.status === 'resolved') {
-                  <span class="font-bold text-emerald-400">Resolved & Locked</span>
+                  <span class="font-bold text-state-success">Resolved & Locked</span>
                 } @else {
                   <div class="w-40">
                     <app-custom-select [options]="statusOptions" [value]="ticket()!.status" (valueChange)="handleStatusSelect(ticket()!, $event)"></app-custom-select>
@@ -129,7 +129,7 @@
                   </div>
                 </div>
               } @else if (userRole() !== 'manager' && !ticket()!.assigned_to && ticket()!.status !== 'resolved') {
-                <button (click)="claimTicket.emit(ticket()!.id)" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition-all shadow-md shadow-emerald-600/25">
+                <button (click)="claimTicket.emit(ticket()!.id)" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-state-success hover:bg-state-success text-text-primary font-bold transition-all shadow-md shadow-none">
                   <lucide-icon [name]="'zap'" class="w-4 h-4"></lucide-icon>
                   <span>Claim Ticket</span>
                 </button>

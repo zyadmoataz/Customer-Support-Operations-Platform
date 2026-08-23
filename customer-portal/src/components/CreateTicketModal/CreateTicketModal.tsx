@@ -59,29 +59,29 @@ export function CreateTicketModal({ isOpen, onClose }: CreateTicketModalProps) {
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="w-full max-w-lg p-5 sm:p-8 rounded-3xl glass-panel shadow-glow border border-indigo-500/20 max-h-[92vh] overflow-y-auto"
+          className="w-full max-w-lg p-5 sm:p-8 rounded-3xl glass-panel shadow-glow border border-brand-primary max-h-[92vh] overflow-y-auto"
         >
-          <div className="flex items-center justify-between mb-6 pb-3 border-b border-slate-800">
+          <div className="flex items-center justify-between mb-6 pb-3 border-b border-brand-border">
             <div>
-              <h2 className="text-xl font-bold text-white tracking-tight">Create Support Request</h2>
-              <p className="text-xs text-slate-400 mt-0.5">Submit your inquiry to the active engineering queue</p>
+              <h2 className="text-xl font-bold text-text-primary tracking-tight">Create Support Request</h2>
+              <p className="text-xs text-text-tertiary mt-0.5">Submit your inquiry to the active engineering queue</p>
             </div>
-            <button onClick={onClose} className="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-colors">
+            <button onClick={onClose} className="text-text-tertiary hover:text-text-primary p-1.5 rounded-xl hover:bg-brand-surface border border-transparent hover:border-brand-border transition-colors">
               <X className="w-5 h-5" />
             </button>
           </div>
 
           <form onSubmit={handleSubmit(onValidSubmit)} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Ticket Subject *</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-1.5">Ticket Subject *</label>
               <input 
                 {...register('title')} 
                 placeholder="e.g. Authentication token expiring prematurely" 
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border text-white text-xs placeholder-slate-500 focus:outline-none focus:ring-2 transition-all ${
-                  errors.title ? 'border-rose-500/50 focus:ring-rose-500/30' : 'border-slate-800 focus:border-indigo-500 focus:ring-indigo-500/20'
+                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border text-text-primary text-xs placeholder-text-muted focus:outline-none focus:ring-2 transition-all ${
+                  errors.title ? 'border-state-danger focus:ring-state-danger' : 'border-brand-border focus:border-brand-primary focus:ring-brand-primary/20'
                 }`} 
               />
-              {errors.title && <p className="text-rose-400 text-xs mt-1 flex items-center gap-1 font-medium"><AlertCircle className="w-3 h-3 flex-shrink-0" /><span>{errors.title.message}</span></p>}
+              {errors.title && <p className="text-state-danger text-xs mt-1 flex items-center gap-1 font-medium"><AlertCircle className="w-3 h-3 flex-shrink-0" /><span>{errors.title.message}</span></p>}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -94,21 +94,21 @@ export function CreateTicketModal({ isOpen, onClose }: CreateTicketModalProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Issue Description *</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-1.5">Issue Description *</label>
               <textarea 
                 {...register('description')} 
                 rows={4} 
                 placeholder="Describe the issue in detail, including steps to reproduce and observed behavior..." 
-                className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border text-white text-xs placeholder-slate-500 focus:outline-none focus:ring-2 transition-all ${
-                  errors.description ? 'border-rose-500/50 focus:ring-rose-500/30' : 'border-slate-800 focus:border-indigo-500 focus:ring-indigo-500/20'
+                className={`w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border text-text-primary text-xs placeholder-text-muted focus:outline-none focus:ring-2 transition-all ${
+                  errors.description ? 'border-state-danger focus:ring-state-danger' : 'border-brand-border focus:border-brand-primary focus:ring-brand-primary/20'
                 }`} 
               />
-              {errors.description && <p className="text-rose-400 text-xs mt-1 flex items-center gap-1 font-medium"><AlertCircle className="w-3 h-3 flex-shrink-0" /><span>{errors.description.message}</span></p>}
+              {errors.description && <p className="text-state-danger text-xs mt-1 flex items-center gap-1 font-medium"><AlertCircle className="w-3 h-3 flex-shrink-0" /><span>{errors.description.message}</span></p>}
             </div>
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <button type="button" onClick={onClose} className="px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 text-xs font-semibold transition-colors">Cancel</button>
-              <button type="submit" disabled={isPending} className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-all shadow-md shadow-indigo-600/30 disabled:opacity-50">
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-brand-border">
+              <button type="button" onClick={onClose} className="px-4 py-2 rounded-xl text-text-tertiary hover:text-text-primary hover:bg-brand-elevated text-xs font-semibold transition-colors">Cancel</button>
+              <button type="submit" disabled={isPending} className="px-5 py-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary text-xs font-semibold transition-all shadow-md shadow-glow disabled:opacity-50">
                 {isPending ? 'Submitting Request...' : 'Submit Support Request'}
               </button>
             </div>

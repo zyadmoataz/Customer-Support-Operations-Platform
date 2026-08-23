@@ -32,29 +32,29 @@ export function TicketPagination({
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 px-1">
-      <span className="text-xs text-slate-400 font-medium">
+      <span className="text-xs text-text-tertiary font-medium">
         Showing {fromItem}–{toItem} of {totalCount} tickets
       </span>
       <div className="flex items-center gap-1">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage <= 1}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-indigo-500/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold border border-brand-border bg-brand-surface text-text-secondary hover:text-text-primary hover:border-brand-primary disabled:opacity-30 disabled:cursor-not-allowed transition-all"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
           Prev
         </button>
         {generatePageNumbers(currentPage, totalPages).map((p, i) =>
           p === '...' ? (
-            <span key={`ellipsis-${i}`} className="px-2 text-xs text-slate-500">…</span>
+            <span key={`ellipsis-${i}`} className="px-2 text-xs text-text-muted">…</span>
           ) : (
             <button
               key={p}
               onClick={() => onPageChange(p as number)}
               className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
                 currentPage === p
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                  : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-indigo-500/40'
+                  ? 'bg-brand-primary text-text-primary shadow-md shadow-glow'
+                  : 'bg-brand-surface border border-brand-border text-text-tertiary hover:text-text-primary hover:border-brand-primary'
               }`}
             >
               {p}
@@ -64,7 +64,7 @@ export function TicketPagination({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage >= totalPages}
-          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-indigo-500/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold border border-brand-border bg-brand-surface text-text-secondary hover:text-text-primary hover:border-brand-primary disabled:opacity-30 disabled:cursor-not-allowed transition-all"
         >
           Next
           <ChevronRight className="w-3.5 h-3.5" />

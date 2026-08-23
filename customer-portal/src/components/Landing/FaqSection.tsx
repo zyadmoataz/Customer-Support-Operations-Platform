@@ -30,10 +30,10 @@ export function FaqSection() {
   return (
     <section id="faq" className="w-full max-w-5xl mx-auto my-16 px-4">
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
           Frequently Asked Questions
         </h2>
-        <p className="text-xs sm:text-sm text-slate-400 mt-2">
+        <p className="text-xs sm:text-sm text-text-tertiary mt-2">
           Everything you need to know about our support workflows, security, and SLAs.
         </p>
       </div>
@@ -43,16 +43,16 @@ export function FaqSection() {
           <div key={idx} className="rounded-2xl glass-panel border border-white/10 overflow-hidden transition-all">
             <button
               onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-              className="w-full p-5 flex items-center justify-between text-left text-xs sm:text-sm font-semibold text-white hover:text-indigo-300 transition-colors"
+              className="w-full p-5 flex items-center justify-between text-left text-xs sm:text-sm font-semibold text-text-primary hover:text-brand-primary transition-colors"
             >
               <span className="flex items-center gap-2.5">
-                <HelpCircle className="w-4 h-4 text-indigo-400 flex-shrink-0" />
+                <HelpCircle className="w-4 h-4 text-brand-primary flex-shrink-0" />
                 <span>{faq.q}</span>
               </span>
-              <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${openIdx === idx ? 'rotate-180 text-indigo-400' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-text-tertiary transition-transform ${openIdx === idx ? 'rotate-180 text-brand-primary' : ''}`} />
             </button>
             {openIdx === idx && (
-              <div className="px-5 pb-5 text-xs text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+              <div className="px-5 pb-5 text-xs text-text-secondary leading-relaxed border-t border-white/5 pt-3">
                 {faq.a}
               </div>
             )}

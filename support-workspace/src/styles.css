@@ -37,6 +37,22 @@
   --status-urgent: #f87171;
   --status-urgent-bg: rgba(248, 113, 113, 0.1);
 
+  /* === Text Semantic Tokens === */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* === Additional State Semantic Tokens === */
+  --state-success: #10b981;
+  --state-success-bg: rgba(16, 185, 129, 0.1);
+  --state-warning: #f59e0b;
+  --state-warning-bg: rgba(245, 158, 11, 0.1);
+  --state-danger: #f43f5e;
+  --state-danger-bg: rgba(244, 63, 94, 0.1);
+  --state-info: #0ea5e9;
+  --state-info-bg: rgba(14, 165, 233, 0.1);
+
   /* === Precision Motion & Physics Tokens === */
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -58,7 +74,7 @@
 body {
   margin: 0;
   background-color: var(--bg-canvas);
-  color: #f8fafc;
+  color: var(--text-primary);
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

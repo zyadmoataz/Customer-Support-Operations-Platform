@@ -27,6 +27,22 @@ module.exports = {
           'resolved-bg': 'var(--status-resolved-bg)',
           urgent: 'var(--status-urgent)',
           'urgent-bg': 'var(--status-urgent-bg)',
+        },
+        text: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+          muted: 'var(--text-muted)',
+        },
+        state: {
+          success: 'var(--state-success)',
+          'success-bg': 'var(--state-success-bg)',
+          warning: 'var(--state-warning)',
+          'warning-bg': 'var(--state-warning-bg)',
+          danger: 'var(--state-danger)',
+          'danger-bg': 'var(--state-danger-bg)',
+          info: 'var(--state-info)',
+          'info-bg': 'var(--state-info-bg)',
         }
       },
       fontFamily: {

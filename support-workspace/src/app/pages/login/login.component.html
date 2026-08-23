@@ -1,12 +1,12 @@
 <div class="min-h-screen w-full flex items-center justify-center p-4">
   <div class="w-full max-w-md p-8 rounded-3xl glass-panel shadow-glow">
-    <div class="flex items-center justify-between mb-6 pb-2 border-b border-slate-800/60">
-      <span class="text-xs text-slate-400 font-medium">Quick Demo Access:</span>
+    <div class="flex items-center justify-between mb-6 pb-2 border-b border-brand-border/60">
+      <span class="text-xs text-text-tertiary font-medium">Quick Demo Access:</span>
       <div class="flex items-center gap-1.5">
         <button
           type="button"
           (click)="fillDemo('agent@support.com', 'password123')"
-          class="px-2 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-[11px] font-semibold border border-emerald-500/30 transition-all"
+          class="px-2 py-1 rounded-lg bg-state-success-bg hover:bg-state-success-bg text-state-success text-[11px] font-semibold border border-state-success transition-all"
         >
           Agent
         </button>
@@ -21,24 +21,24 @@
     </div>
 
     <div class="text-center mb-6">
-      <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 mb-3">
+      <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-state-success-bg border border-state-success text-state-success mb-3">
         <lucide-icon [name]="'headphones'" class="w-6 h-6"></lucide-icon>
       </div>
-      <h2 class="text-2xl font-bold text-white tracking-tight">Support Staff Workspace</h2>
-      <p class="text-slate-400 text-sm mt-1">Sign in to manage the support ticket queue</p>
+      <h2 class="text-2xl font-bold text-text-primary tracking-tight">Support Staff Workspace</h2>
+      <p class="text-text-tertiary text-sm mt-1">Sign in to manage the support ticket queue</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
       <div>
-        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Staff Email</label>
+        <label class="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-1.5">Staff Email</label>
         <input 
           type="email" 
           formControlName="email"
-          [class]="'w-full px-4 py-2.5 rounded-xl bg-slate-900/80 border text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 transition-all ' + (emailControl.invalid && emailControl.touched ? 'border-rose-500/50 focus:ring-rose-500/40' : 'border-slate-800 focus:border-emerald-500 focus:ring-emerald-500/20')"
+          [class]="'w-full px-4 py-2.5 rounded-xl bg-brand-surface/80 border text-text-primary text-sm placeholder-text-muted focus:outline-none focus:ring-2 transition-all ' + (emailControl.invalid && emailControl.touched ? 'border-state-danger focus:ring-state-danger' : 'border-brand-border focus:border-state-success focus:ring-state-success')"
           placeholder="agent@support.com"
         />
         @if (emailControl.invalid && emailControl.touched) {
-          <p class="text-rose-400 text-xs mt-1.5 font-medium">
+          <p class="text-state-danger text-xs mt-1.5 font-medium">
             @if (emailControl.hasError('required')) { Email address is required. }
             @else if (emailControl.hasError('email')) { Please enter a valid email address. }
           </p>
@@ -46,18 +46,18 @@
       </div>
 
       <div>
-        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Password</label>
+        <label class="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-1.5">Password</label>
         <div class="relative">
           <input 
             [type]="showPassword() ? 'text' : 'password'" 
             formControlName="password"
-            [class]="'w-full px-4 py-2.5 pr-11 rounded-xl bg-slate-900/80 border text-white text-sm placeholder-slate-500 focus:outline-none focus:ring-2 transition-all ' + (passwordControl.invalid && passwordControl.touched ? 'border-rose-500/50 focus:ring-rose-500/40' : 'border-slate-800 focus:border-emerald-500 focus:ring-emerald-500/20')"
+            [class]="'w-full px-4 py-2.5 pr-11 rounded-xl bg-brand-surface/80 border text-text-primary text-sm placeholder-text-muted focus:outline-none focus:ring-2 transition-all ' + (passwordControl.invalid && passwordControl.touched ? 'border-state-danger focus:ring-state-danger' : 'border-brand-border focus:border-state-success focus:ring-state-success')"
             placeholder="••••••••"
           />
           <button
             type="button"
             (click)="showPassword.set(!showPassword())"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors p-1"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-text-tertiary hover:text-text-secondary transition-colors p-1"
             [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
           >
             @if (showPassword()) {
@@ -68,7 +68,7 @@
           </button>
         </div>
         @if (passwordControl.invalid && passwordControl.touched) {
-          <p class="text-rose-400 text-xs mt-1.5 font-medium">
+          <p class="text-state-danger text-xs mt-1.5 font-medium">
             @if (passwordControl.hasError('required')) { Password is required. }
             @else if (passwordControl.hasError('minlength')) { Password must be at least 6 characters. }
           </p>
@@ -78,16 +78,16 @@
       <button 
         [disabled]="loading()"
         type="submit" 
-        class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-emerald-600/20 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-emerald-500/40"
+        class="w-full py-3 rounded-xl bg-state-success hover:bg-state-success text-text-primary font-medium text-sm transition-all duration-200 shadow-lg shadow-none disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-none"
       >
         @if (loading()) { Processing... } @else { Sign In to Workspace }
       </button>
     </form>
 
-    <div class="mt-6 text-center pt-4 border-t border-slate-800/80">
+    <div class="mt-6 text-center pt-4 border-t border-brand-border/80">
       <a 
         href="/" 
-        class="inline-flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
+        class="inline-flex items-center gap-1.5 text-xs text-brand-primary hover:text-brand-primary font-semibold transition-colors"
       >
         <span>Are you a Customer? Open Customer Portal &rarr;</span>
       </a>

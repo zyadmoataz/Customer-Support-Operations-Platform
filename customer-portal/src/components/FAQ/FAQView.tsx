@@ -18,12 +18,12 @@ export function FAQView() {
 
   return (
     <div className="space-y-6 max-w-3xl">
-      <div className="p-6 rounded-3xl glass-panel border border-indigo-500/20 bg-gradient-to-r from-indigo-950/20 to-slate-900/60">
+      <div className="p-6 rounded-3xl glass-panel border border-brand-primary bg-gradient-to-r from-indigo-950/20 to-slate-900/60">
         <div className="flex items-center gap-3 mb-2">
-          <HelpCircle className="w-5 h-5 text-indigo-400" />
-          <h3 className="text-base font-bold text-white">Support Knowledge Base & Guidelines</h3>
+          <HelpCircle className="w-5 h-5 text-brand-primary" />
+          <h3 className="text-base font-bold text-text-primary">Support Knowledge Base & Guidelines</h3>
         </div>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-text-tertiary">
           Find instant answers to common questions about ticket lifecycles and resolution policies.
         </p>
       </div>
@@ -31,11 +31,11 @@ export function FAQView() {
       <div className="space-y-4">
         {faqs.map((faq, idx) => (
           <div key={idx} className="p-5 rounded-2xl glass-panel border border-white/5">
-            <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-indigo-400" />
+            <h4 className="text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-brand-primary" />
               <span>{faq.q}</span>
             </h4>
-            <p className="text-xs text-slate-400 leading-relaxed pl-6">{faq.a}</p>
+            <p className="text-xs text-text-tertiary leading-relaxed pl-6">{faq.a}</p>
           </div>
         ))}
       </div>

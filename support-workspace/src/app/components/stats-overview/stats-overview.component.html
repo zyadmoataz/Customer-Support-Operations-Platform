@@ -1,53 +1,53 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-glow flex flex-col justify-between">
+  <div class="p-4 sm:p-6 rounded-3xl bg-brand-surface border border-brand-border shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-state-success hover:shadow-glow flex flex-col justify-between">
     <div class="flex items-center justify-between mb-3">
-      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat1Label() }}</span>
-      <div class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20">
+      <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary">{{ stat1Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-state-info-bg text-state-info border border-state-info">
         <lucide-icon [name]="'inbox'" class="w-4 h-4"></lucide-icon>
       </div>
     </div>
     <div>
-      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat1Value() }}</div>
-      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat1Subtext() }}</span>
+      <div class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">{{ stat1Value() }}</div>
+      <span class="text-xs text-text-tertiary font-medium mt-1 block">{{ stat1Subtext() }}</span>
     </div>
   </div>
 
-  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-glow flex flex-col justify-between">
+  <div class="p-4 sm:p-6 rounded-3xl bg-brand-surface border border-brand-border shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-state-warning hover:shadow-glow flex flex-col justify-between">
     <div class="flex items-center justify-between mb-3">
-      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat2Label() }}</span>
-      <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+      <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary">{{ stat2Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-state-warning-bg text-state-warning border border-state-warning">
         <lucide-icon [name]="'clock'" class="w-4 h-4"></lucide-icon>
       </div>
     </div>
     <div>
-      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat2Value() }}</div>
-      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat2Subtext() }}</span>
+      <div class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">{{ stat2Value() }}</div>
+      <span class="text-xs text-text-tertiary font-medium mt-1 block">{{ stat2Subtext() }}</span>
     </div>
   </div>
 
-  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-glow flex flex-col justify-between">
+  <div class="p-4 sm:p-6 rounded-3xl bg-brand-surface border border-brand-border shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-state-success hover:shadow-glow flex flex-col justify-between">
     <div class="flex items-center justify-between mb-3">
-      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat3Label() }}</span>
-      <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+      <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary">{{ stat3Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-state-success-bg text-state-success border border-state-success">
         <lucide-icon [name]="'check-circle-2'" class="w-4 h-4"></lucide-icon>
       </div>
     </div>
     <div>
-      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat3Value() }}</div>
-      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat3Subtext() }}</span>
+      <div class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">{{ stat3Value() }}</div>
+      <span class="text-xs text-text-tertiary font-medium mt-1 block">{{ stat3Subtext() }}</span>
     </div>
   </div>
 
-  <div class="p-4 sm:p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-glow flex flex-col justify-between">
+  <div class="p-4 sm:p-6 rounded-3xl bg-brand-surface border border-brand-border shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-state-warning hover:shadow-glow flex flex-col justify-between">
     <div class="flex items-center justify-between mb-3">
-      <span class="text-xs font-bold uppercase tracking-wider text-slate-400">{{ stat4Label() }}</span>
-      <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-        <lucide-icon [name]="'star'" class="w-4 h-4 fill-amber-400 text-amber-400"></lucide-icon>
+      <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary">{{ stat4Label() }}</span>
+      <div class="p-2.5 rounded-xl bg-state-warning-bg text-state-warning border border-state-warning">
+        <lucide-icon [name]="'star'" class="w-4 h-4 text-state-warning text-state-warning"></lucide-icon>
       </div>
     </div>
     <div>
-      <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{{ stat4Value() }}</div>
-      <span class="text-xs text-slate-400 font-medium mt-1 block">{{ stat4Subtext() }}</span>
+      <div class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">{{ stat4Value() }}</div>
+      <span class="text-xs text-text-tertiary font-medium mt-1 block">{{ stat4Subtext() }}</span>
     </div>
   </div>
 </div>

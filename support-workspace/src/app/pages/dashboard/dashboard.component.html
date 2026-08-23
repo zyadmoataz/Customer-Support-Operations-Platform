@@ -1,4 +1,4 @@
-<div class="h-screen w-full bg-brand-bg bg-radial-glow bg-no-repeat text-slate-100 flex flex-col lg:flex-row overflow-hidden selection:bg-emerald-500/30">
+<div class="h-screen w-full bg-brand-bg bg-radial-glow bg-no-repeat text-text-primary flex flex-col lg:flex-row overflow-hidden selection:bg-state-success-bg">
   <app-workspace-sidebar
     [profile]="profile()"
     [activeTab]="activeNavTab()"
@@ -12,11 +12,11 @@
       <!-- Top Header with Generous Spacing -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/5">
         <div>
-          <p class="text-xs text-slate-400 font-medium mb-1">
-            Welcome back, <span class="text-white font-semibold">{{ profile()?.full_name || 'Staff Member' }}</span>
-            <span class="text-slate-500"> • {{ isManager() ? 'Operations Manager' : 'Support Specialist' }}</span>
+          <p class="text-xs text-text-tertiary font-medium mb-1">
+            Welcome back, <span class="text-text-primary font-semibold">{{ profile()?.full_name || 'Staff Member' }}</span>
+            <span class="text-text-muted"> • {{ isManager() ? 'Operations Manager' : 'Support Specialist' }}</span>
           </p>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
             @if (activeNavTab() === 'queue') { Triage Ticket Queue & Workload }
             @else if (activeNavTab() === 'analytics') { Operations & SLA Intelligence }
             @else if (activeNavTab() === 'staff') { Staff Directory & Onboarding }

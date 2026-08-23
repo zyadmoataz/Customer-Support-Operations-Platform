@@ -21,22 +21,22 @@ export function StatsCards({ tickets, totalCount }: StatsCardsProps) {
       label: 'Total Inquiries',
       value: total,
       subtext: 'Lifetime submitted requests',
-      icon: <Inbox className="w-5 h-5 text-indigo-400" />,
-      accentBorder: 'hover:border-indigo-500/40',
+      icon: <Inbox className="w-5 h-5 text-brand-primary" />,
+      accentBorder: 'hover:border-brand-primary',
     },
     {
       label: 'Active In Triage',
       value: openCount,
       subtext: openCount === 0 ? 'All caught up' : 'Under active investigation',
-      icon: <Clock className="w-5 h-5 text-sky-400" />,
-      accentBorder: 'hover:border-sky-500/40',
+      icon: <Clock className="w-5 h-5 text-state-info" />,
+      accentBorder: 'hover:border-state-info',
     },
     {
       label: 'Resolved Issues',
       value: resolvedCount,
       subtext: 'Verified with resolution report',
-      icon: <CheckCircle2 className="w-5 h-5 text-emerald-400" />,
-      accentBorder: 'hover:border-emerald-500/40',
+      icon: <CheckCircle2 className="w-5 h-5 text-state-success" />,
+      accentBorder: 'hover:border-state-success',
     }
   ]
 
@@ -45,21 +45,21 @@ export function StatsCards({ tickets, totalCount }: StatsCardsProps) {
       {stats.map((stat, idx) => (
         <div
           key={idx}
-          className={`rounded-3xl bg-slate-900 border border-slate-800 p-5 sm:p-6 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 ${stat.accentBorder} hover:shadow-glow flex flex-col justify-between`}
+          className={`rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 ${stat.accentBorder} hover:shadow-glow flex flex-col justify-between`}
         >
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
               {stat.label}
             </span>
-            <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
+            <div className="p-2.5 rounded-xl bg-brand-bg/80 border border-brand-border/80">
               {stat.icon}
             </div>
           </div>
           <div>
-            <span className="text-3xl font-extrabold text-white tracking-tight block">
+            <span className="text-3xl font-extrabold text-text-primary tracking-tight block">
               {stat.value}
             </span>
-            <span className="text-xs text-slate-400 font-medium mt-1 block">
+            <span className="text-xs text-text-tertiary font-medium mt-1 block">
               {stat.subtext}
             </span>
           </div>

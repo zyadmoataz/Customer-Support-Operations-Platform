@@ -26,16 +26,16 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
   return (
     <>
       {/* Mobile Top Navigation Bar */}
-      <div className="lg:hidden sticky top-0 z-40 w-full h-16 bg-slate-950/95 backdrop-blur-md border-b border-white/5 px-4 flex items-center justify-between">
+      <div className="lg:hidden sticky top-0 z-40 w-full h-16 bg-brand-bg/95 backdrop-blur-md border-b border-white/5 px-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 shadow-glow text-white font-bold">
+          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 shadow-glow text-text-primary font-bold">
             <Zap className="w-4 h-4 fill-white" />
           </div>
-          <span className="font-bold text-white text-base tracking-tight">Optima</span>
+          <span className="font-bold text-text-primary text-base tracking-tight">Optima</span>
         </div>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+          className="p-2 rounded-xl bg-brand-surface border border-brand-border text-text-secondary hover:text-text-primary"
           aria-label="Toggle Navigation"
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -52,7 +52,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
 
       {/* Fixed Desktop Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-50 w-64 h-screen bg-slate-950 border-r border-slate-800/80 flex flex-col justify-between p-5 sm:p-6 flex-shrink-0 transition-transform duration-300 ease-in-out ${
+        className={`fixed lg:sticky top-0 left-0 z-50 w-64 h-screen bg-brand-bg border-r border-brand-border/80 flex flex-col justify-between p-5 sm:p-6 flex-shrink-0 transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
@@ -60,24 +60,24 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
           {/* Brand Logo */}
           <div className="flex items-center justify-between px-1 mb-8">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-violet-600 shadow-glow text-white font-bold flex-shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-violet-600 shadow-glow text-text-primary font-bold flex-shrink-0">
                 <Zap className="w-5 h-5 fill-white" />
               </div>
-              <span className="font-extrabold text-white text-xl tracking-tight">Optima</span>
+              <span className="font-extrabold text-text-primary text-xl tracking-tight">Optima</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="lg:hidden text-slate-400 hover:text-white p-1">
+            <button onClick={() => setIsOpen(false)} className="lg:hidden text-text-tertiary hover:text-text-primary p-1">
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* User Profile Card */}
-          <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800/80 mb-6 flex items-center gap-3 shadow-md shadow-black/20">
-            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-sm border border-indigo-500/30 flex-shrink-0">
+          <div className="p-3.5 rounded-2xl bg-brand-surface border border-brand-border/80 mb-6 flex items-center gap-3 shadow-md shadow-black/20">
+            <div className="w-9 h-9 rounded-xl bg-brand-primary/20 text-brand-primary flex items-center justify-center font-bold text-sm border border-brand-hover flex-shrink-0">
               {profile?.full_name?.charAt(0)?.toUpperCase() || 'C'}
             </div>
             <div className="overflow-hidden">
-              <p className="text-xs font-bold text-white truncate">{profile?.full_name || 'Customer'}</p>
-              <span className="text-[10px] text-slate-400 font-medium">Client Account</span>
+              <p className="text-xs font-bold text-text-primary truncate">{profile?.full_name || 'Customer'}</p>
+              <span className="text-[10px] text-text-tertiary font-medium">Client Account</span>
             </div>
           </div>
 
@@ -89,8 +89,8 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
                 onClick={() => handleSelect(item.id)}
                 className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                   activeTab === item.id
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                    ? 'bg-brand-primary text-text-primary shadow-md shadow-glow'
+                    : 'text-text-tertiary hover:text-text-primary hover:bg-brand-surface'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -98,7 +98,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
                   <span>{item.label}</span>
                 </div>
                 {item.badge !== undefined && (
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-elevated text-text-secondary border border-brand-subtle">
                     {item.badge}
                   </span>
                 )}
@@ -108,10 +108,10 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
         </div>
 
         {/* Sign Out */}
-        <div className="pt-4 border-t border-slate-900">
+        <div className="pt-4 border-t border-brand-border">
           <button
             onClick={signOut}
-            className="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-white hover:bg-rose-950/40 border border-rose-500/20 transition-all shadow-sm"
+            className="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-state-danger hover:text-text-primary hover:bg-state-danger-bg border border-state-danger transition-all shadow-sm"
           >
             <LogOut className="w-4 h-4" />
             <span>Sign Out</span>

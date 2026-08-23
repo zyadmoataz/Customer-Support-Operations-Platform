@@ -16,16 +16,16 @@ export function TicketTable({ tickets, onSelectTicket }: TicketTableProps) {
     })
 
   return (
-    <div className="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden shadow-xl shadow-black/30">
+    <div className="rounded-2xl bg-brand-surface border border-brand-border overflow-hidden shadow-xl shadow-black/30">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-slate-800 bg-slate-950/60">
-            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">ID</th>
-            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Subject</th>
-            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden md:table-cell">Category</th>
-            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">Status</th>
-            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden sm:table-cell">Priority</th>
-            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden lg:table-cell">Created</th>
+          <tr className="border-b border-brand-border bg-brand-bg/60">
+            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-text-tertiary">ID</th>
+            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-text-tertiary">Subject</th>
+            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-text-tertiary hidden md:table-cell">Category</th>
+            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-text-tertiary">Status</th>
+            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-text-tertiary hidden sm:table-cell">Priority</th>
+            <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-text-tertiary hidden lg:table-cell">Created</th>
           </tr>
         </thead>
         <tbody>
@@ -36,23 +36,23 @@ export function TicketTable({ tickets, onSelectTicket }: TicketTableProps) {
               <tr
                 key={ticket.id}
                 onClick={() => onSelectTicket(ticket)}
-                className="border-b border-slate-800/60 last:border-0 hover:bg-slate-800/40 cursor-pointer transition-colors group"
+                className="border-b border-brand-border/60 last:border-0 hover:bg-brand-elevated/40 cursor-pointer transition-colors group"
               >
                 <td className="px-4 py-3">
-                  <span className="font-mono text-[11px] text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/20">
+                  <span className="font-mono text-[11px] text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-md border border-brand-primary">
                     #{ticket.id.slice(0, 8)}
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <p className="text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors truncate max-w-[300px]">
+                  <p className="text-sm font-semibold text-text-primary group-hover:text-brand-primary transition-colors truncate max-w-[300px]">
                     {ticket.title || ticket.description.slice(0, 50)}
                   </p>
-                  <p className="text-[11px] text-slate-500 truncate max-w-[300px] mt-0.5">
+                  <p className="text-[11px] text-text-muted truncate max-w-[300px] mt-0.5">
                     {ticket.description.slice(0, 80)}{ticket.description.length > 80 ? '...' : ''}
                   </p>
                 </td>
                 <td className="px-4 py-3 hidden md:table-cell">
-                  <span className="text-[11px] text-slate-300 bg-slate-800 px-2 py-0.5 rounded-md border border-slate-700">
+                  <span className="text-[11px] text-text-secondary bg-brand-elevated px-2 py-0.5 rounded-md border border-brand-subtle">
                     {ticket.category || '—'}
                   </span>
                 </td>
@@ -68,7 +68,7 @@ export function TicketTable({ tickets, onSelectTicket }: TicketTableProps) {
                   </span>
                 </td>
                 <td className="px-4 py-3 hidden lg:table-cell">
-                  <span className="text-[11px] text-slate-400">{formatDate(ticket.created_at)}</span>
+                  <span className="text-[11px] text-text-tertiary">{formatDate(ticket.created_at)}</span>
                 </td>
               </tr>
             )

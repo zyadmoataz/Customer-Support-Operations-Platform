@@ -8,16 +8,16 @@ interface TicketCardProps {
 }
 
 const statusStyles: Record<TicketStatus, { bg: string; text: string; dot: string; label: string }> = {
-  open: { bg: 'bg-sky-500/10 border-sky-500/25', text: 'text-sky-400', dot: 'bg-sky-400', label: 'Open' },
-  in_progress: { bg: 'bg-amber-500/10 border-amber-500/25', text: 'text-amber-400', dot: 'bg-amber-400', label: 'In Progress' },
-  resolved: { bg: 'bg-emerald-500/10 border-emerald-500/25', text: 'text-emerald-400', dot: 'bg-emerald-400', label: 'Resolved & Verified' },
+  open: { bg: 'bg-state-info-bg border-state-info', text: 'text-state-info', dot: 'bg-state-info', label: 'Open' },
+  in_progress: { bg: 'bg-state-warning-bg border-state-warning', text: 'text-state-warning', dot: 'bg-state-warning', label: 'In Progress' },
+  resolved: { bg: 'bg-state-success-bg border-state-success', text: 'text-state-success', dot: 'bg-state-success', label: 'Resolved & Verified' },
 }
 
 const priorityStyles: Record<TicketPriority, { text: string; bg: string }> = {
-  low: { text: 'text-slate-400', bg: 'bg-slate-800/80 border border-slate-700/50' },
-  medium: { text: 'text-sky-300', bg: 'bg-sky-950/60 border border-sky-500/20' },
-  high: { text: 'text-amber-300', bg: 'bg-amber-950/60 border border-amber-500/20' },
-  urgent: { text: 'text-rose-300', bg: 'bg-rose-950/60 border border-rose-500/20' },
+  low: { text: 'text-text-tertiary', bg: 'bg-brand-elevated/80 border border-brand-subtle/50' },
+  medium: { text: 'text-state-info', bg: 'bg-state-info border border-state-info' },
+  high: { text: 'text-state-warning', bg: 'bg-state-warning border border-state-warning' },
+  urgent: { text: 'text-state-danger', bg: 'bg-state-danger border border-state-danger' },
 }
 
 export function TicketCard({ ticket }: TicketCardProps) {
@@ -33,7 +33,7 @@ export function TicketCard({ ticket }: TicketCardProps) {
     <>
       <div 
         onClick={() => setIsDetailsOpen(true)}
-        className="group rounded-3xl bg-slate-900 border border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-glow cursor-pointer relative"
+        className="group rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 flex flex-col justify-between shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow cursor-pointer relative"
       >
         <div>
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -46,35 +46,35 @@ export function TicketCard({ ticket }: TicketCardProps) {
                 {ticket.priority || 'medium'}
               </span>
               {ticket.category && (
-                <span className="text-[11px] text-slate-400 bg-slate-950/80 px-2 py-0.5 rounded-md border border-slate-800 truncate max-w-[140px]">
+                <span className="text-[11px] text-text-tertiary bg-brand-bg/80 px-2 py-0.5 rounded-md border border-brand-border truncate max-w-[140px]">
                   {ticket.category}
                 </span>
               )}
             </div>
-            <span className="text-[11px] text-slate-500 flex-shrink-0 font-medium">{formattedDate}</span>
+            <span className="text-[11px] text-text-muted flex-shrink-0 font-medium">{formattedDate}</span>
           </div>
 
-          <h3 className="text-base font-bold text-white group-hover:text-indigo-300 transition-colors mb-1.5">
+          <h3 className="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5">
             {ticket.title || ticket.description.slice(0, 50)}
           </h3>
-          <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-text-tertiary line-clamp-2 leading-relaxed">
             {ticket.description}
           </p>
 
           {ticket.resolution_note && (
-            <div className="mt-3.5 p-3 rounded-2xl bg-emerald-950/30 border border-emerald-500/20 text-xs">
-              <div className="flex items-center gap-1.5 font-semibold text-emerald-400 mb-1">
+            <div className="mt-3.5 p-3 rounded-2xl bg-state-success-bg border border-state-success text-xs">
+              <div className="flex items-center gap-1.5 font-semibold text-state-success mb-1">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Agent Resolution Summary:</span>
               </div>
-              <p className="text-slate-300 line-clamp-2 leading-relaxed">{ticket.resolution_note}</p>
+              <p className="text-text-secondary line-clamp-2 leading-relaxed">{ticket.resolution_note}</p>
             </div>
           )}
         </div>
 
-        <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+        <div className="mt-4 pt-3 border-t border-brand-border/80 flex items-center justify-between text-[11px] text-text-tertiary">
           <span className="font-mono">ID: {ticket.id.slice(0, 8)}</span>
-          <span className="inline-flex items-center gap-1 text-indigo-400 group-hover:translate-x-0.5 transition-transform font-semibold">
+          <span className="inline-flex items-center gap-1 text-brand-primary group-hover:translate-x-0.5 transition-transform font-semibold">
             <span>View Timeline & Details</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </span>

@@ -28,7 +28,7 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="h-screen w-full bg-brand-bg text-slate-100 flex flex-col lg:flex-row overflow-hidden selection:bg-indigo-500/30">
+    <div className="h-screen w-full bg-brand-bg text-text-primary flex flex-col lg:flex-row overflow-hidden selection:bg-brand-primary-bg">
       <Sidebar
         activeTab={activeNavTab}
         onTabChange={(tab) => setActiveNavTab(tab)}
@@ -39,10 +39,10 @@ export function DashboardPage() {
         <div className="max-w-6xl w-full mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/5">
             <div>
-              <p className="text-xs text-slate-400 font-medium mb-1">
-                Welcome back, <span className="text-white font-semibold">{profile?.full_name || 'Customer'}</span>
+              <p className="text-xs text-text-tertiary font-medium mb-1">
+                Welcome back, <span className="text-text-primary font-semibold">{profile?.full_name || 'Customer'}</span>
               </p>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
                 {activeNavTab === 'tickets' && 'Customer Inquiries & Support Desk'}
                 {activeNavTab === 'faq' && 'Knowledge Base & Help Center'}
                 {activeNavTab === 'settings' && 'Account & Security Preferences'}
@@ -51,7 +51,7 @@ export function DashboardPage() {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm shadow-md shadow-indigo-600/25 hover:shadow-indigo-500/40 hover:scale-[1.02] transition-all flex-shrink-0 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-2xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary font-semibold text-xs sm:text-sm shadow-md shadow-glow hover:shadow-glow hover:scale-[1.02] transition-all flex-shrink-0 w-full sm:w-auto"
             >
               <Plus className="w-4 h-4 flex-shrink-0" />
               <span>New Support Request</span>

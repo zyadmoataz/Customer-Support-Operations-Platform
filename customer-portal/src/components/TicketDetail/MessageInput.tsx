@@ -27,8 +27,8 @@ export function MessageInput({
 
   if (isResolved) {
     return (
-      <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/20 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div className="flex items-center gap-2 text-xs text-amber-300">
+      <div className="p-4 rounded-2xl bg-state-warning-bg border border-state-warning flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-xs text-state-warning">
           <Lock className="w-4 h-4 flex-shrink-0" />
           <span>Ticket is completed and locked. Need further support?</span>
         </div>
@@ -36,7 +36,7 @@ export function MessageInput({
           type="button"
           onClick={onReopenTicket}
           disabled={isReopening}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-md shadow-amber-600/20 transition-all disabled:opacity-50 flex-shrink-0"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-state-warning hover:bg-state-warning text-text-primary text-xs font-bold shadow-md shadow-none transition-all disabled:opacity-50 flex-shrink-0"
         >
           <RotateCcw className={`w-3.5 h-3.5 ${isReopening ? 'animate-spin' : ''}`} />
           <span>{isReopening ? 'Reopening...' : 'Reopen Ticket'}</span>
@@ -53,12 +53,12 @@ export function MessageInput({
         placeholder="Type a message or provide additional info to the support team..."
         rows={2}
         disabled={isSending}
-        className="flex-1 px-4 py-2.5 rounded-2xl bg-slate-950/80 border border-slate-800 focus:border-indigo-500 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none transition-all resize-none disabled:opacity-50"
+        className="flex-1 px-4 py-2.5 rounded-2xl bg-brand-bg/80 border border-brand-border focus:border-brand-primary text-xs sm:text-sm text-text-primary placeholder-text-muted focus:outline-none transition-all resize-none disabled:opacity-50"
       />
       <button
         type="submit"
         disabled={!text.trim() || isSending}
-        className="self-end h-10 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+        className="self-end h-10 px-4 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-glow transition-all disabled:opacity-40 disabled:cursor-not-allowed"
       >
         <Send className="w-3.5 h-3.5" />
         <span>{isSending ? 'Sending...' : 'Send'}</span>

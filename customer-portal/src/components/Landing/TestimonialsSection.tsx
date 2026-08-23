@@ -28,10 +28,10 @@ export function TestimonialsSection() {
   return (
     <section className="w-full max-w-6xl mx-auto my-16 px-4">
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
           Trusted by World-Class Support Leaders
         </h2>
-        <p className="text-xs sm:text-sm text-slate-400 mt-2">
+        <p className="text-xs sm:text-sm text-text-tertiary mt-2">
           Discover how modern organizations elevate customer satisfaction with Optima.
         </p>
       </div>
@@ -40,29 +40,29 @@ export function TestimonialsSection() {
         {testimonials.map((t, idx) => (
           <div
             key={idx}
-            className="rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-glow flex flex-col justify-between group"
+            className="rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-1 text-amber-400">
+                <div className="flex items-center gap-1 text-state-warning">
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    <Star key={i} className="w-4 h-4 text-state-warning" />
                   ))}
                 </div>
-                <Quote className="w-6 h-6 text-slate-700" />
+                <Quote className="w-6 h-6 text-text-muted" />
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed italic">
                 "{t.quote}"
               </p>
             </div>
 
             <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center font-bold text-xs border border-indigo-500/30">
+              <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 text-brand-primary flex items-center justify-center font-bold text-xs border border-brand-hover">
                 {t.author.charAt(0)}
               </div>
               <div>
-                <h4 className="text-xs font-bold text-white">{t.author}</h4>
-                <p className="text-[11px] text-slate-400">{t.role} • <span className="text-indigo-400 font-medium">{t.company}</span></p>
+                <h4 className="text-xs font-bold text-text-primary">{t.author}</h4>
+                <p className="text-[11px] text-text-tertiary">{t.role} • <span className="text-brand-primary font-medium">{t.company}</span></p>
               </div>
             </div>
           </div>

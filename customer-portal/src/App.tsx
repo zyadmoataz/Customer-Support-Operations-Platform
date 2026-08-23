@@ -13,7 +13,7 @@ export function App() {
           <Toaster
             position="top-right"
             toastOptions={{
-              className: 'bg-slate-900/90 text-white border border-white/10 backdrop-blur-md rounded-2xl shadow-xl',
+              className: 'bg-brand-surface/90 text-text-primary border border-white/10 backdrop-blur-md rounded-2xl shadow-xl',
               duration: 3500,
             }}
           />

@@ -46,28 +46,28 @@ export function TicketDetailModal({ ticket: initialTicket, isOpen, onClose }: Ti
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="w-full max-w-2xl p-5 sm:p-6 rounded-3xl glass-panel shadow-glow border border-indigo-500/20 max-h-[90vh] flex flex-col"
+          className="w-full max-w-2xl p-5 sm:p-6 rounded-3xl glass-panel shadow-glow border border-brand-primary max-h-[90vh] flex flex-col"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800 flex-shrink-0">
+          <div className="flex items-center justify-between pb-3 border-b border-brand-border flex-shrink-0">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-xs text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-md border border-indigo-500/20">
+                <span className="font-mono text-xs text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-md border border-brand-primary">
                   ID: #{ticket.id.slice(0, 8)}
                 </span>
-                <span className="text-xs text-slate-400">{ticket.category || 'Support'}</span>
+                <span className="text-xs text-text-tertiary">{ticket.category || 'Support'}</span>
               </div>
-              <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight truncate max-w-[450px]">
+              <h2 className="text-lg sm:text-xl font-bold text-text-primary tracking-tight truncate max-w-[450px]">
                 {ticket.title || 'Support Request'}
               </h2>
             </div>
-            <button onClick={onClose} className="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-900 transition-colors">
+            <button onClick={onClose} className="text-text-tertiary hover:text-text-primary p-1.5 rounded-xl hover:bg-brand-surface transition-colors">
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-1.5 p-1 my-3 rounded-2xl bg-slate-950/80 border border-slate-800 flex-shrink-0">
+          <div className="flex items-center gap-1.5 p-1 my-3 rounded-2xl bg-brand-bg/80 border border-brand-border flex-shrink-0">
             {(
               [
                 { id: 'overview', label: 'Overview & Status', icon: FileText },
@@ -82,7 +82,7 @@ export function TicketDetailModal({ ticket: initialTicket, isOpen, onClose }: Ti
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                    active ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
+                    active ? 'bg-brand-primary text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />

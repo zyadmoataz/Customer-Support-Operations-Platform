@@ -7,9 +7,9 @@ interface LoadingSkeletonProps {
 export function LoadingSkeleton({ viewMode }: LoadingSkeletonProps) {
   if (viewMode === 'table') {
     return (
-      <div className="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden">
+      <div className="rounded-2xl bg-brand-surface border border-brand-border overflow-hidden">
         {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="flex items-center gap-4 px-4 py-4 border-b border-slate-800/60 last:border-0">
+          <div key={i} className="flex items-center gap-4 px-4 py-4 border-b border-brand-border/60 last:border-0">
             <div className="w-20 h-4 rounded animate-shimmer" />
             <div className="flex-1 h-4 rounded animate-shimmer" />
             <div className="w-16 h-4 rounded animate-shimmer hidden md:block" />
@@ -39,10 +39,10 @@ export function LoadingSkeleton({ viewMode }: LoadingSkeletonProps) {
 
 export function ErrorState() {
   return (
-    <div className="text-center py-16 p-6 rounded-3xl glass-panel border border-rose-500/20 max-w-md mx-auto">
-      <RefreshCw className="w-8 h-8 text-rose-400 mx-auto mb-3 animate-spin" />
-      <h4 className="text-sm font-bold text-white mb-1">Failed to Load Support Tickets</h4>
-      <p className="text-xs text-slate-400">Please verify your internet connection or check back momentarily.</p>
+    <div className="text-center py-16 p-6 rounded-3xl glass-panel border border-state-danger max-w-md mx-auto">
+      <RefreshCw className="w-8 h-8 text-state-danger mx-auto mb-3 animate-spin" />
+      <h4 className="text-sm font-bold text-text-primary mb-1">Failed to Load Support Tickets</h4>
+      <p className="text-xs text-text-tertiary">Please verify your internet connection or check back momentarily.</p>
     </div>
   )
 }
@@ -54,11 +54,11 @@ interface EmptyStateProps {
 export function EmptyState({ hasFilters }: EmptyStateProps) {
   return (
     <div className="text-center py-16 p-8 rounded-3xl glass-panel border border-white/5 max-w-lg mx-auto">
-      <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
-        <Inbox className="w-6 h-6 text-slate-400" />
+      <div className="w-12 h-12 rounded-2xl bg-brand-surface border border-brand-border text-text-tertiary flex items-center justify-center mx-auto mb-3">
+        <Inbox className="w-6 h-6 text-text-tertiary" />
       </div>
-      <h4 className="text-base font-bold text-white mb-1">No Tickets Found</h4>
-      <p className="text-xs text-slate-400 leading-relaxed max-w-xs mx-auto">
+      <h4 className="text-base font-bold text-text-primary mb-1">No Tickets Found</h4>
+      <p className="text-xs text-text-tertiary leading-relaxed max-w-xs mx-auto">
         {hasFilters
           ? 'No tickets match your current filters. Try adjusting or clearing filters.'
           : 'You have not submitted any support tickets yet.'}
