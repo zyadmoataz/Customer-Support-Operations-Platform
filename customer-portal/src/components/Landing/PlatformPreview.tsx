@@ -65,7 +65,7 @@ export function PlatformPreview() {
 
         {/* Live Operational Telemetry Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
-          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-primary transition-all">
+          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-hover transition-all">
             <div className="flex items-center justify-between text-xs text-text-tertiary mb-1">
               <span>Active Queue</span>
               <Inbox className="w-4 h-4 text-brand-primary" />
@@ -74,7 +74,7 @@ export function PlatformPreview() {
             <span className="text-[11px] text-state-success font-medium">↑ 14% triage velocity</span>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-primary transition-all">
+          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-hover transition-all">
             <div className="flex items-center justify-between text-xs text-text-tertiary mb-1">
               <span>Avg First Response</span>
               <Clock className="w-4 h-4 text-state-info" />
@@ -83,7 +83,7 @@ export function PlatformPreview() {
             <span className="text-[11px] text-state-info font-medium">96.8% within SLA target</span>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-primary transition-all">
+          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-hover transition-all">
             <div className="flex items-center justify-between text-xs text-text-tertiary mb-1">
               <span>CSAT Score</span>
               <Star className="w-4 h-4 text-state-warning text-state-warning" />
@@ -92,7 +92,7 @@ export function PlatformPreview() {
             <span className="text-[11px] text-state-warning font-medium">4.93 / 5.0 QA score</span>
           </div>
 
-          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-primary transition-all">
+          <div className="p-4 sm:p-5 rounded-2xl bg-brand-surface/80 border border-brand-border hover:-translate-y-1 hover:border-brand-hover transition-all">
             <div className="flex items-center justify-between text-xs text-text-tertiary mb-1">
               <span>SLA Compliance</span>
               <CheckCircle2 className="w-4 h-4 text-state-success" />

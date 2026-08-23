@@ -40,7 +40,7 @@ export function TestimonialsSection() {
         {testimonials.map((t, idx) => (
           <div
             key={idx}
-            className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group"
+            className="rounded-3xl bg-brand-surface p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-hover flex flex-col justify-between group"
           >
             <div>
               <div className="flex items-center justify-between mb-4">

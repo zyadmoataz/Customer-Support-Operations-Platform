@@ -18,17 +18,17 @@ export function FeatureBento() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Card 1 (Large - 2 Cols) */}
-        <div className="md:col-span-2 rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="md:col-span-2 rounded-3xl bg-brand-surface border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-hover p-6 sm:p-8 flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center border border-brand-primary">
+              <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center border border-brand-primary/20">
                 <Zap className="w-6 h-6" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-surface text-brand-primary border border-brand-primary">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-elevated text-brand-primary border border-brand-border">
                 Automated Triage
               </span>
             </div>
-            <h3 className="text-xl font-bold text-text-primary group-hover:text-brand-primary transition-colors">
+            <h3 className="text-xl font-bold text-text-primary transition-colors">
               Intelligent Ticket Routing & Priority Escalation
             </h3>
             <p className="text-sm text-text-tertiary mt-2 leading-relaxed">
@@ -49,17 +49,17 @@ export function FeatureBento() {
         </div>
 
         {/* Card 2 (1 Col) */}
-        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="rounded-3xl bg-brand-surface border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-hover p-6 sm:p-8 flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-state-success-bg text-state-success flex items-center justify-center border border-state-success">
+              <div className="w-12 h-12 rounded-2xl bg-state-success-bg text-state-success flex items-center justify-center border border-state-success/30">
                 <Lock className="w-6 h-6" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-surface text-state-success border border-state-success">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-elevated text-state-success border border-brand-border">
                 Zero-Trust
               </span>
             </div>
-            <h3 className="text-xl font-bold text-text-primary group-hover:text-state-success transition-colors">
+            <h3 className="text-xl font-bold text-text-primary transition-colors">
               Strict Multi-Tenant Data Isolation
             </h3>
             <p className="text-sm text-text-tertiary mt-2 leading-relaxed">
@@ -74,17 +74,17 @@ export function FeatureBento() {
         </div>
 
         {/* Card 3 (1 Col) */}
-        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="rounded-3xl bg-brand-surface border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-hover p-6 sm:p-8 flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-state-info-bg text-state-info flex items-center justify-center border border-state-info">
+              <div className="w-12 h-12 rounded-2xl bg-state-info-bg text-state-info flex items-center justify-center border border-state-info/30">
                 <Clock className="w-6 h-6" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-surface text-state-info border border-state-info">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-elevated text-state-info border border-brand-border">
                 Customer Clarity
               </span>
             </div>
-            <h3 className="text-xl font-bold text-text-primary group-hover:text-state-info transition-colors">
+            <h3 className="text-xl font-bold text-text-primary transition-colors">
               Live Lifecycle Transparency
             </h3>
             <p className="text-sm text-text-tertiary mt-2 leading-relaxed">
@@ -99,17 +99,17 @@ export function FeatureBento() {
         </div>
 
         {/* Card 4 (Large - 2 Cols) */}
-        <div className="md:col-span-2 rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="md:col-span-2 rounded-3xl bg-brand-surface border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-hover p-6 sm:p-8 flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-state-warning-bg text-state-warning flex items-center justify-center border border-state-warning">
+              <div className="w-12 h-12 rounded-2xl bg-state-warning-bg text-state-warning flex items-center justify-center border border-state-warning/30">
                 <BarChart3 className="w-6 h-6" />
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-surface text-state-warning border border-state-warning">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-elevated text-state-warning border border-brand-border">
                 Management Console
               </span>
             </div>
-            <h3 className="text-xl font-bold text-text-primary group-hover:text-state-warning transition-colors">
+            <h3 className="text-xl font-bold text-text-primary transition-colors">
               Executive QA Audits & SLA Performance Tracking
             </h3>
             <p className="text-sm text-text-tertiary mt-2 leading-relaxed">

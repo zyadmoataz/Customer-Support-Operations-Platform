@@ -49,9 +49,9 @@ export function SettingsView() {
   }
 
   return (
-    <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border max-w-2xl">
+    <div className="rounded-3xl bg-brand-surface p-6 sm:p-8 border border-brand-border w-full">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-brand-border">
-        <div className="p-2.5 rounded-2xl bg-brand-primary/10 text-brand-primary border border-brand-primary">
+        <div className="p-2.5 rounded-2xl bg-brand-elevated text-brand-primary border border-brand-border">
           <User className="w-5 h-5" />
         </div>
         <div>

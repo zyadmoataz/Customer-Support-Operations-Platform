@@ -6,16 +6,16 @@
   color-scheme: dark;
 
   /* === Core Semantic Surface & Background Tokens === */
-  --bg-canvas: 9 9 11; /* Zinc 950 */
-  --bg-surface-1: 24 24 27; /* Zinc 900 solid */
-  --bg-surface-2: 39 39 42; /* Zinc 800 solid */
-  --bg-surface-3: 63 63 70; /* Zinc 700 */
-  --bg-elevated: 24 24 27;
+  --bg-canvas: 12 15 22; /* Deep Charcoal Slate */
+  --bg-surface-1: 19 23 32; /* Surface 1 */
+  --bg-surface-2: 27 32 44; /* Surface 2 */
+  --bg-surface-3: 38 45 61; /* Surface 3 */
+  --bg-elevated: 19 23 32;
 
   /* === Dynamic Border & Divider Tokens === */
-  --border-subtle: 24 24 27; /* Zinc 900 */
-  --border-default: 39 39 42; /* Zinc 800 */
-  --border-hover: 63 63 70; /* Zinc 700 */
+  --border-subtle: 25 30 41;
+  --border-default: 36 43 59;
+  --border-hover: 58 68 91;
   --border-brand: rgba(16, 185, 129, 0.4);
   --border-amber: rgba(245, 158, 11, 0.35);
   --border-rose: rgba(244, 63, 94, 0.35);

@@ -34,20 +34,17 @@ export function LandingNav() {
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
       scrolled 
-        ? 'bg-brand-bg/90 backdrop-blur-2xl border-b border-brand-border shadow-2xl shadow-brand-bg/50' 
-        : 'bg-brand-bg/60 backdrop-blur-lg border-b border-brand-border'
+        ? 'bg-brand-bg/90 backdrop-blur-2xl border-b border-brand-border shadow-xl shadow-brand-bg/50' 
+        : 'bg-brand-bg/60 backdrop-blur-lg border-b border-brand-border/60'
     }`}>
-      {/* Radiant bottom highlight */}
-      <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-primary-hover/40 to-transparent" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
         {/* Brand Identity */}
         <div 
           className="flex items-center gap-3 cursor-pointer select-none group flex-shrink-0" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-brand-primary via-brand-primary-hover to-brand-accent shadow-glow text-text-primary font-bold group-hover:scale-105 group-hover:shadow-glow transition-all flex-shrink-0">
-            <Zap className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
+          <div className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-brand-primary text-text-primary font-bold group-hover:scale-105 transition-all flex-shrink-0">
+            <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-text-primary" />
           </div>
           <div className="flex flex-col justify-center">
             <span className="font-extrabold text-text-primary text-base sm:text-xl tracking-tight leading-tight">Optima</span>
@@ -55,8 +52,8 @@ export function LandingNav() {
           </div>
         </div>
 
-        {/* Aceternity Style Floating Pill Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-brand-surface/70 border border-brand-border text-xs font-semibold text-text-secondary shadow-inner">
+        {/* Modern Pill Nav Links */}
+        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-brand-surface/70 border border-brand-border text-xs font-semibold text-text-secondary">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -68,7 +65,7 @@ export function LandingNav() {
               {hoveredTab === link.id && (
                 <motion.span
                   layoutId="active-pill"
-                  className="absolute inset-0 rounded-full bg-brand-primary/20 border border-brand-primary shadow-sm"
+                  className="absolute inset-0 rounded-full bg-brand-elevated border border-brand-border"
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 />
               )}
@@ -81,7 +78,7 @@ export function LandingNav() {
         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <a 
             href="/support/" 
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3 sm:px-5 rounded-xl sm:rounded-2xl bg-brand-surface/90 hover:bg-brand-elevated/90 border border-brand-subtle/80 hover:border-state-success text-text-secondary hover:text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-none hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3 sm:px-5 rounded-xl sm:rounded-2xl bg-brand-surface hover:bg-brand-elevated border border-brand-border hover:border-brand-hover text-text-secondary hover:text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-state-success opacity-75" />
@@ -94,7 +91,7 @@ export function LandingNav() {
           
           <button
             onClick={() => navigate(session ? '/dashboard' : '/login')}
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3.5 sm:px-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-brand-primary-hover via-brand-primary-hover to-brand-accent hover:from-brand-primary hover:to-brand-accent text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-lg shadow-glow hover:shadow-glow hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3.5 sm:px-5 rounded-xl sm:rounded-2xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-md"
           >
             <span>{session ? 'Dashboard' : 'Customer Portal'}</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-text-primary flex-shrink-0" />
