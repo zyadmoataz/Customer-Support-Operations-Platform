@@ -75,12 +75,12 @@ export function PricingSection() {
             key={idx}
             className={`rounded-3xl glass-panel p-6 sm:p-8 border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between relative ${
               p.popular 
-                ? 'border-brand-primary shadow-glow bg-gradient-to-b from-indigo-950/30 to-slate-900/80 scale-[1.02]' 
+                ? 'border-brand-primary shadow-glow bg-gradient-to-b from-brand-primary/10 to-brand-surface/50 scale-[1.02]' 
                 : 'border-white/10'
             }`}
           >
             {p.popular && (
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-text-primary text-[10px] font-bold uppercase tracking-wider shadow-md">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-gradient-to-r from-indigo-600 to-brand-accent text-text-primary text-[10px] font-bold uppercase tracking-wider shadow-md">
                 Most Popular for Teams
               </div>
             )}

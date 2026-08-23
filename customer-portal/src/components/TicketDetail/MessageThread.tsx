@@ -21,15 +21,15 @@ export function MessageThread({ messages, isLoading, currentUserId }: MessageThr
   if (messages.length === 0) {
     return (
       <div className="py-8 text-center rounded-2xl bg-brand-bg/40 border border-dashed border-brand-border p-6">
-        <MessageSquare className="w-8 h-8 text-text-muted mx-auto mb-2 opacity-60" />
-        <p className="text-xs font-semibold text-text-secondary">No replies yet</p>
-        <p className="text-[11px] text-text-muted mt-0.5">Send a message below to communicate directly with our support team.</p>
+        <MessageSquare className="w-8 h-8 text-text-tertiary mx-auto mb-3" />
+        <p className="text-text-secondary font-medium mb-1">No messages yet</p>
+        <p className="text-sm text-text-muted">Start the conversation below.</p>
       </div>
     )
   }
 
   return (
-    <div className="space-y-3 max-h-[320px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-800">
+    <div className="space-y-5 flex-1 min-h-0 py-2 px-1">
       {messages.map((msg) => {
         const isMe = msg.author_id === currentUserId
         const isStaff = msg.author_role === 'agent' || msg.author_role === 'manager'
@@ -37,7 +37,7 @@ export function MessageThread({ messages, isLoading, currentUserId }: MessageThr
         return (
           <div
             key={msg.id}
-            className={`p-3.5 sm:p-4 rounded-2xl border transition-all ${
+            className={`p-4 rounded-2xl border transition-all ${
               isStaff
                 ? 'bg-brand-primary-bg border-brand-hover text-text-secondary ml-2'
                 : 'bg-brand-surface/90 border-brand-border text-text-secondary'

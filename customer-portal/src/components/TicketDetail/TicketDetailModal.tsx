@@ -46,10 +46,10 @@ export function TicketDetailModal({ ticket: initialTicket, isOpen, onClose }: Ti
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="w-full max-w-2xl p-5 sm:p-6 rounded-3xl glass-panel shadow-glow border border-brand-primary max-h-[90vh] flex flex-col"
+          className="w-full max-w-3xl p-6 sm:p-8 rounded-3xl glass-panel shadow-glow border border-brand-primary max-h-[90vh] flex flex-col"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-brand-border flex-shrink-0">
+          <div className="flex items-center justify-between pb-4 border-b border-brand-border flex-shrink-0">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-mono text-xs text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-md border border-brand-primary">

@@ -8,7 +8,7 @@ export function LandingFooter() {
   return (
     <footer className="relative w-full border-t border-white/10 bg-brand-bg text-text-tertiary text-xs py-14 lg:py-20 overflow-hidden">
       {/* Top subtle radiant glow */}
-      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-primary-hover/40 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-brand-primary-bg blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -19,7 +19,7 @@ export function LandingFooter() {
               onClick={scrollToTop}
               className="flex items-center gap-3 cursor-pointer select-none group w-fit"
             >
-              <div className="flex items-center justify-center w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-500 to-violet-600 shadow-glow text-text-primary font-bold group-hover:scale-105 transition-transform">
+              <div className="flex items-center justify-center w-9 h-9 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-accent shadow-glow text-text-primary font-bold group-hover:scale-105 transition-transform">
                 <Zap className="w-4 h-4 fill-white" />
               </div>
               <span className="font-extrabold text-text-primary text-xl tracking-tight">Optima</span>

@@ -30,7 +30,7 @@ export function LiveMetrics() {
 
   return (
     <section id="metrics" className="w-full max-w-6xl mx-auto my-16 px-4">
-      <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-brand-primary bg-gradient-to-r from-indigo-950/20 via-slate-900/60 to-emerald-950/20 shadow-glow">
+      <div className="rounded-3xl glass-panel p-8 sm:p-12 border border-brand-primary bg-gradient-to-r from-brand-primary/10 via-brand-surface/50 to-state-success/10 shadow-glow">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
             Proven Impact on Global Support Operations

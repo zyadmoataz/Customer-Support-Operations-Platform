@@ -28,7 +28,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
       {/* Mobile Top Navigation Bar */}
       <div className="lg:hidden sticky top-0 z-40 w-full h-16 bg-brand-bg/95 backdrop-blur-md border-b border-white/5 px-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-600 shadow-glow text-text-primary font-bold">
+          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-accent shadow-glow text-text-primary font-bold">
             <Zap className="w-4 h-4 fill-white" />
           </div>
           <span className="font-bold text-text-primary text-base tracking-tight">Optima</span>
@@ -60,7 +60,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
           {/* Brand Logo */}
           <div className="flex items-center justify-between px-1 mb-8">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-violet-600 shadow-glow text-text-primary font-bold flex-shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-primary via-brand-primary-hover to-brand-accent shadow-glow text-text-primary font-bold flex-shrink-0">
                 <Zap className="w-5 h-5 fill-white" />
               </div>
               <span className="font-extrabold text-text-primary text-xl tracking-tight">Optima</span>

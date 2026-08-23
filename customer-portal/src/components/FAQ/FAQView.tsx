@@ -18,7 +18,7 @@ export function FAQView() {
 
   return (
     <div className="space-y-6 max-w-3xl">
-      <div className="p-6 rounded-3xl glass-panel border border-brand-primary bg-gradient-to-r from-indigo-950/20 to-slate-900/60">
+      <div className="p-6 rounded-3xl glass-panel border border-brand-primary bg-gradient-to-r from-brand-primary/10 to-brand-surface/50">
         <div className="flex items-center gap-3 mb-2">
           <HelpCircle className="w-5 h-5 text-brand-primary" />
           <h3 className="text-base font-bold text-text-primary">Support Knowledge Base & Guidelines</h3>

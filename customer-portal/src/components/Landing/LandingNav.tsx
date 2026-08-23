@@ -38,7 +38,7 @@ export function LandingNav() {
         : 'bg-brand-bg/60 backdrop-blur-lg border-b border-white/5'
     }`}>
       {/* Radiant bottom highlight */}
-      <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-primary-hover/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
         {/* Brand Identity */}
@@ -46,7 +46,7 @@ export function LandingNav() {
           className="flex items-center gap-3 cursor-pointer select-none group flex-shrink-0" 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-violet-600 shadow-glow text-text-primary font-bold group-hover:scale-105 group-hover:shadow-glow transition-all flex-shrink-0">
+          <div className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-brand-primary via-brand-primary-hover to-brand-accent shadow-glow text-text-primary font-bold group-hover:scale-105 group-hover:shadow-glow transition-all flex-shrink-0">
             <Zap className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
           </div>
           <div className="flex flex-col justify-center">
@@ -94,7 +94,7 @@ export function LandingNav() {
           
           <button
             onClick={() => navigate(session ? '/dashboard' : '/login')}
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3.5 sm:px-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-lg shadow-glow hover:shadow-glow hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3.5 sm:px-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-indigo-600 via-brand-primary-hover to-brand-accent hover:from-brand-primary hover:to-brand-accent text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-lg shadow-glow hover:shadow-glow hover:scale-[1.02]"
           >
             <span>{session ? 'Dashboard' : 'Customer Portal'}</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-text-primary flex-shrink-0" />

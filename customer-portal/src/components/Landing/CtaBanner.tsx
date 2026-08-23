@@ -6,7 +6,7 @@ export function CtaBanner() {
 
   return (
     <section className="w-full max-w-6xl mx-auto my-16 px-4">
-      <div className="rounded-3xl glass-panel p-8 sm:p-14 border border-brand-hover bg-gradient-to-tr from-indigo-950/40 via-slate-900/90 to-emerald-950/30 text-center relative overflow-hidden shadow-glow">
+      <div className="rounded-3xl glass-panel p-8 sm:p-14 border border-brand-hover bg-gradient-to-tr from-brand-primary/10 via-brand-surface/50 to-state-success/10 text-center relative overflow-hidden shadow-glow">
         {/* Background Ambient Glow */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-primary/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-state-success-bg rounded-full blur-3xl pointer-events-none" />

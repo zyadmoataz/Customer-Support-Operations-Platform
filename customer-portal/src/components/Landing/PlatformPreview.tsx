@@ -17,7 +17,7 @@ export function PlatformPreview() {
     <section id="platform-preview" className="w-full max-w-6xl mx-auto my-12 px-4">
       <div className="rounded-3xl glass-panel p-6 sm:p-10 border border-white/10 shadow-glow relative overflow-hidden">
         {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-indigo-500/15 to-transparent blur-2xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-brand-primary/15 to-transparent blur-2xl pointer-events-none" />
 
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10 relative z-10">

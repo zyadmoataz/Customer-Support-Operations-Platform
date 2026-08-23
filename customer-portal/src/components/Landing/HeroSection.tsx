@@ -31,7 +31,7 @@ export function HeroSection() {
         className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-text-primary tracking-tight leading-[1.12]"
       >
         Transform Customer Inquiries Into <br className="hidden sm:inline" />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-300 to-emerald-400">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-state-success">
           Seamless Operational Clarity.
         </span>
       </motion.h1>
