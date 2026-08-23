@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
+import { createClient, SupabaseClient, User, RealtimeChannel } from '@supabase/supabase-js';
 import { environment } from '../../../environments/environment';
 
 export interface Profile {
@@ -115,7 +115,18 @@ export class SupabaseService {
   get from() {
     return this.supabase.from.bind(this.supabase);
   }
+  get storage() {
+    return this.supabase.storage;
+  }
   get client() {
     return this.supabase;
   }
+  channel(name: string) {
+    return this.supabase.channel(name);
+  }
+  removeChannel(channel: RealtimeChannel) {
+    return this.supabase.removeChannel(channel);
+  }
 }
+
+

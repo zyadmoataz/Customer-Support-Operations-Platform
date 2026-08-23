@@ -1,0 +1,46 @@
+<div class="space-y-4">
+  <!-- Upload Zone -->
+  <label class="block p-3.5 rounded-2xl border-2 border-dashed border-slate-800 hover:border-emerald-500/50 bg-slate-950/40 text-center cursor-pointer transition-all">
+    <input type="file" (change)="handleFileInput($event)" [disabled]="attachmentService.uploading()" class="hidden" />
+    <div class="flex items-center justify-center gap-2 text-xs font-semibold text-slate-300">
+      @if (attachmentService.uploading()) {
+        <lucide-icon [name]="'loader-2'" class="w-4 h-4 text-emerald-400 animate-spin"></lucide-icon>
+        <span>Uploading file to secure storage...</span>
+      } @else {
+        <lucide-icon [name]="'upload'" class="w-4 h-4 text-emerald-400"></lucide-icon>
+        <span>Upload Attachment (Image, PDF, Log file — Max 10MB)</span>
+      }
+    </div>
+  </label>
+
+  <!-- Attachment List -->
+  @if (attachmentService.loading()) {
+    <div class="h-12 rounded-xl bg-slate-950/60 animate-shimmer"></div>
+  } @else if (attachmentService.attachments().length === 0) {
+    <div class="py-6 text-center text-xs text-slate-500 bg-slate-950/30 rounded-2xl border border-dashed border-slate-800">
+      <lucide-icon [name]="'paperclip'" class="w-4 h-4 mx-auto mb-1 opacity-50"></lucide-icon>
+      <span>No attachments uploaded for this ticket yet.</span>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[220px] overflow-y-auto">
+      @for (file of attachmentService.attachments(); track file.id) {
+        <a
+          [href]="getDownloadUrl(file.file_path)"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-3 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-900 transition-all group">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400">
+              <lucide-icon [name]="file.file_type.startsWith('image/') ? 'image' : 'file-text'" class="w-4 h-4"></lucide-icon>
+            </div>
+            <div class="min-w-0">
+              <p class="text-xs font-semibold text-white group-hover:text-emerald-300 truncate transition-colors">{{ file.file_name }}</p>
+              <p class="text-[10px] text-slate-500">{{ formatFileSize(file.file_size) }} • By {{ file.uploader_name || 'Staff' }}</p>
+            </div>
+          </div>
+          <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 flex-shrink-0 ml-2"></lucide-icon>
+        </a>
+      }
+    </div>
+  }
+</div>

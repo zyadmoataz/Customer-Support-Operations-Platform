@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { SupportTicket, TicketStatus, TicketPriority, AgentOverview } from '../../core/models/ticket.model';
 import { CustomSelectComponent, SelectOption } from '../custom-select/custom-select.component';
+import { TicketDetailModalComponent } from '../ticket-detail-modal/ticket-detail-modal.component';
 import {
   PAGE_SIZE,
   PRIORITY_OPTIONS,
@@ -17,7 +18,7 @@ import {
 @Component({
   selector: 'app-ticket-queue',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule, CustomSelectComponent],
+  imports: [CommonModule, FormsModule, LucideAngularModule, CustomSelectComponent, TicketDetailModalComponent],
   templateUrl: './ticket-queue.component.html'
 })
 export class TicketQueueComponent {
@@ -26,6 +27,9 @@ export class TicketQueueComponent {
   loading = input<boolean>(false);
   userRole = input<string | null>(null);
   currentUserId = input<string | null>(null);
+
+  selectedTicket = signal<SupportTicket | null>(null);
+
 
   statusChange = output<{ ticketId: string; newStatus: TicketStatus }>();
   requestResolve = output<string>();

@@ -93,4 +93,21 @@ export const ticketApi = {
     if (error) throw error
     return data as SupportTicket
   },
+
+  async getTicketById(ticketId: string): Promise<SupportTicket> {
+    const { data, error } = await supabase
+      .from('support_requests')
+      .select(TICKET_COLUMNS)
+      .eq('id', ticketId)
+      .single()
+
+    if (error) throw error
+    return data as SupportTicket
+  },
+
+  async reopenTicket(ticketId: string): Promise<void> {
+    const { error } = await supabase.rpc('reopen_ticket', { target_ticket_id: ticketId })
+    if (error) throw error
+  },
 }
+

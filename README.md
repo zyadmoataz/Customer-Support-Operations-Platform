@@ -136,12 +136,37 @@ sequenceDiagram
 | `created_at` | `timestamptz` | DEFAULT `now()` | Ticket creation timestamp |
 | `updated_at` | `timestamptz` | NULLABLE | Last update timestamp |
 
+### `ticket_messages` Table
+
+| Column | Type | Constraints | Description |
+|:-------|:-----|:------------|:------------|
+| `id` | `uuid` | PK, DEFAULT `gen_random_uuid()` | Unique message identifier |
+| `ticket_id` | `uuid` | FK → `support_requests.id`, NOT NULL | Parent ticket |
+| `author_id` | `uuid` | FK → `profiles.id`, NOT NULL | Message sender |
+| `body` | `text` | NOT NULL, non-empty | Message text or internal note |
+| `is_internal` | `boolean` | DEFAULT `false`, NOT NULL | `true` for private staff notes, `false` for public |
+| `created_at` | `timestamptz` | DEFAULT `now()` | Timestamp |
+
+### `ticket_attachments` Table
+
+| Column | Type | Constraints | Description |
+|:-------|:-----|:------------|:------------|
+| `id` | `uuid` | PK, DEFAULT `gen_random_uuid()` | Attachment record ID |
+| `ticket_id` | `uuid` | FK → `support_requests.id`, NOT NULL | Linked ticket |
+| `uploaded_by` | `uuid` | FK → `profiles.id`, NOT NULL | Uploader user ID |
+| `file_path` | `text` | NOT NULL | Storage path in Supabase bucket |
+| `file_name` | `text` | NOT NULL | Original filename |
+| `file_size` | `integer` | NOT NULL | File size in bytes (max 10MB) |
+| `file_type` | `text` | NOT NULL | MIME content type |
+| `created_at` | `timestamptz` | DEFAULT `now()` | Upload timestamp |
+
 ### Key Database Functions
 
 | Function | Type | Description |
 |:---------|:-----|:------------|
-| `get_user_role()` | `SECURITY DEFINER` | Returns current user's role from `profiles` — used by RLS policies to avoid infinite recursion |
-| `get_agents_overview()` | RPC | Returns agent list with `total_assigned`, `total_resolved`, `avg_rating`, `total_ratings` for the manager panel |
+| `get_user_role()` | `SECURITY DEFINER` | Returns current user's role from `profiles` — used by RLS policies |
+| `reopen_ticket(UUID)` | `SECURITY DEFINER` | Customer reopens a previously resolved ticket for further assistance |
+| `get_agents_overview()` | RPC | Returns agent list with `total_assigned`, `total_resolved`, `avg_rating`, `total_ratings` |
 | `toggle_agent_status()` | RPC | Manager toggles an agent's `is_active` flag |
 | `delete_staff_agent()` | RPC | Manager removes an agent account and unassigns their tickets |
 | `handle_new_user()` | Trigger | Auto-creates a `profiles` row when a new `auth.users` row is inserted |
@@ -150,7 +175,7 @@ sequenceDiagram
 
 ## 🔐 Row-Level Security (RLS) Matrix
 
-RLS is **enabled and enforced** on both `profiles` and `support_requests`. Even if a user manipulates client-side code or sends raw REST requests, PostgreSQL enforces these policies at the SQL engine level.
+RLS is **enabled and enforced** across all tables: `profiles`, `support_requests`, `ticket_messages`, and `ticket_attachments`.
 
 ### `profiles` Table
 
@@ -169,9 +194,27 @@ RLS is **enabled and enforced** on both `profiles` and `support_requests`. Even 
 | Customers view own requests | Customer | SELECT | `customer_id = auth.uid()` |
 | Staff view all requests | Agent / Manager | SELECT | `get_user_role() IN ('agent', 'manager')` |
 | Customers insert own requests | Customer | INSERT | WITH CHECK: `customer_id = auth.uid()` |
-| Customers update own requests | Customer | UPDATE | Restricted to `title`, `description`, `category`, `priority` only — cannot modify `status`, `assigned_to`, `resolution_note`, or manager fields |
+| Customers update own requests | Customer | UPDATE | Restricted to ticket content only |
 | Staff update requests | Agent / Manager | UPDATE | Full update access for workflow progression |
 | No DELETE policy | — | DELETE | Blocked — tickets cannot be deleted |
+
+### `ticket_messages` Table
+
+| Policy | Role | Action | Rule |
+|:-------|:-----|:-------|:-----|
+| Customers view public messages | Customer | SELECT | `is_internal = false` on own ticket |
+| Staff view all messages | Agent / Manager | SELECT | Full view of public replies and internal notes |
+| Customers insert public replies | Customer | INSERT | `author_id = auth.uid()`, `is_internal = false` on own ticket |
+| Staff insert messages & notes | Agent / Manager | INSERT | Can post customer replies and internal notes |
+
+### `ticket_attachments` Table
+
+| Policy | Role | Action | Rule |
+|:-------|:-----|:-------|:-----|
+| Customers view own attachments | Customer | SELECT | On own tickets |
+| Staff view all attachments | Agent / Manager | SELECT | Full view across all tickets |
+| Authenticated users insert attachments | Customer / Staff | INSERT | Validated against ticket ownership / staff role |
+
 
 ---
 

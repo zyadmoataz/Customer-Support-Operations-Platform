@@ -191,6 +191,9 @@
               </div>
             }
             <div class="flex items-center gap-2">
+              <button (click)="selectedTicket.set(ticket)" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-indigo-300 hover:text-white text-xs font-bold border border-slate-800 hover:border-indigo-500/40 transition-all">
+                <lucide-icon [name]="'message-square'" class="w-3.5 h-3.5"></lucide-icon><span>Discussion & Details</span>
+              </button>
               @if (userRole() !== 'manager' && !ticket.assigned_to && ticket.status !== 'resolved') {
                 <button (click)="claimTicket.emit(ticket.id)" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/25 transition-all">
                   <lucide-icon [name]="'zap'" class="w-4 h-4"></lucide-icon><span>Claim Task</span>
@@ -243,4 +246,17 @@
       </div>
     }
   }
+
+  <app-ticket-detail-modal
+    [ticket]="selectedTicket()"
+    [isOpen]="selectedTicket() !== null"
+    [userRole]="userRole()"
+    [currentUserId]="currentUserId()"
+    [agents]="agents()"
+    (closeModal)="selectedTicket.set(null)"
+    (claimTicket)="claimTicket.emit($event)"
+    (statusChange)="statusChange.emit($event)"
+    (requestResolve)="requestResolve.emit($event)"
+    (assignTicket)="assignTicket.emit($event)"
+  ></app-ticket-detail-modal>
 </div>

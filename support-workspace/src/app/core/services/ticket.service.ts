@@ -1,4 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
+import { RealtimeChannel } from '@supabase/supabase-js';
 import { SupabaseService } from './supabase.service';
 import { ToastService } from './toast.service';
 import { SupportTicket, TicketStatus, AgentOverview, DbTicketJoinItem } from '../models/ticket.model';
@@ -11,6 +12,42 @@ export class TicketService {
   tickets = signal<SupportTicket[]>([]);
   agents = signal<AgentOverview[]>([]);
   loading = signal<boolean>(false);
+  private realtimeChannel: RealtimeChannel | null = null;
+
+
+  initRealtime() {
+    if (this.realtimeChannel) return;
+    this.realtimeChannel = this.supabase
+      .channel('workspace_tickets_realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'support_requests' },
+        () => {
+          this.fetchTicketsSilently();
+          this.fetchAgents();
+        }
+      )
+      .subscribe();
+  }
+
+  async fetchTicketsSilently() {
+    try {
+      const { data, error } = await this.supabase
+        .from('support_requests')
+        .select(`id, customer_id, title, description, category, priority, status, assigned_to, resolution_note, manager_feedback, manager_rating, created_at, updated_at, profiles:assigned_to ( full_name )`)
+        .order('created_at', { ascending: false });
+
+      if (error) return;
+      const rawData = (data || []) as unknown as DbTicketJoinItem[];
+      const formatted: SupportTicket[] = rawData.map((item: DbTicketJoinItem) => ({
+        ...item,
+        assigned_agent_name: item.profiles?.full_name || null
+      }));
+      this.tickets.set(formatted);
+    } catch {
+      // silent
+    }
+  }
 
   async fetchTickets() {
     this.loading.set(true);
@@ -26,6 +63,7 @@ export class TicketService {
         assigned_agent_name: item.profiles?.full_name || null
       }));
       this.tickets.set(formatted);
+      this.initRealtime();
     } catch (err: unknown) {
       this.toast.error(err instanceof Error ? err.message : 'Failed to fetch tickets');
     } finally {

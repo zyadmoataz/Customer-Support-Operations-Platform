@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { SupportTicket, TicketPriority, TicketStatus } from '@/types'
-import { TicketDetailsModal } from '@/components/TicketCard/TicketDetailsModal'
+import { TicketDetailModal } from '@/components/TicketDetail/TicketDetailModal'
 import { ChevronRight, CheckCircle2 } from 'lucide-react'
 
 interface TicketCardProps {
@@ -81,7 +81,7 @@ export function TicketCard({ ticket }: TicketCardProps) {
         </div>
       </div>
 
-      <TicketDetailsModal
+      <TicketDetailModal
         ticket={ticket}
         isOpen={isDetailsOpen}
         onClose={() => setIsDetailsOpen(false)}
@@ -89,3 +89,4 @@ export function TicketCard({ ticket }: TicketCardProps) {
     </>
   )
 }
+

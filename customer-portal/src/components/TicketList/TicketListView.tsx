@@ -3,7 +3,7 @@ import type { SupportTicket } from '@/types'
 import type { TicketFilters } from '@/api/tickets'
 import { StatsCards } from '@/components/StatsCards/StatsCards'
 import { TicketCard } from '@/components/TicketCard/TicketCard'
-import { TicketDetailsModal } from '@/components/TicketCard/TicketDetailsModal'
+import { TicketDetailModal } from '@/components/TicketDetail/TicketDetailModal'
 import { TicketToolbar } from './TicketToolbar'
 import { TicketTable } from './TicketTable'
 import { TicketPagination } from './TicketPagination'
@@ -79,7 +79,7 @@ export function TicketListView({
       />
 
       {selectedTicket && (
-        <TicketDetailsModal
+        <TicketDetailModal
           ticket={selectedTicket}
           isOpen={Boolean(selectedTicket)}
           onClose={() => setSelectedTicket(null)}
