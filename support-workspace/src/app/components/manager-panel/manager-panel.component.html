@@ -1,14 +1,14 @@
 <div class="space-y-6">
   <!-- Agent Provisioning Card -->
-  <div class="rounded-3xl glass-panel p-6 border border-state-success shadow-card bg-gradient-to-b from-state-success/20 to-brand-surface/50">
-    <div class="flex items-center justify-between mb-4 pb-3 border-b border-state-success">
+  <div class="rounded-3xl glass-panel p-6 border border-brand-border shadow-card bg-brand-surface">
+    <div class="flex items-center justify-between mb-4 pb-3 border-b border-brand-border">
       <div class="flex items-center gap-2">
-        <div class="p-1.5 rounded-lg bg-state-success-bg text-state-success">
+        <div class="p-1.5 rounded-lg bg-brand-elevated text-text-primary border border-brand-border">
           <lucide-icon [name]="'shield'" class="w-4 h-4"></lucide-icon>
         </div>
         <h3 class="text-sm font-bold text-text-primary tracking-tight">Onboard New Support Agent</h3>
       </div>
-      <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-state-success-bg text-state-success border border-state-success">
+      <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-elevated text-text-secondary border border-brand-border">
         Executive Console
       </span>
     </div>
@@ -28,7 +28,7 @@
         <label class="block text-[11px] font-semibold uppercase tracking-wider text-text-tertiary mb-1">Password</label>
         <div class="flex gap-2">
           <input type="password" [(ngModel)]="agentPassword" name="agentPassword" placeholder="Min. 8 chars (upper, lower, num, sym)" required class="w-full px-3 py-2 rounded-xl bg-brand-surface/90 border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-state-success" />
-          <button type="submit" [disabled]="!agentEmail || !agentPassword || !agentName" class="px-4 py-2 rounded-xl bg-state-success hover:bg-state-success text-text-primary text-xs font-semibold shadow-md shadow-none disabled:opacity-50 transition-all flex items-center justify-center flex-shrink-0">
+          <button type="submit" [disabled]="!agentEmail || !agentPassword || !agentName" class="px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary text-xs font-semibold shadow-md disabled:opacity-50 transition-all flex items-center justify-center flex-shrink-0">
             Create
           </button>
         </div>
@@ -59,7 +59,7 @@
               <div>
                 <div class="flex items-center gap-2">
                   <span class="text-xs font-bold text-text-primary">{{ ag.full_name }}</span>
-                  <span [class]="'px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ' + (ag.is_active ? 'bg-state-success-bg text-state-success border border-state-success' : 'bg-state-danger/10 text-state-danger border border-state-danger')">
+                  <span [class]="'px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ' + (ag.is_active ? 'bg-brand-elevated text-text-primary border border-brand-border' : 'bg-brand-elevated text-text-tertiary border border-brand-border line-through')">
                     {{ ag.is_active ? 'Active' : 'Deactivated' }}
                   </span>
                 </div>
@@ -85,7 +85,7 @@
               <button (click)="openEdit(ag)" class="px-2.5 py-1 rounded-lg bg-brand-elevated text-text-secondary border border-brand-subtle hover:bg-brand-elevated text-xs font-semibold transition-all">
                 Edit
               </button>
-              <button (click)="toggleStatus.emit({ agentId: ag.id, active: !ag.is_active })" [class]="'px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all ' + (ag.is_active ? 'bg-state-warning-bg text-state-warning border-state-warning hover:bg-state-warning-bg' : 'bg-state-success-bg text-state-success border-state-success hover:bg-state-success-bg')">
+              <button (click)="toggleStatus.emit({ agentId: ag.id, active: !ag.is_active })" [class]="'px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all ' + (ag.is_active ? 'bg-brand-elevated text-text-secondary border-brand-border hover:bg-brand-surface hover:text-text-primary' : 'bg-brand-elevated text-text-secondary border-brand-border hover:bg-brand-surface hover:text-text-primary')">
                 {{ ag.is_active ? 'Deactivate' : 'Activate' }}
               </button>
               <button (click)="deleteAgent.emit(ag.id)" class="px-2.5 py-1 rounded-lg bg-state-danger/10 text-state-danger border border-state-danger hover:bg-state-danger/20 text-xs font-semibold transition-all">
@@ -101,7 +101,7 @@
   <!-- Edit Agent Modal -->
   @if (editingAgent) {
     <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-bg/90 backdrop-blur-md">
-      <div class="w-full max-w-md p-6 rounded-3xl glass-panel shadow-glow border border-state-success">
+      <div class="w-full max-w-md p-6 rounded-3xl glass-panel shadow-glow border border-brand-border">
         <div class="flex items-center justify-between mb-4 pb-3 border-b border-brand-border">
           <h3 class="text-base font-bold text-text-primary tracking-tight">Edit Staff Member</h3>
           <button (click)="editingAgent = null" class="text-text-tertiary hover:text-text-primary p-1 rounded-lg"><lucide-icon [name]="'x'" class="w-4 h-4"></lucide-icon></button>
@@ -122,7 +122,7 @@
           </div>
           <div class="flex items-center justify-end gap-2 pt-3 border-t border-brand-border">
             <button type="button" (click)="editingAgent = null" class="px-3 py-1.5 text-xs text-text-tertiary hover:text-text-primary">Cancel</button>
-            <button type="submit" class="px-4 py-2 rounded-xl bg-state-success hover:bg-state-success text-text-primary text-xs font-semibold shadow-md shadow-none">Save Changes</button>
+            <button type="submit" class="px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary text-xs font-semibold shadow-md">Save Changes</button>
           </div>
         </form>
       </div>

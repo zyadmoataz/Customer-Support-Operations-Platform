@@ -37,21 +37,21 @@ export function MessageThread({ messages, isLoading, currentUserId }: MessageThr
         return (
           <div
             key={msg.id}
-            className={`p-4 rounded-2xl border transition-all ${
+            className={`p-5 rounded-2xl border transition-all ${
               isStaff
-                ? 'bg-brand-primary-bg border-brand-hover text-text-secondary ml-2'
-                : 'bg-brand-surface/90 border-brand-border text-text-secondary'
+                ? 'bg-brand-surface border-brand-border text-text-primary ml-2'
+                : 'bg-brand-surface/90 border-brand-border text-text-primary'
             }`}
           >
-            <div className="flex items-center justify-between gap-2 mb-1.5">
+            <div className="flex items-center justify-between gap-2 mb-2">
               <div className="flex items-center gap-1.5">
                 {isStaff ? (
-                  <span className="flex items-center gap-1 text-[11px] font-bold text-brand-primary bg-brand-primary-bg px-2 py-0.5 rounded-md border border-brand-hover">
+                  <span className="flex items-center gap-1 text-[11px] font-bold text-text-primary bg-brand-elevated px-2 py-0.5 rounded-md border border-brand-border">
                     <ShieldCheck className="w-3 h-3" />
                     <span>{msg.author_name || 'Support Specialist'}</span>
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1 text-[11px] font-semibold text-text-secondary bg-brand-elevated px-2 py-0.5 rounded-md">
+                  <span className="flex items-center gap-1 text-[11px] font-semibold text-text-secondary bg-brand-elevated px-2 py-0.5 rounded-md border border-brand-border">
                     <User className="w-3 h-3 text-text-tertiary" />
                     <span>{isMe ? 'You' : msg.author_name || 'Customer'}</span>
                   </span>

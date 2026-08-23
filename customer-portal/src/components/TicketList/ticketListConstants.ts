@@ -30,14 +30,14 @@ export const DATE_RANGE_OPTIONS = [
 ]
 
 export const statusBadge: Record<TicketStatus, { bg: string; text: string; dot: string; label: string }> = {
-  open: { bg: 'bg-state-info-bg border-state-info', text: 'text-state-info', dot: 'bg-state-info', label: 'Open' },
-  in_progress: { bg: 'bg-state-warning-bg border-state-warning', text: 'text-state-warning', dot: 'bg-state-warning', label: 'In Progress' },
-  resolved: { bg: 'bg-state-success-bg border-state-success', text: 'text-state-success', dot: 'bg-state-success', label: 'Resolved' },
+  open: { bg: 'bg-brand-surface border border-brand-border', text: 'text-text-primary', dot: 'bg-state-info', label: 'Open' },
+  in_progress: { bg: 'bg-brand-surface border border-brand-border', text: 'text-text-primary', dot: 'bg-state-warning', label: 'In Progress' },
+  resolved: { bg: 'bg-brand-surface border border-brand-border', text: 'text-text-primary', dot: 'bg-state-success', label: 'Resolved' },
 }
 
 export const priorityBadge: Record<TicketPriority, { text: string; bg: string }> = {
-  low: { text: 'text-text-tertiary', bg: 'bg-brand-elevated/80 border border-brand-subtle/50' },
-  medium: { text: 'text-state-info', bg: 'bg-state-info-bg border border-state-info' },
-  high: { text: 'text-state-warning', bg: 'bg-state-warning-bg border border-state-warning' },
-  urgent: { text: 'text-state-danger', bg: 'bg-state-danger-bg border border-state-danger' },
+  low: { text: 'text-text-secondary', bg: 'bg-brand-elevated/80 border border-brand-border' },
+  medium: { text: 'text-text-primary', bg: 'bg-brand-surface border border-brand-border' },
+  high: { text: 'text-state-warning', bg: 'bg-brand-surface border border-brand-border' },
+  urgent: { text: 'text-state-danger', bg: 'bg-brand-surface border border-brand-border' },
 }

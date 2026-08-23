@@ -1,6 +1,6 @@
 @if (isOpen() && ticket()) {
   <div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-brand-bg/90 backdrop-blur-md">
-    <div class="w-full max-w-5xl min-h-[580px] max-h-[92vh] p-6 sm:p-8 rounded-3xl bg-brand-surface border border-state-success shadow-2xl shadow-brand-bg/50 flex flex-col">
+    <div class="w-full max-w-5xl min-h-[580px] max-h-[92vh] p-6 sm:p-8 rounded-3xl bg-brand-surface border border-brand-border shadow-2xl shadow-brand-bg/50 flex flex-col">
       <!-- Header -->
       <div class="flex items-center justify-between pb-4 border-b border-brand-border flex-shrink-0">
         <div>
@@ -31,24 +31,24 @@
       <div class="flex items-center gap-1.5 p-1 my-3 rounded-2xl bg-brand-bg/80 border border-brand-border flex-shrink-0">
         <button
           (click)="activeTab.set('discussion')"
-          [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all ' + 
-            (activeTab() === 'discussion' ? 'bg-state-success text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary')">
+          [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all border ' + 
+            (activeTab() === 'discussion' ? 'bg-brand-elevated text-text-primary shadow-sm border-brand-border' : 'text-text-tertiary hover:text-text-primary border-transparent')">
           <lucide-icon [name]="'message-square'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Live Discussion & Notes</span>
         </button>
 
         <button
           (click)="activeTab.set('attachments')"
-          [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all ' + 
-            (activeTab() === 'attachments' ? 'bg-state-success text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary')">
+          [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all border ' + 
+            (activeTab() === 'attachments' ? 'bg-brand-elevated text-text-primary shadow-sm border-brand-border' : 'text-text-tertiary hover:text-text-primary border-transparent')">
           <lucide-icon [name]="'paperclip'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Attachments</span>
         </button>
 
         <button
           (click)="activeTab.set('info')"
-          [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all ' + 
-            (activeTab() === 'info' ? 'bg-state-success text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary')">
+          [class]="'flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all border ' + 
+            (activeTab() === 'info' ? 'bg-brand-elevated text-text-primary shadow-sm border-brand-border' : 'text-text-tertiary hover:text-text-primary border-transparent')">
           <lucide-icon [name]="'info'" class="w-3.5 h-3.5"></lucide-icon>
           <span>Issue Info & Audit</span>
         </button>
@@ -129,7 +129,7 @@
                   </div>
                 </div>
               } @else if (userRole() !== 'manager' && !ticket()!.assigned_to && ticket()!.status !== 'resolved') {
-                <button (click)="claimTicket.emit(ticket()!.id)" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-state-success hover:bg-state-success text-text-primary font-bold transition-all shadow-md shadow-none">
+                <button (click)="claimTicket.emit(ticket()!.id)" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary font-bold transition-all shadow-md">
                   <lucide-icon [name]="'zap'" class="w-4 h-4"></lucide-icon>
                   <span>Claim Ticket</span>
                 </button>

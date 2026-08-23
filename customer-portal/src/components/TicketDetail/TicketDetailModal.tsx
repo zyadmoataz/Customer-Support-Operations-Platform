@@ -46,7 +46,7 @@ export function TicketDetailModal({ ticket: initialTicket, isOpen, onClose }: Ti
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="w-full max-w-3xl p-6 sm:p-8 rounded-3xl glass-panel shadow-glow border border-brand-primary max-h-[90vh] flex flex-col"
+          className="w-full max-w-3xl p-6 sm:p-8 rounded-3xl glass-panel shadow-glow border border-brand-border max-h-[90vh] flex flex-col"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-brand-border flex-shrink-0">
@@ -81,8 +81,8 @@ export function TicketDetailModal({ ticket: initialTicket, isOpen, onClose }: Ti
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                    active ? 'bg-brand-primary text-text-primary shadow-sm' : 'text-text-tertiary hover:text-text-primary'
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl text-xs font-bold transition-all border ${
+                    active ? 'bg-brand-elevated text-text-primary shadow-sm border-brand-border' : 'text-text-tertiary hover:text-text-primary border-transparent'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
