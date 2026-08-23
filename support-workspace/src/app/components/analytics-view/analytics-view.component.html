@@ -1,43 +1,43 @@
 @if (isManager()) {
   <!-- MANAGER VIEW: Organization-Wide Operations Intelligence -->
   <div class="space-y-6">
-    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-brand-border">
+    <div class="rounded-3xl bg-brand-surface p-6 sm:p-8 border border-brand-border">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-brand-border">
         <div>
           <h2 class="text-lg sm:text-xl font-bold text-text-primary tracking-tight">Organization Operations & SLA Health</h2>
           <p class="text-xs text-text-tertiary mt-0.5">Enterprise telemetry across team resolution rates, workload balance, and manager QA audits</p>
         </div>
-        <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-state-success-bg text-state-success border border-state-success w-fit">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-elevated text-text-secondary border border-brand-border w-fit">
           Live Executive Telemetry
         </span>
       </div>
 
       <!-- KPI Metric Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">SLA Resolution Rate</span>
-          <span class="text-3xl font-extrabold text-state-success">{{ orgResolutionRate() }}</span>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">SLA Resolution Rate</span>
+          <span class="text-3xl font-extrabold text-text-primary tracking-tight">{{ orgResolutionRate() }}</span>
           <p class="text-xs text-text-tertiary mt-1">{{ resolvedTicketsCount() }} of {{ totalTicketsCount() }} requests completed</p>
         </div>
 
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">Audited CSAT Score</span>
-          <div class="flex items-center gap-1.5 text-3xl font-extrabold text-state-warning">
-            <lucide-icon [name]="'star'" class="w-6 h-6 text-state-warning text-state-warning"></lucide-icon>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">Audited CSAT Score</span>
+          <div class="flex items-center gap-1.5 text-3xl font-extrabold text-text-primary tracking-tight">
+            <lucide-icon [name]="'star'" class="w-6 h-6 text-state-warning"></lucide-icon>
             <span>{{ orgAvgRating() }}</span>
           </div>
           <p class="text-xs text-text-tertiary mt-1">{{ orgReviewedCount() }} verified supervisor audits</p>
         </div>
 
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">Active Queue Workload</span>
-          <span class="text-3xl font-extrabold text-state-info">{{ inProgressCount() }} Active</span>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">Active Queue Workload</span>
+          <span class="text-3xl font-extrabold text-text-primary tracking-tight">{{ inProgressCount() }} Active</span>
           <p class="text-xs text-text-tertiary mt-1">{{ openQueueCount() }} unassigned • {{ urgentCount() }} urgent</p>
         </div>
 
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">Workforce Capacity</span>
-          <span class="text-3xl font-extrabold text-brand-primary">{{ activeStaffCount() }} Staff</span>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">Workforce Capacity</span>
+          <span class="text-3xl font-extrabold text-text-primary tracking-tight">{{ activeStaffCount() }} Staff</span>
           <p class="text-xs text-text-tertiary mt-1">{{ avgLoadPerAgent() }} active tasks / specialist avg</p>
         </div>
       </div>
@@ -45,9 +45,9 @@
       <!-- Detailed Breakdown Grids -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4 border-t border-brand-border">
         <!-- Category Breakdown -->
-        <div class="p-5 rounded-2xl bg-brand-bg/60 border border-brand-border/80">
+        <div class="p-5 rounded-2xl bg-brand-elevated/40 border border-brand-border">
           <h3 class="text-sm font-bold text-text-primary mb-4 flex items-center gap-2">
-            <lucide-icon [name]="'folder'" class="w-4 h-4 text-state-success"></lucide-icon>
+            <lucide-icon [name]="'folder'" class="w-4 h-4 text-brand-primary"></lucide-icon>
             <span>Inquiry Inflow by Category</span>
           </h3>
           <div class="space-y-3">
@@ -58,7 +58,7 @@
                   <span class="text-text-tertiary font-mono">{{ cat.count }} ({{ cat.percent }}%)</span>
                 </div>
                 <div class="w-full h-2 rounded-full bg-brand-elevated overflow-hidden">
-                  <div class="h-full bg-state-success rounded-full transition-all duration-500" [style.width.%]="cat.percent"></div>
+                  <div class="h-full bg-brand-primary rounded-full transition-all duration-500" [style.width.%]="cat.percent"></div>
                 </div>
               </div>
             }
@@ -66,14 +66,14 @@
         </div>
 
         <!-- Priority SLA Distribution -->
-        <div class="p-5 rounded-2xl bg-brand-bg/60 border border-brand-border/80">
+        <div class="p-5 rounded-2xl bg-brand-elevated/40 border border-brand-border">
           <h3 class="text-sm font-bold text-text-primary mb-4 flex items-center gap-2">
             <lucide-icon [name]="'shield'" class="w-4 h-4 text-brand-primary"></lucide-icon>
             <span>Priority & SLA Target Compliance</span>
           </h3>
           <div class="space-y-3">
             @for (pri of priorityBreakdown(); track pri.key) {
-              <div class="flex items-center justify-between p-2.5 rounded-xl bg-brand-surface border border-brand-border/80 text-xs">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs">
                 <span [class]="'px-2.5 py-0.5 rounded-md font-bold uppercase tracking-wider border ' + pri.color">
                   {{ pri.label }}
                 </span>
@@ -91,64 +91,64 @@
 } @else {
   <!-- SUPPORT AGENT VIEW: Personal Operations Performance Scorecard -->
   <div class="space-y-6">
-    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-brand-border">
+    <div class="rounded-3xl bg-brand-surface p-6 sm:p-8 border border-brand-border">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-brand-border">
         <div>
           <h2 class="text-lg sm:text-xl font-bold text-text-primary tracking-tight">Personal Specialist Scorecard & Metrics</h2>
           <p class="text-xs text-text-tertiary mt-0.5">Real-time telemetry on personal ticket throughput, resolution compliance, and supervisor QA reviews</p>
         </div>
-        <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-state-success-bg text-state-success border border-state-success w-fit">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-elevated text-text-secondary border border-brand-border w-fit">
           Specialist Scorecard
         </span>
       </div>
 
       <!-- Agent KPI Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">Supervisor QA Score</span>
-          <div class="flex items-center gap-1.5 text-3xl font-extrabold text-state-warning">
-            <lucide-icon [name]="'star'" class="w-6 h-6 text-state-warning text-state-warning"></lucide-icon>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">Supervisor QA Score</span>
+          <div class="flex items-center gap-1.5 text-3xl font-extrabold text-text-primary tracking-tight">
+            <lucide-icon [name]="'star'" class="w-6 h-6 text-state-warning"></lucide-icon>
             <span>{{ myAvgRating() }}</span>
           </div>
           <p class="text-xs text-text-tertiary mt-1">{{ myReviewedCount() }} tasks reviewed</p>
         </div>
 
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">My Resolution Rate</span>
-          <span class="text-3xl font-extrabold text-state-success">{{ myResolutionRate() }}</span>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">My Resolution Rate</span>
+          <span class="text-3xl font-extrabold text-text-primary tracking-tight">{{ myResolutionRate() }}</span>
           <p class="text-xs text-text-tertiary mt-1">{{ myResolvedCount() }} of {{ myClaimedTickets().length }} tasks closed</p>
         </div>
 
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">My Active Tasks</span>
-          <span class="text-3xl font-extrabold text-state-warning">{{ myActiveCount() }} In Flight</span>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">My Active Tasks</span>
+          <span class="text-3xl font-extrabold text-text-primary tracking-tight">{{ myActiveCount() }} In Flight</span>
           <p class="text-xs text-text-tertiary mt-1">Currently investigating</p>
         </div>
 
-        <div class="p-4 sm:p-5 rounded-2xl bg-brand-bg/80 border border-brand-border/80 interactive-card">
-          <span class="text-xs font-bold uppercase tracking-wider text-text-tertiary block mb-1">Queue Inflow</span>
-          <span class="text-3xl font-extrabold text-state-info">{{ openQueueCount() }} In Queue</span>
+        <div class="p-5 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-hover transition-all">
+          <span class="text-xs font-semibold uppercase tracking-wider text-text-tertiary block mb-1">Queue Inflow</span>
+          <span class="text-3xl font-extrabold text-text-primary tracking-tight">{{ openQueueCount() }} In Queue</span>
           <p class="text-xs text-text-tertiary mt-1">Ready for claiming</p>
         </div>
       </div>
 
       <!-- Agent SLA Guidelines -->
-      <div class="p-5 rounded-2xl bg-brand-bg/60 border border-brand-border/80">
+      <div class="p-5 rounded-2xl bg-brand-elevated/40 border border-brand-border">
         <h3 class="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
-          <lucide-icon [name]="'shield'" class="w-4 h-4 text-state-success"></lucide-icon>
+          <lucide-icon [name]="'shield'" class="w-4 h-4 text-brand-primary"></lucide-icon>
           <span>Specialist Operational Protocols & Resolution SLA</span>
         </h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-          <div class="p-3.5 rounded-xl bg-brand-surface border border-brand-border">
-            <span class="text-state-danger font-bold block mb-1">Urgent SLA Target</span>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-text-primary font-bold block mb-1">Urgent SLA Target</span>
             <p class="text-text-tertiary leading-relaxed">Triage within <strong class="text-text-secondary">15 minutes</strong>. Notify manager if assistance is required.</p>
           </div>
-          <div class="p-3.5 rounded-xl bg-brand-surface border border-brand-border">
-            <span class="text-state-warning font-bold block mb-1">Resolution Standard</span>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-text-primary font-bold block mb-1">Resolution Standard</span>
             <p class="text-text-tertiary leading-relaxed">Provide detailed resolution summary notes to ensure audit compliance.</p>
           </div>
-          <div class="p-3.5 rounded-xl bg-brand-surface border border-brand-border">
-            <span class="text-state-success font-bold block mb-1">Quality Assurance</span>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-text-primary font-bold block mb-1">Quality Assurance</span>
             <p class="text-text-tertiary leading-relaxed">Operations Manager reviews all closed tasks and assigns 1–5 star ratings.</p>
           </div>
         </div>

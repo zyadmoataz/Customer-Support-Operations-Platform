@@ -112,11 +112,11 @@
     <!-- Ticket Cards -->
     <div class="space-y-6">
       @for (ticket of filteredTickets(); track ticket.id) {
-        <div class="rounded-3xl bg-brand-surface border border-brand-border hover:border-state-success p-6 shadow-2xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow flex flex-col justify-between">
+        <div class="rounded-3xl bg-brand-surface border border-brand-border hover:border-brand-hover p-6 shadow-xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-0.5 flex flex-col justify-between">
           <!-- Header -->
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-brand-border/80">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="font-mono text-xs font-bold text-brand-primary bg-brand-primary-bg px-2.5 py-1 rounded-lg border border-brand-hover">#{{ ticket.id.slice(0, 8) }}</span>
+              <span class="font-mono text-xs font-bold text-brand-primary bg-brand-elevated px-2.5 py-1 rounded-lg border border-brand-border">#{{ ticket.id.slice(0, 8) }}</span>
               <span [class]="'flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ' + getStatusClass(ticket.status)">
                 <span [class]="'w-2 h-2 rounded-full ' + (ticket.status === 'resolved' ? 'bg-state-success' : ticket.status === 'in_progress' ? 'bg-state-warning' : 'bg-state-info') + ' animate-pulse'"></span>
                 <span>{{ ticket.status === 'resolved' ? 'Resolved & Locked' : ticket.status.replace('_', ' ') }}</span>
@@ -142,29 +142,42 @@
           <!-- Description -->
           <div class="mb-4">
             <h3 class="text-base sm:text-lg font-bold text-text-primary tracking-tight mb-2">{{ ticket.title || ticket.description.slice(0, 50) }}</h3>
-            <div class="p-4 rounded-2xl bg-brand-bg/70 border border-brand-border text-xs sm:text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">{{ ticket.description }}</div>
+            <div class="p-4 rounded-2xl bg-brand-elevated/40 border border-brand-border text-xs sm:text-sm text-text-secondary leading-relaxed whitespace-pre-wrap">{{ ticket.description }}</div>
           </div>
 
           <!-- Resolution -->
           @if (ticket.resolution_note) {
-            <div class="mb-4 p-4 rounded-2xl bg-state-success-bg border border-state-success text-xs">
-              <div class="flex items-center gap-1.5 font-bold text-state-success mb-1.5"><lucide-icon [name]="'check'" class="w-4 h-4"></lucide-icon><span>Official Resolution Report:</span></div>
-              <p class="text-text-secondary leading-relaxed">{{ ticket.resolution_note }}</p>
+            <div class="mb-4 p-4 rounded-2xl bg-brand-elevated/60 border border-brand-border text-xs">
+              <div class="flex items-center gap-2 font-bold text-text-primary mb-1.5">
+                <div class="p-1 rounded-md bg-brand-elevated text-state-success">
+                  <lucide-icon [name]="'check-circle-2'" class="w-3.5 h-3.5"></lucide-icon>
+                </div>
+                <span>Official Resolution Report</span>
+              </div>
+              <p class="text-text-secondary leading-relaxed pl-7">{{ ticket.resolution_note }}</p>
             </div>
           }
 
           <!-- Manager Review -->
           @if (ticket.manager_feedback || ticket.manager_rating) {
-            <div class="mb-4 p-4 rounded-2xl bg-state-warning-bg border border-state-warning text-xs flex flex-col gap-1.5">
+            <div class="mb-4 p-4 rounded-2xl bg-brand-elevated/60 border border-brand-border text-xs flex flex-col gap-1.5">
               <div class="flex items-center justify-between">
-                <div class="flex items-center gap-1.5 font-bold text-state-warning"><lucide-icon [name]="'message-square'" class="w-4 h-4"></lucide-icon><span>Operations Quality Audit:</span></div>
+                <div class="flex items-center gap-2 font-bold text-text-primary">
+                  <div class="p-1 rounded-md bg-brand-elevated text-brand-primary">
+                    <lucide-icon [name]="'shield-check'" class="w-3.5 h-3.5"></lucide-icon>
+                  </div>
+                  <span>Operations Quality Audit</span>
+                </div>
                 @if (ticket.manager_rating) {
-                  <div class="flex items-center gap-1 text-state-warning font-bold bg-state-warning-bg px-2.5 py-0.5 rounded-lg border border-state-warning">
-                    <lucide-icon [name]="'star'" class="w-4 h-4 text-state-warning text-state-warning"></lucide-icon><span>{{ ticket.manager_rating }} / 5</span>
+                  <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-brand-surface border border-brand-border text-text-primary font-bold">
+                    <lucide-icon [name]="'star'" class="w-3.5 h-3.5 text-state-warning"></lucide-icon>
+                    <span>{{ ticket.manager_rating }} / 5</span>
                   </div>
                 }
               </div>
-              @if (ticket.manager_feedback) { <p class="text-text-secondary leading-relaxed">{{ ticket.manager_feedback }}</p> }
+              @if (ticket.manager_feedback) {
+                <p class="text-text-secondary leading-relaxed pl-7">{{ ticket.manager_feedback }}</p>
+              }
             </div>
           }
 

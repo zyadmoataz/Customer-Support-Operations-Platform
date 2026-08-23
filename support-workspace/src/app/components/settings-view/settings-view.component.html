@@ -1,15 +1,15 @@
-<div class="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border max-w-2xl">
+<div class="rounded-3xl bg-brand-surface p-6 sm:p-8 border border-brand-border w-full">
   <h2 class="text-xl font-bold text-text-primary mb-1">Staff Account Settings</h2>
   <p class="text-xs text-text-tertiary mb-6">Manage your staff credentials, display name, and security preferences.</p>
 
-  <form (ngSubmit)="handleSave()" class="space-y-5">
+  <form (ngSubmit)="handleSave()" class="space-y-5 max-w-3xl">
     <div>
       <label class="block text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-1.5">Full Name</label>
       <input
         type="text"
         [(ngModel)]="name"
         name="name"
-        class="w-full px-4 py-2.5 rounded-xl bg-brand-surface/80 border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-state-success"
+        class="w-full px-4 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-brand-primary"
       />
     </div>
 
@@ -21,7 +21,7 @@
           [(ngModel)]="password"
           name="password"
           placeholder="Leave blank to keep current"
-          class="w-full px-4 py-2.5 rounded-xl bg-brand-surface/80 border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-state-success"
+          class="w-full px-4 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-brand-primary"
         />
       </div>
 
@@ -32,28 +32,28 @@
           [(ngModel)]="confirmPassword"
           name="confirmPassword"
           placeholder="Re-enter password"
-          class="w-full px-4 py-2.5 rounded-xl bg-brand-surface/80 border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-state-success"
+          class="w-full px-4 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-text-primary placeholder-text-muted focus:outline-none focus:border-brand-primary"
         />
       </div>
     </div>
 
     @if (password) {
-      <div class="p-3.5 rounded-2xl bg-brand-surface/90 border border-brand-border text-[11px] text-text-tertiary">
+      <div class="p-3.5 rounded-2xl bg-brand-elevated border border-brand-border text-[11px] text-text-tertiary">
         <span class="font-semibold text-text-secondary block mb-1">Password Complexity Rules:</span>
         <p>Must be at least 8 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special symbol (!&#64;#$).</p>
       </div>
     }
 
-    <div class="p-4 rounded-2xl bg-brand-surface/60 border border-brand-border text-xs text-text-tertiary">
+    <div class="p-4 rounded-2xl bg-brand-elevated/50 border border-brand-border text-xs text-text-tertiary">
       <span class="font-semibold text-text-primary block mb-1">Assigned Role & Permissions:</span>
-      <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-state-success-bg text-state-success border border-state-success">
+      <span class="inline-block px-2.5 py-1 rounded-lg text-xs font-semibold bg-brand-elevated text-brand-primary border border-brand-border">
         {{ profile()?.role === 'manager' ? 'Operations Manager (Full Administrative Access)' : 'Support Agent (Queue Triage & Resolution)' }}
       </span>
     </div>
 
     <button
       type="submit"
-      class="px-5 py-2.5 rounded-xl bg-state-success hover:bg-state-success text-text-primary text-xs font-semibold shadow-md shadow-none transition-all"
+      class="px-5 py-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-primary text-xs font-semibold shadow-md transition-all"
     >
       Save Changes
     </button>
