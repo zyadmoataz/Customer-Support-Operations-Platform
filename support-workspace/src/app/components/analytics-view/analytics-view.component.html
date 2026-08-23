@@ -1,8 +1,8 @@
 @if (isManager()) {
   <!-- MANAGER VIEW: Organization-Wide Operations Intelligence -->
   <div class="space-y-6">
-    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-white/10">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-white/10">
+    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-brand-border">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-brand-border">
         <div>
           <h2 class="text-lg sm:text-xl font-bold text-text-primary tracking-tight">Organization Operations & SLA Health</h2>
           <p class="text-xs text-text-tertiary mt-0.5">Enterprise telemetry across team resolution rates, workload balance, and manager QA audits</p>
@@ -43,7 +43,7 @@
       </div>
 
       <!-- Detailed Breakdown Grids -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4 border-t border-white/10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4 border-t border-brand-border">
         <!-- Category Breakdown -->
         <div class="p-5 rounded-2xl bg-brand-bg/60 border border-brand-border/80">
           <h3 class="text-sm font-bold text-text-primary mb-4 flex items-center gap-2">
@@ -91,8 +91,8 @@
 } @else {
   <!-- SUPPORT AGENT VIEW: Personal Operations Performance Scorecard -->
   <div class="space-y-6">
-    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-white/10">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-white/10">
+    <div class="rounded-3xl glass-panel p-6 sm:p-8 shadow-card border border-brand-border">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-brand-border">
         <div>
           <h2 class="text-lg sm:text-xl font-bold text-text-primary tracking-tight">Personal Specialist Scorecard & Metrics</h2>
           <p class="text-xs text-text-tertiary mt-0.5">Real-time telemetry on personal ticket throughput, resolution compliance, and supervisor QA reviews</p>

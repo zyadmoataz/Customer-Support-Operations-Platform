@@ -23,7 +23,7 @@ export function LoadingSkeleton({ viewMode }: LoadingSkeletonProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="h-44 rounded-3xl glass-panel p-6 border border-white/5 flex flex-col justify-between">
+        <div key={i} className="h-44 rounded-3xl glass-panel p-6 border border-brand-border flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <div className="w-24 h-5 rounded-full animate-shimmer" />
             <div className="w-20 h-4 rounded animate-shimmer" />
@@ -53,7 +53,7 @@ interface EmptyStateProps {
 
 export function EmptyState({ hasFilters }: EmptyStateProps) {
   return (
-    <div className="text-center py-16 p-8 rounded-3xl glass-panel border border-white/5 max-w-lg mx-auto">
+    <div className="text-center py-16 p-8 rounded-3xl glass-panel border border-brand-border max-w-lg mx-auto">
       <div className="w-12 h-12 rounded-2xl bg-brand-surface border border-brand-border text-text-tertiary flex items-center justify-center mx-auto mb-3">
         <Inbox className="w-6 h-6 text-text-tertiary" />
       </div>

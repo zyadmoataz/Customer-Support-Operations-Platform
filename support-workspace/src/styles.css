@@ -6,51 +6,51 @@
   color-scheme: dark;
 
   /* === Core Semantic Surface & Background Tokens === */
-  --bg-canvas: #09090b; /* Zinc 950 */
-  --bg-surface-1: #18181b; /* Zinc 900 solid */
-  --bg-surface-2: #27272a; /* Zinc 800 solid */
-  --bg-surface-3: #3f3f46; /* Zinc 700 */
-  --bg-elevated: #18181b;
+  --bg-canvas: 9 9 11; /* Zinc 950 */
+  --bg-surface-1: 24 24 27; /* Zinc 900 solid */
+  --bg-surface-2: 39 39 42; /* Zinc 800 solid */
+  --bg-surface-3: 63 63 70; /* Zinc 700 */
+  --bg-elevated: 24 24 27;
 
   /* === Dynamic Border & Divider Tokens === */
-  --border-subtle: #18181b; /* Zinc 900 */
-  --border-default: #27272a; /* Zinc 800 */
-  --border-hover: #3f3f46; /* Zinc 700 */
+  --border-subtle: 24 24 27; /* Zinc 900 */
+  --border-default: 39 39 42; /* Zinc 800 */
+  --border-hover: 63 63 70; /* Zinc 700 */
   --border-brand: rgba(16, 185, 129, 0.4);
   --border-amber: rgba(245, 158, 11, 0.35);
   --border-rose: rgba(244, 63, 94, 0.35);
 
   /* === Support Workspace Brand Tokens (Emerald/Teal) === */
-  --brand-primary: #10b981; /* Emerald 500 */
-  --brand-primary-hover: #059669; /* Emerald 600 */
-  --brand-accent: #34d399; /* Emerald 400 */
-  --brand-glow: rgba(16, 185, 129, 0.15);
-  --brand-glow-lg: rgba(16, 185, 129, 0.25);
+  --brand-primary: 13 148 136; /* Teal 600 */ /* Emerald 500 */
+  --brand-primary-hover: 15 118 110; /* Teal 700 */ /* Emerald 600 */
+  --brand-accent: 20 184 166; /* Teal 500 */ /* Emerald 400 */
+  --brand-glow: rgba(13, 148, 136, 0.15);
+  --brand-glow-lg: rgba(13, 148, 136, 0.25);
 
   /* === Operational Status Semantic Tokens === */
-  --status-open: #38bdf8;
+  --status-open: 56 189 248;
   --status-open-bg: rgba(56, 189, 248, 0.15);
-  --status-in-progress: #fbbf24;
+  --status-in-progress: 251 191 36;
   --status-in-progress-bg: rgba(251, 191, 36, 0.15);
-  --status-resolved: #10b981;
+  --status-resolved: 16 185 129;
   --status-resolved-bg: rgba(16, 185, 129, 0.15);
-  --status-urgent: #ef4444;
+  --status-urgent: 239 68 68;
   --status-urgent-bg: rgba(239, 68, 68, 0.15);
 
   /* === Text Semantic Tokens === */
-  --text-primary: #fafafa; /* Zinc 50 */
-  --text-secondary: #a1a1aa; /* Zinc 400 */
-  --text-tertiary: #71717a; /* Zinc 500 */
-  --text-muted: #52525b; /* Zinc 600 */
+  --text-primary: 250 250 250; /* Zinc 50 */
+  --text-secondary: 161 161 170; /* Zinc 400 */
+  --text-tertiary: 113 113 122; /* Zinc 500 */
+  --text-muted: 82 82 91; /* Zinc 600 */
   
   /* === Additional State Semantic Tokens === */
-  --state-success: #10b981;
+  --state-success: 16 185 129;
   --state-success-bg: rgba(16, 185, 129, 0.15);
-  --state-warning: #f59e0b;
+  --state-warning: 245 158 11;
   --state-warning-bg: rgba(245, 158, 11, 0.15);
-  --state-danger: #ef4444;
+  --state-danger: 239 68 68;
   --state-danger-bg: rgba(239, 68, 68, 0.15);
-  --state-info: #3b82f6;
+  --state-info: 59 130 246;
   --state-info-bg: rgba(59, 130, 246, 0.15);
 
   /* === Precision Motion & Physics Tokens === */
@@ -73,8 +73,8 @@
 
 body {
   margin: 0;
-  background-color: var(--bg-canvas);
-  color: var(--text-primary);
+  background-color: rgb(var(--bg-canvas));
+  color: rgb(var(--text-primary));
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -84,24 +84,24 @@ body {
 
 /* === Surface & Panel Classes === */
 .glass-panel {
-  background: var(--bg-surface-1);
+  background: rgb(var(--bg-surface-1));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-default);
+  border: 1px solid rgb(var(--border-default));
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   transition: border-color var(--duration-fast) ease, transform var(--duration-fast) var(--ease-spring), box-shadow var(--duration-fast) ease;
 }
 
 .glass-panel-elevated {
-  background: var(--bg-surface-2);
+  background: rgb(var(--bg-surface-2));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-default);
+  border: 1px solid rgb(var(--border-default));
   box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
 }
 
 .glass-panel:hover {
-  border-color: var(--border-hover);
+  border-color: rgb(var(--border-hover));
 }
 
 .interactive-card {
@@ -110,7 +110,7 @@ body {
 
 .interactive-card:hover {
   transform: translateY(-3px);
-  border-color: var(--border-hover);
+  border-color: rgb(var(--border-hover));
   box-shadow: var(--brand-glow);
 }
 
@@ -161,7 +161,7 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-canvas);
+  background: rgb(var(--bg-canvas));
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
@@ -173,7 +173,7 @@ body {
 
 /* === Focus Visibility & Keyboard Accessibility === */
 *:focus-visible {
-  outline: 2px solid var(--brand-primary);
+  outline: 2px solid rgb(var(--brand-primary));
   outline-offset: 2px;
 }
 

@@ -76,11 +76,11 @@ export function PricingSection() {
             className={`rounded-3xl glass-panel p-6 sm:p-8 border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between relative ${
               p.popular 
                 ? 'border-brand-primary shadow-glow bg-gradient-to-b from-brand-primary/10 to-brand-surface/50 scale-[1.02]' 
-                : 'border-white/10'
+                : 'border-brand-border'
             }`}
           >
             {p.popular && (
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-gradient-to-r from-indigo-600 to-brand-accent text-text-primary text-[10px] font-bold uppercase tracking-wider shadow-md">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-gradient-to-r from-brand-primary-hover to-brand-accent text-text-primary text-[10px] font-bold uppercase tracking-wider shadow-md">
                 Most Popular for Teams
               </div>
             )}
@@ -89,7 +89,7 @@ export function PricingSection() {
               <h3 className="text-lg font-bold text-text-primary mb-1">{p.name}</h3>
               <p className="text-xs text-text-tertiary mb-6 leading-relaxed">{p.desc}</p>
 
-              <div className="flex items-baseline gap-1 mb-6 pb-6 border-b border-white/10">
+              <div className="flex items-baseline gap-1 mb-6 pb-6 border-b border-brand-border">
                 <span className="text-4xl font-extrabold text-text-primary tracking-tight">{p.price}</span>
                 <span className="text-xs text-text-tertiary">{p.period}</span>
               </div>
@@ -109,7 +109,7 @@ export function PricingSection() {
               className={`w-full py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-md ${
                 p.popular
                   ? 'bg-brand-primary hover:bg-brand-primary-hover text-text-primary shadow-glow'
-                  : 'bg-brand-surface hover:bg-brand-elevated text-text-secondary border border-white/10'
+                  : 'bg-brand-surface hover:bg-brand-elevated text-text-secondary border border-brand-border'
               }`}
             >
               <span>{p.cta}</span>

@@ -30,7 +30,7 @@ export function FAQView() {
 
       <div className="space-y-4">
         {faqs.map((faq, idx) => (
-          <div key={idx} className="p-5 rounded-2xl glass-panel border border-white/5">
+          <div key={idx} className="p-5 rounded-2xl glass-panel border border-brand-border">
             <h4 className="text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-brand-primary" />
               <span>{faq.q}</span>

@@ -52,7 +52,7 @@ export function LoginPage() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="w-full max-w-md p-6 sm:p-8 rounded-3xl glass-panel shadow-glow mx-auto border border-white/10"
+      className="w-full max-w-md p-6 sm:p-8 rounded-3xl glass-panel shadow-glow mx-auto border border-brand-border"
     >
       <div className="flex items-center justify-between mb-6 pb-2 border-b border-brand-border/60">
         <button type="button" onClick={() => navigate('/')} className="flex items-center gap-1.5 text-xs text-text-tertiary hover:text-text-primary transition-colors">

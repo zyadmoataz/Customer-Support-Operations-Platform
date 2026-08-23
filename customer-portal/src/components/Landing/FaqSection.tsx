@@ -40,7 +40,7 @@ export function FaqSection() {
 
       <div className="space-y-3">
         {faqs.map((faq, idx) => (
-          <div key={idx} className="rounded-2xl glass-panel border border-white/10 overflow-hidden transition-all">
+          <div key={idx} className="rounded-2xl glass-panel border border-brand-border overflow-hidden transition-all">
             <button
               onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
               className="w-full p-5 flex items-center justify-between text-left text-xs sm:text-sm font-semibold text-text-primary hover:text-brand-primary transition-colors"
@@ -52,7 +52,7 @@ export function FaqSection() {
               <ChevronDown className={`w-4 h-4 text-text-tertiary transition-transform ${openIdx === idx ? 'rotate-180 text-brand-primary' : ''}`} />
             </button>
             {openIdx === idx && (
-              <div className="px-5 pb-5 text-xs text-text-secondary leading-relaxed border-t border-white/5 pt-3">
+              <div className="px-5 pb-5 text-xs text-text-secondary leading-relaxed border-t border-brand-border pt-3">
                 {faq.a}
               </div>
             )}

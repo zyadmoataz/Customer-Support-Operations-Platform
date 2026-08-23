@@ -1,4 +1,4 @@
-<div class="rounded-3xl glass-panel p-6 sm:p-8 border border-white/5 max-w-2xl">
+<div class="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border max-w-2xl">
   <h2 class="text-xl font-bold text-text-primary mb-1">Staff Account Settings</h2>
   <p class="text-xs text-text-tertiary mb-6">Manage your staff credentials, display name, and security preferences.</p>
 
@@ -38,13 +38,13 @@
     </div>
 
     @if (password) {
-      <div class="p-3.5 rounded-2xl bg-brand-surface/90 border border-white/5 text-[11px] text-text-tertiary">
+      <div class="p-3.5 rounded-2xl bg-brand-surface/90 border border-brand-border text-[11px] text-text-tertiary">
         <span class="font-semibold text-text-secondary block mb-1">Password Complexity Rules:</span>
         <p>Must be at least 8 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special symbol (!&#64;#$).</p>
       </div>
     }
 
-    <div class="p-4 rounded-2xl bg-brand-surface/60 border border-white/5 text-xs text-text-tertiary">
+    <div class="p-4 rounded-2xl bg-brand-surface/60 border border-brand-border text-xs text-text-tertiary">
       <span class="font-semibold text-text-primary block mb-1">Assigned Role & Permissions:</span>
       <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-state-success-bg text-state-success border border-state-success">
         {{ profile()?.role === 'manager' ? 'Operations Manager (Full Administrative Access)' : 'Support Agent (Queue Triage & Resolution)' }}

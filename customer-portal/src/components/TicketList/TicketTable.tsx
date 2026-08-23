@@ -16,7 +16,7 @@ export function TicketTable({ tickets, onSelectTicket }: TicketTableProps) {
     })
 
   return (
-    <div className="rounded-2xl bg-brand-surface border border-brand-border overflow-hidden shadow-xl shadow-black/30">
+    <div className="rounded-2xl bg-brand-surface border border-brand-border overflow-hidden shadow-xl shadow-brand-bg/50">
       <table className="w-full">
         <thead>
           <tr className="border-b border-brand-border bg-brand-bg/60">

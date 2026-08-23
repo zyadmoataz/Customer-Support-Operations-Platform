@@ -56,7 +56,7 @@ export function TicketToolbar({
   }
 
   return (
-    <div className="rounded-2xl bg-brand-surface border border-brand-border p-4 mb-4 shadow-lg shadow-black/30">
+    <div className="rounded-2xl bg-brand-surface border border-brand-border p-4 mb-4 shadow-lg shadow-brand-bg/50">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2 flex-1">
           <div className="flex items-center px-3 py-2 rounded-xl bg-brand-bg/90 border border-brand-border focus-within:border-brand-primary transition-all flex-1 max-w-sm">

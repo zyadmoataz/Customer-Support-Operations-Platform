@@ -37,7 +37,7 @@ export function DashboardPage() {
 
       <main className="flex-1 h-full overflow-y-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-10 pb-16">
         <div className="max-w-6xl w-full mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-brand-border">
             <div>
               <p className="text-xs text-text-tertiary font-medium mb-1">
                 Welcome back, <span className="text-text-primary font-semibold">{profile?.full_name || 'Customer'}</span>

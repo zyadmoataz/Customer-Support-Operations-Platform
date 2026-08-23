@@ -49,7 +49,7 @@ export function SettingsView() {
   }
 
   return (
-    <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-white/5 max-w-2xl">
+    <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border max-w-2xl">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-brand-border">
         <div className="p-2.5 rounded-2xl bg-brand-primary/10 text-brand-primary border border-brand-primary">
           <User className="w-5 h-5" />
@@ -89,7 +89,7 @@ export function SettingsView() {
           </div>
 
           {password && (
-            <div className="mt-3 p-3.5 rounded-2xl bg-brand-surface/90 border border-white/5 text-xs space-y-1 text-text-tertiary">
+            <div className="mt-3 p-3.5 rounded-2xl bg-brand-surface/90 border border-brand-border text-xs space-y-1 text-text-tertiary">
               <span className="font-semibold text-text-secondary block mb-1 text-[11px]">Password Complexity:</span>
               <div className={`flex items-center gap-1.5 text-[11px] ${password.length >= 8 ? 'text-state-success' : 'text-text-tertiary'}`}><CheckCircle2 className="w-3 h-3 flex-shrink-0" /><span>8+ characters</span></div>
               <div className={`flex items-center gap-1.5 text-[11px] ${/[A-Z]/.test(password) ? 'text-state-success' : 'text-text-tertiary'}`}><CheckCircle2 className="w-3 h-3 flex-shrink-0" /><span>1 uppercase (A-Z)</span></div>

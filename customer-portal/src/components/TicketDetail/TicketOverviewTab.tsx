@@ -21,7 +21,7 @@ export function TicketOverviewTab({ ticket, onReopen, isReopening }: TicketOverv
   return (
     <div className="space-y-4">
       {/* Progress Timeline */}
-      <div className="p-4 rounded-2xl bg-brand-surface/90 border border-white/5">
+      <div className="p-4 rounded-2xl bg-brand-surface/90 border border-brand-border">
         <h4 className="text-xs font-semibold uppercase tracking-wider text-text-tertiary mb-3">Resolution Progress</h4>
         <div className="flex items-center justify-between relative">
           <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-brand-elevated -translate-y-1/2 z-0" />

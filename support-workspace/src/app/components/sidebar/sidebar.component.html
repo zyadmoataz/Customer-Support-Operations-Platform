@@ -1,5 +1,5 @@
 <!-- Mobile Top Navigation Bar (Shown on < lg screens) -->
-<div class="lg:hidden sticky top-0 z-40 w-full h-16 bg-brand-bg/95 backdrop-blur-md border-b border-white/5 px-4 flex items-center justify-between">
+<div class="lg:hidden sticky top-0 z-40 w-full h-16 bg-brand-bg/95 backdrop-blur-md border-b border-brand-border px-4 flex items-center justify-between">
   <div class="flex items-center gap-2.5">
     <div class="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-state-success to-state-info shadow-glow text-text-primary font-bold">
       <lucide-icon [name]="'headphones'" class="w-4 h-4"></lucide-icon>
@@ -20,7 +20,7 @@
 @if (isMobileOpen()) {
   <div
     (click)="isMobileOpen.set(false)"
-    class="lg:hidden fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-opacity"
+    class="lg:hidden fixed inset-0 z-40 bg-brand-bg/90 backdrop-blur-sm transition-opacity"
   ></div>
 }
 
@@ -43,7 +43,7 @@
     </div>
 
     <!-- User Profile Pill -->
-    <div class="p-3.5 rounded-2xl bg-brand-surface border border-brand-border/80 mb-6 flex items-center gap-3 shadow-md shadow-black/20">
+    <div class="p-3.5 rounded-2xl bg-brand-surface border border-brand-border/80 mb-6 flex items-center gap-3 shadow-md shadow-brand-bg/50">
       <div class="w-9 h-9 rounded-xl bg-state-success-bg text-state-success flex items-center justify-center font-bold text-sm border border-state-success flex-shrink-0">
         {{ profile()?.full_name?.charAt(0)?.toUpperCase() || 'S' }}
       </div>

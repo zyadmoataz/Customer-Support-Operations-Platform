@@ -34,8 +34,8 @@ export function LandingNav() {
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
       scrolled 
-        ? 'bg-brand-bg/90 backdrop-blur-2xl border-b border-white/10 shadow-2xl shadow-black/50' 
-        : 'bg-brand-bg/60 backdrop-blur-lg border-b border-white/5'
+        ? 'bg-brand-bg/90 backdrop-blur-2xl border-b border-brand-border shadow-2xl shadow-brand-bg/50' 
+        : 'bg-brand-bg/60 backdrop-blur-lg border-b border-brand-border'
     }`}>
       {/* Radiant bottom highlight */}
       <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-primary-hover/40 to-transparent" />
@@ -56,7 +56,7 @@ export function LandingNav() {
         </div>
 
         {/* Aceternity Style Floating Pill Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-brand-surface/70 border border-white/10 text-xs font-semibold text-text-secondary shadow-inner">
+        <nav className="hidden lg:flex items-center gap-1 p-1.5 rounded-full bg-brand-surface/70 border border-brand-border text-xs font-semibold text-text-secondary shadow-inner">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -94,7 +94,7 @@ export function LandingNav() {
           
           <button
             onClick={() => navigate(session ? '/dashboard' : '/login')}
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3.5 sm:px-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-indigo-600 via-brand-primary-hover to-brand-accent hover:from-brand-primary hover:to-brand-accent text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-lg shadow-glow hover:shadow-glow hover:scale-[1.02]"
+            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 h-9 sm:h-11 px-3.5 sm:px-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-brand-primary-hover via-brand-primary-hover to-brand-accent hover:from-brand-primary hover:to-brand-accent text-text-primary text-xs sm:text-sm font-semibold transition-all duration-200 shadow-lg shadow-glow hover:shadow-glow hover:scale-[1.02]"
           >
             <span>{session ? 'Dashboard' : 'Customer Portal'}</span>
             <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-text-primary flex-shrink-0" />

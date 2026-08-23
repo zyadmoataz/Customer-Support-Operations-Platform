@@ -87,7 +87,7 @@ export function HeroSection() {
       </div>
 
       {/* Social Proof Logos Bar */}
-      <div className="mt-12 sm:mt-16 pt-8 border-t border-white/5">
+      <div className="mt-12 sm:mt-16 pt-8 border-t border-brand-border">
         <p className="text-[11px] sm:text-xs font-semibold text-text-tertiary uppercase tracking-widest mb-6">
           Powering Support Operations for Global High-Growth Companies
         </p>

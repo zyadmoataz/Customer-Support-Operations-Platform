@@ -15,7 +15,7 @@ export function PasswordComplexityHelper({ password }: PasswordComplexityHelperP
   ]
 
   return (
-    <div className="p-3.5 rounded-2xl bg-brand-surface/90 border border-white/5 text-[11px] space-y-1.5 text-text-tertiary">
+    <div className="p-3.5 rounded-2xl bg-brand-surface/90 border border-brand-border text-[11px] space-y-1.5 text-text-tertiary">
       <span className="font-semibold text-text-secondary block mb-1">Password Requirements:</span>
       {checks.map((check, idx) => (
         <div key={idx} className={`flex items-center gap-1.5 ${check.pass ? 'text-state-success font-medium' : 'text-text-tertiary'}`}>

@@ -42,7 +42,7 @@ export function LiveMetrics() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {metrics.map((m, idx) => (
-            <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-brand-surface/80 border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between">
+            <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-brand-surface/80 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between">
               <div>
                 <div className="p-2.5 rounded-xl bg-brand-elevated/80 w-fit mb-4">
                   {m.icon}
@@ -52,7 +52,7 @@ export function LiveMetrics() {
                 </div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-text-secondary mb-2">{m.label}</h4>
               </div>
-              <p className="text-xs text-text-tertiary leading-relaxed border-t border-white/5 pt-3">
+              <p className="text-xs text-text-tertiary leading-relaxed border-t border-brand-border pt-3">
                 {m.desc}
               </p>
             </div>

@@ -18,7 +18,7 @@ export function FeatureBento() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Card 1 (Large - 2 Cols) */}
-        <div className="md:col-span-2 rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="md:col-span-2 rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center border border-brand-primary">
@@ -36,7 +36,7 @@ export function FeatureBento() {
             </p>
           </div>
 
-          <div className="mt-6 sm:mt-8 pt-4 border-t border-white/5 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs text-text-secondary">
+          <div className="mt-6 sm:mt-8 pt-4 border-t border-brand-border grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs text-text-secondary">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-state-success flex-shrink-0" />
               <span>Zero-collision ticket claiming</span>
@@ -49,7 +49,7 @@ export function FeatureBento() {
         </div>
 
         {/* Card 2 (1 Col) */}
-        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 rounded-2xl bg-state-success-bg text-state-success flex items-center justify-center border border-state-success">
@@ -67,14 +67,14 @@ export function FeatureBento() {
             </p>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-white/5 text-xs text-text-secondary flex items-center gap-2">
+          <div className="mt-8 pt-4 border-t border-brand-border text-xs text-text-secondary flex items-center gap-2">
             <Shield className="w-4 h-4 text-state-success flex-shrink-0" />
             <span>Cryptographic Tenant Isolation</span>
           </div>
         </div>
 
         {/* Card 3 (1 Col) */}
-        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 rounded-2xl bg-state-info-bg text-state-info flex items-center justify-center border border-state-info">
@@ -92,14 +92,14 @@ export function FeatureBento() {
             </p>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-white/5 text-xs text-text-secondary flex items-center gap-2">
+          <div className="mt-8 pt-4 border-t border-brand-border text-xs text-text-secondary flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-state-info flex-shrink-0" />
             <span>Standardized Resolution Reports</span>
           </div>
         </div>
 
         {/* Card 4 (Large - 2 Cols) */}
-        <div className="md:col-span-2 rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
+        <div className="md:col-span-2 rounded-3xl glass-panel p-6 sm:p-8 border border-brand-border transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow flex flex-col justify-between group">
           <div>
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 rounded-2xl bg-state-warning-bg text-state-warning flex items-center justify-center border border-state-warning">
@@ -117,7 +117,7 @@ export function FeatureBento() {
             </p>
           </div>
 
-          <div className="mt-6 sm:mt-8 pt-4 border-t border-white/5 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs text-text-secondary">
+          <div className="mt-6 sm:mt-8 pt-4 border-t border-brand-border grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs text-text-secondary">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-state-warning flex-shrink-0" />
               <span>5-Star QA Performance Audits</span>

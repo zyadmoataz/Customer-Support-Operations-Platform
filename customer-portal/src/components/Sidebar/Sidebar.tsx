@@ -26,7 +26,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
   return (
     <>
       {/* Mobile Top Navigation Bar */}
-      <div className="lg:hidden sticky top-0 z-40 w-full h-16 bg-brand-bg/95 backdrop-blur-md border-b border-white/5 px-4 flex items-center justify-between">
+      <div className="lg:hidden sticky top-0 z-40 w-full h-16 bg-brand-bg/95 backdrop-blur-md border-b border-brand-border px-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-accent shadow-glow text-text-primary font-bold">
             <Zap className="w-4 h-4 fill-white" />
@@ -46,7 +46,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="lg:hidden fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-opacity"
+          className="lg:hidden fixed inset-0 z-40 bg-brand-bg/90 backdrop-blur-sm transition-opacity"
         />
       )}
 
@@ -71,7 +71,7 @@ export function Sidebar({ activeTab, onTabChange, ticketCount }: SidebarProps) {
           </div>
 
           {/* User Profile Card */}
-          <div className="p-3.5 rounded-2xl bg-brand-surface border border-brand-border/80 mb-6 flex items-center gap-3 shadow-md shadow-black/20">
+          <div className="p-3.5 rounded-2xl bg-brand-surface border border-brand-border/80 mb-6 flex items-center gap-3 shadow-md shadow-brand-bg/50">
             <div className="w-9 h-9 rounded-xl bg-brand-primary/20 text-brand-primary flex items-center justify-center font-bold text-sm border border-brand-hover flex-shrink-0">
               {profile?.full_name?.charAt(0)?.toUpperCase() || 'C'}
             </div>

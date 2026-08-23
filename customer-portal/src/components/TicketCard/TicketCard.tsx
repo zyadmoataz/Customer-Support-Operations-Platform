@@ -33,7 +33,7 @@ export function TicketCard({ ticket }: TicketCardProps) {
     <>
       <div 
         onClick={() => setIsDetailsOpen(true)}
-        className="group rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 flex flex-col justify-between shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow cursor-pointer relative"
+        className="group rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 flex flex-col justify-between shadow-xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary hover:shadow-glow cursor-pointer relative"
       >
         <div>
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">

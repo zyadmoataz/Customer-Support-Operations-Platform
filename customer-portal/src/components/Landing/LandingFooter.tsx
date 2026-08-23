@@ -6,7 +6,7 @@ export function LandingFooter() {
   }
 
   return (
-    <footer className="relative w-full border-t border-white/10 bg-brand-bg text-text-tertiary text-xs py-14 lg:py-20 overflow-hidden">
+    <footer className="relative w-full border-t border-brand-border bg-brand-bg text-text-tertiary text-xs py-14 lg:py-20 overflow-hidden">
       {/* Top subtle radiant glow */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-primary-hover/40 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-brand-primary-bg blur-3xl pointer-events-none" />
@@ -84,7 +84,7 @@ export function LandingFooter() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-muted">
+        <div className="pt-8 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-muted">
           <p>© 2026 Optima Platform Inc. All rights reserved. Enterprise Support Operations.</p>
           <div className="flex items-center gap-6">
             <a href="#privacy" className="hover:text-text-secondary transition-colors">Privacy Policy</a>

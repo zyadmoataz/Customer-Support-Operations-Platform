@@ -45,7 +45,7 @@ export function StatsCards({ tickets, totalCount }: StatsCardsProps) {
       {stats.map((stat, idx) => (
         <div
           key={idx}
-          className={`rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 shadow-xl shadow-black/40 transition-all duration-300 hover:-translate-y-1 ${stat.accentBorder} hover:shadow-glow flex flex-col justify-between`}
+          className={`rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 shadow-xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-1 ${stat.accentBorder} hover:shadow-glow flex flex-col justify-between`}
         >
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-text-tertiary">

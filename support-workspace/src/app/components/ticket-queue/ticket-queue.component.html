@@ -1,6 +1,6 @@
 <div class="space-y-6">
   <!-- Standalone Controls Toolbar -->
-  <div class="p-4 sm:p-5 rounded-3xl bg-brand-surface border border-brand-border shadow-xl shadow-black/40 flex flex-col gap-4">
+  <div class="p-4 sm:p-5 rounded-3xl bg-brand-surface border border-brand-border shadow-xl shadow-brand-bg/50 flex flex-col gap-4">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
       @if (userRole() !== 'manager') {
         <div class="flex items-center gap-1 sm:gap-1.5 p-1 rounded-2xl bg-brand-bg/80 border border-brand-border overflow-x-auto max-w-full flex-nowrap scrollbar-none w-full sm:w-auto">
@@ -112,7 +112,7 @@
     <!-- Ticket Cards -->
     <div class="space-y-6">
       @for (ticket of filteredTickets(); track ticket.id) {
-        <div class="rounded-3xl bg-brand-surface border border-brand-border hover:border-state-success p-6 shadow-2xl shadow-black/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow flex flex-col justify-between">
+        <div class="rounded-3xl bg-brand-surface border border-brand-border hover:border-state-success p-6 shadow-2xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow flex flex-col justify-between">
           <!-- Header -->
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-brand-border/80">
             <div class="flex flex-wrap items-center gap-2">
