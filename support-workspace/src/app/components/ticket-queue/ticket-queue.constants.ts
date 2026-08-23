@@ -1,7 +1,7 @@
 import { SelectOption } from '../custom-select/custom-select.component';
 import { TicketStatus, TicketPriority } from '../../core/models/ticket.model';
 
-export const PAGE_SIZE = 10;
+export const PAGE_SIZE = 3;
 
 export const PRIORITY_OPTIONS: SelectOption[] = [
   { value: 'all', label: 'All Priorities' },

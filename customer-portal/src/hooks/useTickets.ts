@@ -4,7 +4,7 @@ import type { TicketFilters } from '@/api/tickets'
 import { notify } from '@/lib/toast'
 import type { NewTicketInput } from '@/types'
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 6
 
 export function useTicketsQuery(
   userId?: string,

@@ -105,7 +105,6 @@ export class SupabaseService {
     }
   }
 
-  //shotrcuts for supabase methods
   get rpc() {
     return this.supabase.rpc.bind(this.supabase);
   }

@@ -9,6 +9,9 @@ node_modules/
 !.env.example
 *.env
 *.env.local
+support-workspace/src/environments/environment.ts
+support-workspace/src/environments/environment.prod.ts
+!support-workspace/src/environments/environment.example.ts
 
 # Production Build Artifacts
 dist/

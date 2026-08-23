@@ -7,6 +7,7 @@ import {
   LucideAngularModule, 
   Headphones, 
   Shield, 
+  ShieldCheck,
   Search, 
   Eye, 
   EyeOff, 
@@ -54,6 +55,7 @@ export const appConfig: ApplicationConfig = {
       LucideAngularModule.pick({ 
         Headphones, 
         Shield, 
+        ShieldCheck,
         Search, 
         Eye, 
         EyeOff, 

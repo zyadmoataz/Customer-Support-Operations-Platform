@@ -4,6 +4,7 @@ interface TicketPaginationProps {
   currentPage: number
   totalPages: number
   totalCount: number
+  pageSize?: number
   onPageChange: (page: number) => void
 }
 
@@ -23,12 +24,13 @@ export function TicketPagination({
   currentPage,
   totalPages,
   totalCount,
+  pageSize = 6,
   onPageChange,
 }: TicketPaginationProps) {
   if (totalPages <= 1) return null
 
-  const fromItem = totalCount === 0 ? 0 : (currentPage - 1) * 10 + 1
-  const toItem = Math.min(currentPage * 10, totalCount)
+  const fromItem = totalCount === 0 ? 0 : (currentPage - 1) * pageSize + 1
+  const toItem = Math.min(currentPage * pageSize, totalCount)
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 px-1">
