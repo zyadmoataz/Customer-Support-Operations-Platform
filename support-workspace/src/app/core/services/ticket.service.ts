@@ -132,12 +132,19 @@ export class TicketService {
     const currentUserId = this.supabase.currentUser()?.id;
     if (!currentUserId) return;
     try {
-      const { error } = await this.supabase
+      const { data, error } = await this.supabase
         .from('support_requests')
         .update({ assigned_to: currentUserId, status: 'in_progress', updated_at: new Date().toISOString() })
-        .eq('id', ticketId);
+        .eq('id', ticketId)
+        .is('assigned_to', null)
+        .select();
 
       if (error) throw error;
+      if (!data || data.length === 0) {
+        this.toast.error('This ticket was just claimed by another support specialist.');
+        await this.fetchTickets();
+        return;
+      }
       this.toast.success('Ticket claimed and added to your active tasks!');
       await this.fetchTickets();
       await this.fetchAgents();

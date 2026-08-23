@@ -26,6 +26,10 @@ export const attachmentApi = {
   },
 
   async uploadAttachment(ticketId: string, uploaderId: string, file: File): Promise<TicketAttachment> {
+    if (file.size > 10 * 1024 * 1024) {
+      throw new Error('File exceeds maximum allowable limit of 10MB.')
+    }
+
     const fileExt = file.name.split('.').pop()
     const cleanFileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
     const filePath = `${ticketId}/${cleanFileName}`

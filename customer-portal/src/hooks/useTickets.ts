@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { ticketApi } from '@/api'
+import { supabase } from '@/api/supabase'
 import type { TicketFilters } from '@/api/tickets'
 import { notify } from '@/lib/toast'
 import type { NewTicketInput } from '@/types'
@@ -11,6 +13,27 @@ export function useTicketsQuery(
   page: number = 1,
   filters: TicketFilters = {}
 ) {
+  const queryClient = useQueryClient()
+
+  useEffect(() => {
+    if (!userId) return
+
+    const channel = supabase
+      .channel(`customer_tickets_stream_${userId}`)
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'support_requests', filter: `customer_id=eq.${userId}` },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ['support_requests', userId] })
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [userId, queryClient])
+
   const query = useQuery({
     queryKey: ['support_requests', userId, page, filters],
     queryFn: async () => {
