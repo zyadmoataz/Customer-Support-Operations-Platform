@@ -59,7 +59,7 @@ export function CreateTicketModal({ isOpen, onClose }: CreateTicketModalProps) {
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="w-full max-w-lg p-5 sm:p-8 rounded-3xl glass-panel shadow-glow border border-brand-primary max-h-[92vh] overflow-y-auto"
+          className="w-full max-w-lg p-5 sm:p-8 rounded-3xl glass-panel shadow-glow border border-brand-border max-h-[92vh] overflow-y-auto"
         >
           <div className="flex items-center justify-between mb-6 pb-3 border-b border-brand-border">
             <div>

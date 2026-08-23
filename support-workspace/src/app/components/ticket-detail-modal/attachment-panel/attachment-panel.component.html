@@ -34,8 +34,8 @@
     <!-- 1. Customer Submissions Section -->
     <div class="space-y-2">
       <div class="flex items-center justify-between">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-state-info flex items-center gap-1.5">
-          <lucide-icon [name]="'user'" class="w-3.5 h-3.5"></lucide-icon>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5">
+          <lucide-icon [name]="'user'" class="w-3.5 h-3.5 text-brand-primary"></lucide-icon>
           <span>Customer Submissions ({{ customerAttachments().length }})</span>
         </h4>
       </div>
@@ -43,23 +43,23 @@
       @if (customerAttachments().length === 0) {
         <p class="text-[11px] text-text-muted italic px-2 py-1">No files attached by the customer at creation.</p>
       } @else {
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           @for (file of customerAttachments(); track file.id) {
             <a
               [href]="getDownloadUrl(file.file_path)"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between p-3 rounded-2xl bg-brand-bg/90 border border-brand-border hover:border-state-info hover:bg-brand-surface transition-all group">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-8 h-8 rounded-xl bg-state-info-bg border border-state-info flex items-center justify-center flex-shrink-0 text-state-info">
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-primary/60 hover:bg-brand-elevated/40 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-9 h-9 rounded-xl bg-brand-elevated border border-brand-border flex items-center justify-center flex-shrink-0 text-brand-primary group-hover:scale-105 transition-transform">
                   <lucide-icon [name]="file.file_type.startsWith('image/') ? 'image' : 'file-text'" class="w-4 h-4"></lucide-icon>
                 </div>
                 <div class="min-w-0">
-                  <p class="text-xs font-semibold text-text-primary group-hover:text-state-info truncate transition-colors">{{ file.file_name }}</p>
-                  <p class="text-[10px] text-text-muted">{{ formatFileSize(file.file_size) }} • Customer File</p>
+                  <p class="text-xs font-semibold text-text-primary group-hover:text-brand-primary truncate transition-colors">{{ file.file_name }}</p>
+                  <p class="text-[11px] text-text-muted mt-0.5">{{ formatFileSize(file.file_size) }} • Customer File</p>
                 </div>
               </div>
-              <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-text-tertiary group-hover:text-state-info flex-shrink-0 ml-2"></lucide-icon>
+              <lucide-icon [name]="'download'" class="w-4 h-4 text-text-tertiary group-hover:text-brand-primary flex-shrink-0 ml-2 transition-colors"></lucide-icon>
             </a>
           }
         </div>
@@ -67,10 +67,10 @@
     </div>
 
     <!-- 2. Support Operations & Staff Documents Section -->
-    <div class="space-y-2 pt-2 border-t border-brand-border/80">
+    <div class="space-y-2 pt-3 border-t border-brand-border">
       <div class="flex items-center justify-between">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-state-success flex items-center gap-1.5">
-          <lucide-icon [name]="'shield'" class="w-3.5 h-3.5"></lucide-icon>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5">
+          <lucide-icon [name]="'shield'" class="w-3.5 h-3.5 text-state-success"></lucide-icon>
           <span>Support Staff Documents ({{ staffAttachments().length }})</span>
         </h4>
       </div>
@@ -78,23 +78,23 @@
       @if (staffAttachments().length === 0) {
         <p class="text-[11px] text-text-muted italic px-2 py-1">No additional documentation uploaded by support staff.</p>
       } @else {
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           @for (file of staffAttachments(); track file.id) {
             <a
               [href]="getDownloadUrl(file.file_path)"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between p-3 rounded-2xl bg-brand-bg/90 border border-brand-border hover:border-state-success hover:bg-brand-surface transition-all group">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-8 h-8 rounded-xl bg-state-success-bg border border-state-success flex items-center justify-center flex-shrink-0 text-state-success">
+              class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-brand-surface border border-brand-border hover:border-state-success/60 hover:bg-brand-elevated/40 transition-all group shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-9 h-9 rounded-xl bg-brand-elevated border border-brand-border flex items-center justify-center flex-shrink-0 text-state-success group-hover:scale-105 transition-transform">
                   <lucide-icon [name]="file.file_type.startsWith('image/') ? 'image' : 'file-text'" class="w-4 h-4"></lucide-icon>
                 </div>
                 <div class="min-w-0">
                   <p class="text-xs font-semibold text-text-primary group-hover:text-state-success truncate transition-colors">{{ file.file_name }}</p>
-                  <p class="text-[10px] text-text-muted">{{ formatFileSize(file.file_size) }} • By {{ file.uploader_name || 'Staff' }}</p>
+                  <p class="text-[11px] text-text-muted mt-0.5">{{ formatFileSize(file.file_size) }} • By {{ file.uploader_name || 'Staff' }}</p>
                 </div>
               </div>
-              <lucide-icon [name]="'download'" class="w-3.5 h-3.5 text-text-tertiary group-hover:text-state-success flex-shrink-0 ml-2"></lucide-icon>
+              <lucide-icon [name]="'download'" class="w-4 h-4 text-text-tertiary group-hover:text-state-success flex-shrink-0 ml-2 transition-colors"></lucide-icon>
             </a>
           }
         </div>

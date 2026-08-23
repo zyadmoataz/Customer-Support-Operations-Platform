@@ -39,7 +39,7 @@ export function LoadingSkeleton({ viewMode }: LoadingSkeletonProps) {
 
 export function ErrorState() {
   return (
-    <div className="text-center py-16 p-6 rounded-3xl glass-panel border border-state-danger max-w-md mx-auto">
+    <div className="w-full text-center py-16 px-6 rounded-2xl bg-brand-surface border border-state-danger/30 shadow-xl shadow-brand-bg/50">
       <RefreshCw className="w-8 h-8 text-state-danger mx-auto mb-3 animate-spin" />
       <h4 className="text-sm font-bold text-text-primary mb-1">Failed to Load Support Tickets</h4>
       <p className="text-xs text-text-tertiary">Please verify your internet connection or check back momentarily.</p>
@@ -53,15 +53,15 @@ interface EmptyStateProps {
 
 export function EmptyState({ hasFilters }: EmptyStateProps) {
   return (
-    <div className="text-center py-16 p-8 rounded-3xl glass-panel border border-brand-border max-w-lg mx-auto">
-      <div className="w-12 h-12 rounded-2xl bg-brand-surface border border-brand-border text-text-tertiary flex items-center justify-center mx-auto mb-3">
+    <div className="w-full text-center py-16 px-8 rounded-2xl bg-brand-surface border border-brand-border shadow-xl shadow-brand-bg/50">
+      <div className="w-12 h-12 rounded-2xl bg-brand-elevated border border-brand-border text-text-tertiary flex items-center justify-center mx-auto mb-3">
         <Inbox className="w-6 h-6 text-text-tertiary" />
       </div>
       <h4 className="text-base font-bold text-text-primary mb-1">No Tickets Found</h4>
-      <p className="text-xs text-text-tertiary leading-relaxed max-w-xs mx-auto">
+      <p className="text-xs text-text-tertiary max-w-md mx-auto">
         {hasFilters
           ? 'No tickets match your current filters. Try adjusting or clearing filters.'
-          : 'You have not submitted any support tickets yet.'}
+          : 'You have not submitted any support tickets yet. Click "New Support Ticket" to get started.'}
       </p>
     </div>
   )

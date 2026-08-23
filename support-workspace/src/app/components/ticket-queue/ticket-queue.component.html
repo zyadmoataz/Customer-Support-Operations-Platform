@@ -122,13 +122,13 @@
                 <span>{{ ticket.status === 'resolved' ? 'Resolved & Locked' : ticket.status.replace('_', ' ') }}</span>
               </span>
               <span [class]="'px-2.5 py-1 rounded-lg text-[10px] uppercase font-extrabold tracking-wider border ' + getPriorityClass(ticket.priority)">{{ ticket.priority }}</span>
-              @if (ticket.category) { <span class="text-xs text-text-secondary bg-brand-bg px-2.5 py-1 rounded-lg border border-brand-border">{{ ticket.category }}</span> }
+              @if (ticket.category) { <span class="text-xs text-text-secondary font-medium">{{ ticket.category }}</span> }
             </div>
 
             <div class="flex items-center gap-2">
               <span class="text-xs text-text-tertiary font-medium">{{ ticket.created_at | date:'short' }}</span>
               @if (ticket.status === 'resolved') {
-                <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-state-success text-state-success text-xs font-bold border border-state-success">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-state-success-bg text-state-success text-xs font-bold border border-state-success/30">
                   <lucide-icon [name]="'check-circle-2'" class="w-4 h-4 text-state-success"></lucide-icon><span>Resolved</span>
                 </span>
               } @else {

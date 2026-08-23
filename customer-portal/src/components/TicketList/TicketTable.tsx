@@ -52,7 +52,7 @@ export function TicketTable({ tickets, onSelectTicket }: TicketTableProps) {
                   </p>
                 </td>
                 <td className="px-5 py-4 hidden md:table-cell">
-                  <span className="text-xs text-text-secondary bg-brand-elevated px-2 py-0.5 rounded-md border border-brand-subtle">
+                  <span className="text-xs text-text-secondary font-medium">
                     {ticket.category || '—'}
                   </span>
                 </td>

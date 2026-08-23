@@ -8,16 +8,16 @@ interface TicketCardProps {
 }
 
 const statusStyles: Record<TicketStatus, { bg: string; text: string; dot: string; label: string }> = {
-  open: { bg: 'bg-state-info-bg border-state-info', text: 'text-state-info', dot: 'bg-state-info', label: 'Open' },
-  in_progress: { bg: 'bg-state-warning-bg border-state-warning', text: 'text-state-warning', dot: 'bg-state-warning', label: 'In Progress' },
-  resolved: { bg: 'bg-state-success-bg border-state-success', text: 'text-state-success', dot: 'bg-state-success', label: 'Resolved & Verified' },
+  open: { bg: 'bg-brand-surface border border-brand-border', text: 'text-text-primary', dot: 'bg-state-info', label: 'Open' },
+  in_progress: { bg: 'bg-brand-surface border border-brand-border', text: 'text-text-primary', dot: 'bg-state-warning', label: 'In Progress' },
+  resolved: { bg: 'bg-brand-surface border border-brand-border', text: 'text-text-primary', dot: 'bg-state-success', label: 'Resolved & Verified' },
 }
 
 const priorityStyles: Record<TicketPriority, { text: string; bg: string }> = {
-  low: { text: 'text-text-tertiary', bg: 'bg-brand-elevated/80 border border-brand-subtle/50' },
-  medium: { text: 'text-state-info', bg: 'bg-state-info border border-state-info' },
-  high: { text: 'text-state-warning', bg: 'bg-state-warning border border-state-warning' },
-  urgent: { text: 'text-state-danger', bg: 'bg-state-danger border border-state-danger' },
+  low: { text: 'text-text-secondary', bg: 'bg-brand-elevated/80 border border-brand-border' },
+  medium: { text: 'text-text-primary', bg: 'bg-brand-surface border border-brand-border' },
+  high: { text: 'text-state-warning', bg: 'bg-brand-surface border border-brand-border' },
+  urgent: { text: 'text-state-danger', bg: 'bg-brand-surface border border-brand-border' },
 }
 
 export function TicketCard({ ticket }: TicketCardProps) {
@@ -37,16 +37,16 @@ export function TicketCard({ ticket }: TicketCardProps) {
       >
         <div>
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <div className="flex flex-wrap items-center gap-1.5">
-              <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${status.bg} ${status.text}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${status.dot} animate-pulse`} />
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${status.bg} ${status.text}`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${status.dot}`} />
                 {status.label}
               </span>
               <span className={`px-2 py-0.5 rounded-md text-[10px] uppercase font-bold tracking-wider ${priority.bg} ${priority.text}`}>
                 {ticket.priority || 'medium'}
               </span>
               {ticket.category && (
-                <span className="text-[11px] text-text-tertiary bg-brand-bg/80 px-2 py-0.5 rounded-md border border-brand-border truncate max-w-[140px]">
+                <span className="text-xs text-text-secondary font-medium">
                   {ticket.category}
                 </span>
               )}
@@ -57,17 +57,17 @@ export function TicketCard({ ticket }: TicketCardProps) {
           <h3 className="text-base font-bold text-text-primary group-hover:text-brand-primary transition-colors mb-1.5">
             {ticket.title || ticket.description.slice(0, 50)}
           </h3>
-          <p className="text-xs text-text-tertiary line-clamp-2 leading-relaxed">
+          <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed">
             {ticket.description}
           </p>
 
           {ticket.resolution_note && (
-            <div className="mt-3.5 p-3 rounded-2xl bg-state-success-bg border border-state-success text-xs">
-              <div className="flex items-center gap-1.5 font-semibold text-state-success mb-1">
+            <div className="mt-3.5 p-3 rounded-2xl bg-brand-elevated border border-brand-border text-xs">
+              <div className="flex items-center gap-1.5 font-semibold text-brand-primary mb-1">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Agent Resolution Summary:</span>
               </div>
-              <p className="text-text-secondary line-clamp-2 leading-relaxed">{ticket.resolution_note}</p>
+              <p className="text-text-primary line-clamp-2 leading-relaxed">{ticket.resolution_note}</p>
             </div>
           )}
         </div>

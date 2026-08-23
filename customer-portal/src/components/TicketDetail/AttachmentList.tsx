@@ -43,7 +43,7 @@ export function AttachmentList({ attachments, isLoading, customerId, getDownload
         {customerFiles.length === 0 ? (
           <p className="text-[11px] text-text-muted italic px-1">No files uploaded by you yet.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {customerFiles.map((file) => {
               const isImg = file.file_type.startsWith('image/')
               const url = getDownloadUrl(file.file_path)
@@ -54,20 +54,20 @@ export function AttachmentList({ attachments, isLoading, customerId, getDownload
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-2xl bg-brand-bg/80 border border-brand-border hover:border-brand-hover hover:bg-brand-surface transition-all group"
+                  className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-primary/60 hover:bg-brand-elevated/40 transition-all group shadow-sm"
                 >
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-xl bg-brand-primary/10 border border-brand-primary flex items-center justify-center flex-shrink-0 text-brand-primary">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-9 h-9 rounded-xl bg-brand-elevated border border-brand-border flex items-center justify-center flex-shrink-0 text-brand-primary group-hover:scale-105 transition-transform">
                       {isImg ? <ImageIcon className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs font-semibold text-text-primary group-hover:text-brand-primary truncate transition-colors">
                         {file.file_name}
                       </p>
-                      <p className="text-[10px] text-text-muted">{formatFileSize(file.file_size)} • Your Submission</p>
+                      <p className="text-[11px] text-text-muted mt-0.5">{formatFileSize(file.file_size)} • Your Submission</p>
                     </div>
                   </div>
-                  <Download className="w-3.5 h-3.5 text-text-tertiary group-hover:text-brand-primary flex-shrink-0 ml-2" />
+                  <Download className="w-4 h-4 text-text-tertiary group-hover:text-brand-primary flex-shrink-0 ml-2 transition-colors" />
                 </a>
               )
             })}
@@ -77,12 +77,12 @@ export function AttachmentList({ attachments, isLoading, customerId, getDownload
 
       {/* 2. Staff Attachments */}
       {staffFiles.length > 0 && (
-        <div className="space-y-2 pt-2 border-t border-brand-border/80">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-state-success flex items-center gap-1.5">
-            <Shield className="w-3.5 h-3.5" />
+        <div className="space-y-2 pt-3 border-t border-brand-border">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5">
+            <Shield className="w-3.5 h-3.5 text-state-success" />
             <span>Support Specialist Attachments ({staffFiles.length})</span>
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {staffFiles.map((file) => {
               const isImg = file.file_type.startsWith('image/')
               const url = getDownloadUrl(file.file_path)
@@ -93,20 +93,20 @@ export function AttachmentList({ attachments, isLoading, customerId, getDownload
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-2xl bg-brand-bg/80 border border-brand-border hover:border-state-success hover:bg-brand-surface transition-all group"
+                  className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-brand-surface border border-brand-border hover:border-state-success/60 hover:bg-brand-elevated/40 transition-all group shadow-sm"
                 >
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="w-8 h-8 rounded-xl bg-state-success-bg border border-state-success flex items-center justify-center flex-shrink-0 text-state-success">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-9 h-9 rounded-xl bg-brand-elevated border border-brand-border flex items-center justify-center flex-shrink-0 text-state-success group-hover:scale-105 transition-transform">
                       {isImg ? <ImageIcon className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs font-semibold text-text-primary group-hover:text-state-success truncate transition-colors">
                         {file.file_name}
                       </p>
-                      <p className="text-[10px] text-text-muted">{formatFileSize(file.file_size)} • By Support Specialist</p>
+                      <p className="text-[11px] text-text-muted mt-0.5">{formatFileSize(file.file_size)} • By Support Specialist</p>
                     </div>
                   </div>
-                  <Download className="w-3.5 h-3.5 text-text-tertiary group-hover:text-state-success flex-shrink-0 ml-2" />
+                  <Download className="w-4 h-4 text-text-tertiary group-hover:text-state-success flex-shrink-0 ml-2 transition-colors" />
                 </a>
               )
             })}

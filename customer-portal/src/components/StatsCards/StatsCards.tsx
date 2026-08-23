@@ -22,21 +22,24 @@ export function StatsCards({ tickets, totalCount }: StatsCardsProps) {
       value: total,
       subtext: 'Lifetime submitted requests',
       icon: <Inbox className="w-5 h-5 text-brand-primary" />,
-      accentBorder: 'hover:border-brand-primary',
+      iconBg: 'bg-brand-primary/10 border-brand-primary/20',
+      accentBorder: 'hover:border-brand-primary/60 hover:shadow-glow',
     },
     {
       label: 'Active In Triage',
       value: openCount,
       subtext: openCount === 0 ? 'All caught up' : 'Under active investigation',
-      icon: <Clock className="w-5 h-5 text-state-info" />,
-      accentBorder: 'hover:border-state-info',
+      icon: <Clock className="w-5 h-5 text-state-warning" />,
+      iconBg: 'bg-state-warning-bg/40 border-state-warning/20',
+      accentBorder: 'hover:border-state-warning/50',
     },
     {
       label: 'Resolved Issues',
       value: resolvedCount,
       subtext: 'Verified with resolution report',
       icon: <CheckCircle2 className="w-5 h-5 text-state-success" />,
-      accentBorder: 'hover:border-state-success',
+      iconBg: 'bg-state-success-bg/40 border-state-success/20',
+      accentBorder: 'hover:border-state-success/50',
     }
   ]
 
@@ -45,13 +48,13 @@ export function StatsCards({ tickets, totalCount }: StatsCardsProps) {
       {stats.map((stat, idx) => (
         <div
           key={idx}
-          className={`rounded-3xl bg-brand-surface border border-brand-border p-5 sm:p-6 shadow-xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-1 ${stat.accentBorder} hover:shadow-glow flex flex-col justify-between`}
+          className={`rounded-3xl bg-brand-surface/90 border border-brand-border p-5 sm:p-6 shadow-xl shadow-brand-bg/50 transition-all duration-300 hover:-translate-y-1 ${stat.accentBorder} flex flex-col justify-between`}
         >
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
               {stat.label}
             </span>
-            <div className="p-2.5 rounded-xl bg-brand-bg/80 border border-brand-border/80">
+            <div className={`p-2.5 rounded-xl border ${stat.iconBg}`}>
               {stat.icon}
             </div>
           </div>
