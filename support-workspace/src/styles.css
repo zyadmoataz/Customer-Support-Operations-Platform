@@ -13,9 +13,9 @@
   --bg-elevated: #18181b;
 
   /* === Dynamic Border & Divider Tokens === */
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  --border-subtle: #27272a; /* Zinc 800 */
+  --border-default: #3f3f46; /* Zinc 700 */
+  --border-hover: #52525b; /* Zinc 600 */
   --border-brand: rgba(16, 185, 129, 0.4);
   --border-amber: rgba(245, 158, 11, 0.35);
   --border-rose: rgba(244, 63, 94, 0.35);

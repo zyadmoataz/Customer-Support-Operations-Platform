@@ -37,7 +37,7 @@ export const statusBadge: Record<TicketStatus, { bg: string; text: string; dot: 
 
 export const priorityBadge: Record<TicketPriority, { text: string; bg: string }> = {
   low: { text: 'text-text-tertiary', bg: 'bg-brand-elevated/80 border border-brand-subtle/50' },
-  medium: { text: 'text-state-info', bg: 'bg-state-info border border-state-info' },
-  high: { text: 'text-state-warning', bg: 'bg-state-warning border border-state-warning' },
-  urgent: { text: 'text-state-danger', bg: 'bg-state-danger border border-state-danger' },
+  medium: { text: 'text-state-info', bg: 'bg-state-info-bg border border-state-info' },
+  high: { text: 'text-state-warning', bg: 'bg-state-warning-bg border border-state-warning' },
+  urgent: { text: 'text-state-danger', bg: 'bg-state-danger-bg border border-state-danger' },
 }
