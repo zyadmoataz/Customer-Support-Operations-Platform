@@ -114,7 +114,12 @@ export function TicketDetailModal({ ticket: initialTicket, isOpen, onClose }: Ti
             {activeTab === 'attachments' && (
               <div className="space-y-4">
                 <AttachmentUploader isUploading={isUploading} onUploadFile={uploadAttachment} />
-                <AttachmentList attachments={attachments} isLoading={isAttLoading} getDownloadUrl={getDownloadUrl} />
+                <AttachmentList
+                  attachments={attachments}
+                  isLoading={isAttLoading}
+                  customerId={ticket.customer_id}
+                  getDownloadUrl={getDownloadUrl}
+                />
               </div>
             )}
           </div>

@@ -27,7 +27,14 @@ export class ConversationThreadComponent {
       if (t?.id) {
         this.conversationService.fetchMessages(t.id);
       }
-    });
+    }, { allowSignalWrites: true });
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      this.handleSend();
+    }
   }
 
   async handleSend() {

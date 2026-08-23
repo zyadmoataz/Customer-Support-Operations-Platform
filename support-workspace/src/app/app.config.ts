@@ -29,8 +29,19 @@ import {
   Menu,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   Filter,
-  Plus
+  Plus,
+  Paperclip,
+  Loader2,
+  Upload,
+  Image,
+  Download,
+  Send,
+  FileText,
+  User,
+  File
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
@@ -65,8 +76,19 @@ export const appConfig: ApplicationConfig = {
         Menu,
         ChevronDown,
         ChevronUp,
+        ChevronLeft,
+        ChevronRight,
         Filter,
-        Plus
+        Plus,
+        Paperclip,
+        Loader2,
+        Upload,
+        Image,
+        Download,
+        Send,
+        FileText,
+        User,
+        File
       })
     )
   ]

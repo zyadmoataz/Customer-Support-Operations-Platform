@@ -1,4 +1,4 @@
-import { Component, input, inject, effect } from '@angular/core';
+import { Component, input, inject, effect, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule } from 'lucide-angular';
 import { AttachmentService } from '../../../core/services/attachment.service';
@@ -15,13 +15,23 @@ export class AttachmentPanelComponent {
 
   ticket = input.required<SupportTicket>();
 
+  customerAttachments = computed(() => {
+    const cid = this.ticket()?.customer_id;
+    return this.attachmentService.attachments().filter(a => a.uploaded_by === cid);
+  });
+
+  staffAttachments = computed(() => {
+    const cid = this.ticket()?.customer_id;
+    return this.attachmentService.attachments().filter(a => a.uploaded_by !== cid);
+  });
+
   constructor() {
     effect(() => {
       const t = this.ticket();
       if (t?.id) {
         this.attachmentService.fetchAttachments(t.id);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   formatFileSize(bytes: number): string {
