@@ -6,53 +6,53 @@
   color-scheme: dark;
 
   /* === Core Semantic Surface & Background Tokens === */
-  --bg-canvas: #060911;
-  --bg-surface-1: rgba(13, 20, 36, 0.75);
-  --bg-surface-2: rgba(20, 30, 52, 0.85);
-  --bg-surface-3: rgba(30, 41, 59, 0.95);
-  --bg-elevated: #0f172a;
+  --bg-canvas: #09090b; /* Zinc 950 */
+  --bg-surface-1: rgba(24, 24, 27, 0.85); /* Zinc 900 with alpha for glass */
+  --bg-surface-2: rgba(39, 39, 42, 0.95); /* Zinc 800 */
+  --bg-surface-3: #3f3f46; /* Zinc 700 */
+  --bg-elevated: #18181b;
 
   /* === Dynamic Border & Divider Tokens === */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(99, 102, 241, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
   --border-brand: rgba(99, 102, 241, 0.4);
   --border-emerald: rgba(16, 185, 129, 0.35);
   --border-amber: rgba(245, 158, 11, 0.35);
   --border-rose: rgba(244, 63, 94, 0.35);
 
   /* === Brand Primary & Accent Tokens === */
-  --brand-primary: #6366f1;
-  --brand-primary-hover: #4f46e5;
-  --brand-accent: #8b5cf6;
-  --brand-glow: rgba(99, 102, 241, 0.25);
-  --brand-glow-lg: rgba(99, 102, 241, 0.4);
+  --brand-primary: #4f46e5; /* Indigo 600 - more professional */
+  --brand-primary-hover: #4338ca; /* Indigo 700 */
+  --brand-accent: #6366f1; /* Indigo 500 */
+  --brand-glow: rgba(79, 70, 229, 0.15);
+  --brand-glow-lg: rgba(79, 70, 229, 0.25);
 
   /* === Operational Status Semantic Tokens === */
   --status-open: #38bdf8;
-  --status-open-bg: rgba(56, 189, 248, 0.1);
+  --status-open-bg: rgba(56, 189, 248, 0.15);
   --status-in-progress: #fbbf24;
-  --status-in-progress-bg: rgba(251, 191, 36, 0.1);
-  --status-resolved: #34d399;
-  --status-resolved-bg: rgba(52, 211, 153, 0.1);
-  --status-urgent: #f87171;
-  --status-urgent-bg: rgba(248, 113, 113, 0.1);
+  --status-in-progress-bg: rgba(251, 191, 36, 0.15);
+  --status-resolved: #10b981;
+  --status-resolved-bg: rgba(16, 185, 129, 0.15);
+  --status-urgent: #ef4444;
+  --status-urgent-bg: rgba(239, 68, 68, 0.15);
 
   /* === Text Semantic Tokens === */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #fafafa; /* Zinc 50 */
+  --text-secondary: #a1a1aa; /* Zinc 400 */
+  --text-tertiary: #71717a; /* Zinc 500 */
+  --text-muted: #52525b; /* Zinc 600 */
   
   /* === Additional State Semantic Tokens === */
   --state-success: #10b981;
-  --state-success-bg: rgba(16, 185, 129, 0.1);
+  --state-success-bg: rgba(16, 185, 129, 0.15);
   --state-warning: #f59e0b;
-  --state-warning-bg: rgba(245, 158, 11, 0.1);
-  --state-danger: #f43f5e;
-  --state-danger-bg: rgba(244, 63, 94, 0.1);
-  --state-info: #0ea5e9;
-  --state-info-bg: rgba(14, 165, 233, 0.1);
+  --state-warning-bg: rgba(245, 158, 11, 0.15);
+  --state-danger: #ef4444;
+  --state-danger-bg: rgba(239, 68, 68, 0.15);
+  --state-info: #3b82f6;
+  --state-info-bg: rgba(59, 130, 246, 0.15);
 
   /* === Precision Motion & Physics Tokens === */
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
