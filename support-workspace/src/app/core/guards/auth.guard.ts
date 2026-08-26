@@ -14,6 +14,12 @@ export const authGuard: CanActivateFn = async (route) => {
     return router.parseUrl('/login');
   }
 
+  if (profile && profile.is_active === false) {
+    toast.error('Your staff account has been deactivated. Please contact your manager.');
+    await supabase.auth.signOut();
+    return router.parseUrl('/login');
+  }
+
   const allowedRoles = route.data['roles'] as string[] | undefined;
   if (allowedRoles && profile && !allowedRoles.includes(profile.role)) {
     if (profile.role === 'customer') {

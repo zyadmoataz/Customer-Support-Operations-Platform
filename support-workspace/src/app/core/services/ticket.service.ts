@@ -191,8 +191,10 @@ export class TicketService {
       if (error) throw error;
       this.toast.success(`Agent ${active ? 'activated' : 'deactivated'} successfully!`);
       await this.fetchAgents();
+      await this.fetchTickets();
     } catch (err: unknown) {
-      this.toast.error(err instanceof Error ? err.message : 'Failed to update agent status');
+      const errorObj = err as { message?: string } | null;
+      this.toast.error(errorObj?.message || (err instanceof Error ? err.message : 'Failed to update agent status'));
     }
   }
 

@@ -42,7 +42,8 @@ export function LoginPage() {
         navigate('/dashboard')
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Authentication failed'
+      const errorObj = err as { message?: string; error_description?: string } | null
+      const msg = errorObj?.message || errorObj?.error_description || (err instanceof Error ? err.message : 'Authentication failed')
       notify.error(msg)
     }
   }

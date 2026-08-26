@@ -47,7 +47,9 @@ export class TicketDetailModalComponent {
 
   getAgentOptions(): SelectOption[] {
     const list: SelectOption[] = [{ value: 'unassigned', label: 'Unassigned (Open Queue)' }];
-    this.agents().forEach(ag => list.push({ value: ag.id, label: `${ag.full_name} (${ag.total_assigned} active)` }));
+    this.agents()
+      .filter(ag => ag.is_active !== false)
+      .forEach(ag => list.push({ value: ag.id, label: `${ag.full_name} (${ag.total_assigned} active)` }));
     return list;
   }
 }

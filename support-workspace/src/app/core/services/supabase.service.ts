@@ -6,6 +6,7 @@ export interface Profile {
   id: string;
   full_name: string;
   role: 'customer' | 'agent' | 'manager';
+  is_active?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })

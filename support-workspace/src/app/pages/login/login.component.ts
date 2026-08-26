@@ -49,17 +49,31 @@ export class LoginPageComponent {
     const { email, password } = this.loginForm.getRawValue();
 
     try {
-      const { error } = await this.supabase.auth.signInWithPassword({
+      const { data, error } = await this.supabase.auth.signInWithPassword({
         email: email.trim(),
         password: password.trim()
       });
 
       if (error) throw error;
 
+      if (data?.user) {
+        const { data: profile } = await this.supabase
+          .from('profiles')
+          .select('is_active, role')
+          .eq('id', data.user.id)
+          .single();
+
+        if (profile && profile.is_active === false) {
+          await this.supabase.auth.signOut();
+          throw new Error('Your staff account has been deactivated. Please contact your manager.');
+        }
+      }
+
       this.toast.success('Successfully logged into Workspace!');
       this.router.navigate(['/dashboard']);
     } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : 'Invalid login credentials';
+      const errorObj = err as { message?: string; error_description?: string } | null;
+      const errorMessage = errorObj?.message || errorObj?.error_description || (err instanceof Error ? err.message : 'Invalid login credentials');
       this.toast.error(errorMessage);
     } finally {
       this.loading.set(false);
