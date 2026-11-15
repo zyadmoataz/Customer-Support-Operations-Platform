@@ -9,21 +9,12 @@
 A support-ticketing system with two frontends on one Supabase backend: a **React customer portal** for submitting and tracking tickets, and an **Angular staff workspace** for triage, resolution and manager QA audits. Access rules are enforced in the database with Row-Level Security (RLS) and role-checked stored procedures, not only in the UI.
 
 **Live demo**
-- Support Workspace (Angular): [CONFIRM: URL, probably https://customer-support-operations-platfor.vercel.app/]
-- Customer Portal (React): [CONFIRM: URL]
+- Support Workspace (Angular): https://customer-support-operations-platfor.vercel.app/login
+- Customer Portal (React): https://customer-support-operations-platfor.vercel.app/support/login
 
 ![Support Workspace: manager triage view](./docs/optima-overview.png)
 ![Customer Portal](./docs/customer-portal.png)
 <img width="1919" height="430" alt="optima-overview" src="https://github.com/user-attachments/assets/42174fbb-a5f7-4e50-a5cf-04c668f42c9c" />
-
-## Demo accounts
-Shared demo accounts with sample data only. [CONFIRM: data is reset periodically, or say it is not]
-
-| Role | App | Email | Password |
-|:---|:---|:---|:---|
-| Customer | Customer Portal | `customer@portal.com` | `password123` |
-| Support Agent | Support Workspace | `agent@support.com` | `password123` |
-| Operations Manager | Support Workspace | `manager@support.com` | `password123` |
 
 ## The idea
 Customer-facing and internal support interfaces have different needs and different risks. CSOP keeps them as **two separate apps** that share one database. Staff-only data, such as internal notes and agent metrics, is hidden from customers by RLS policies at the database level, so a bug in a frontend cannot expose it.
