@@ -19,39 +19,6 @@ A support-ticketing system with two frontends on one Supabase backend: a **React
 ## The idea
 Customer-facing and internal support interfaces have different needs and different risks. CSOP keeps them as **two separate apps** that share one database. Staff-only data, such as internal notes and agent metrics, is hidden from customers by RLS policies at the database level, so a bug in a frontend cannot expose it.
 
-## Architecture
-
-```mermaid
-graph TB
-    subgraph "Customer Portal (React 19)"
-        CP_UI["UI: Tailwind CSS, Framer Motion"]
-        CP_QUERY["TanStack Query v5 hooks"]
-        CP_API["API client layer"]
-    end
-
-    subgraph "Support Workspace (Angular 18)"
-        SW_UI["Standalone components: Tailwind CSS, GSAP"]
-        SW_GUARD["Auth guard: role and active-status check"]
-        SW_SVC["Services with Angular Signals state"]
-    end
-
-    subgraph "Supabase"
-        SB_AUTH["Auth: JWT sessions"]
-        SB_STORAGE["Storage: ticket-attachments"]
-        SB_DB[("PostgreSQL: profiles, support_requests, ticket_messages, ticket_attachments")]
-        SB_RLS{"Row-Level Security"}
-        SB_RPC["Stored procedures (SECURITY DEFINER)"]
-    end
-
-    CP_UI --> CP_QUERY --> CP_API --> SB_AUTH
-    CP_API --> SB_DB
-    CP_API --> SB_STORAGE
-    SW_UI --> SW_GUARD --> SW_SVC --> SB_AUTH
-    SW_SVC --> SB_DB
-    SW_SVC --> SB_STORAGE
-    SB_DB --> SB_RLS --> SB_RPC
-```
-
 ## Roles
 
 | Role | App | What they can do |
@@ -88,88 +55,6 @@ graph TB
 | Backend | Supabase: PostgreSQL, Auth (JWT), Storage, RLS, PL/pgSQL functions |
 | Hosting | Vercel (monorepo, two projects) |
 
-## Ticket lifecycle
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Customer
-    actor Agent
-    actor Manager
-    participant CP as Customer Portal
-    participant SW as Support Workspace
-    participant DB as PostgreSQL + RLS
-
-    Customer->>CP: Submit ticket (category, priority, description, file)
-    CP->>DB: INSERT support_requests and ticket_attachments
-    Agent->>SW: Claim ticket from the queue
-    SW->>DB: UPDATE status = in_progress, assigned_to = agent
-    Agent->>SW: Post internal note
-    SW->>DB: INSERT ticket_messages (is_internal = true)
-    Agent->>SW: Post public reply
-    SW->>DB: INSERT ticket_messages (is_internal = false)
-    Agent->>SW: Submit resolution report
-    SW->>DB: UPDATE status = resolved, resolution_note
-    Manager->>SW: Audit with rating and feedback
-    SW->>DB: UPDATE manager_rating, manager_feedback
-    opt Issue persists
-        Customer->>CP: Reopen ticket
-        CP->>DB: rpc reopen_ticket
-    end
-```
-
-## Database schema
-
-```mermaid
-erDiagram
-    PROFILES ||--o{ SUPPORT_REQUESTS : "creates (customer_id)"
-    PROFILES ||--o{ SUPPORT_REQUESTS : "assigned to (assigned_to)"
-    PROFILES ||--o{ TICKET_MESSAGES : "authors"
-    PROFILES ||--o{ TICKET_ATTACHMENTS : "uploads"
-    SUPPORT_REQUESTS ||--o{ TICKET_MESSAGES : "contains"
-    SUPPORT_REQUESTS ||--o{ TICKET_ATTACHMENTS : "has"
-
-    PROFILES {
-        uuid id PK "FK to auth.users.id"
-        text full_name
-        text role "customer | agent | manager"
-        boolean is_active
-        timestamptz created_at
-    }
-    SUPPORT_REQUESTS {
-        uuid id PK
-        uuid customer_id FK
-        text title "5-100 chars"
-        text description "10-2000 chars"
-        text category
-        text priority "low | medium | high | urgent"
-        text status "open | in_progress | resolved"
-        uuid assigned_to FK
-        text resolution_note
-        text manager_feedback
-        integer manager_rating "1 to 5"
-        timestamptz created_at
-        timestamptz updated_at
-    }
-    TICKET_MESSAGES {
-        uuid id PK
-        uuid ticket_id FK
-        uuid author_id FK
-        text body
-        boolean is_internal
-        timestamptz created_at
-    }
-    TICKET_ATTACHMENTS {
-        uuid id PK
-        uuid ticket_id FK
-        uuid uploaded_by FK
-        text file_path
-        text file_name
-        integer file_size "max 10 MB"
-        text file_type
-        timestamptz created_at
-    }
-```
 
 ## Security model
 
