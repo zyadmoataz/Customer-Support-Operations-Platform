@@ -12,8 +12,6 @@ A support-ticketing system with two frontends on one Supabase backend: a **React
 - Support Workspace (Angular): https://customer-support-operations-platfor.vercel.app/login
 - Customer Portal (React): https://customer-support-operations-platfor.vercel.app/support/login
 
-![Support Workspace: manager triage view](./docs/optima-overview.png)
-![Customer Portal](./docs/customer-portal.png)
 <img width="1919" height="430" alt="optima-overview" src="https://github.com/user-attachments/assets/42174fbb-a5f7-4e50-a5cf-04c668f42c9c" />
 
 ## The idea
@@ -56,74 +54,6 @@ Customer-facing and internal support interfaces have different needs and differe
 | Hosting | Vercel (monorepo, two projects) |
 
 
-## Security model
-
-RLS is enabled on all tables and on the storage bucket. Every query is evaluated against the caller's `auth.uid()` and role.
-
-| Table | Customers | Staff (agent / manager) |
-|:---|:---|:---|
-| `profiles` | Read and update own profile | Read all profiles |
-| `support_requests` | Read, insert and update own tickets that are not resolved | Read and update all tickets |
-| `ticket_messages` | Read public messages on own tickets; send public replies | Read all messages and internal notes; send replies and notes |
-| `ticket_attachments` | Read attachments on own tickets | Read all attachments |
-
-Privileged operations run as `SECURITY DEFINER` functions with role checks inside:
-
-| Function | Who can call it | Purpose |
-|:---|:---|:---|
-| `get_user_role()` | Authenticated | Returns the caller's role for RLS policies |
-| `register_customer(...)` | Anonymous | Creates a customer account and profile |
-| `create_staff_agent(...)` | Manager | Onboards an agent |
-| `update_staff_agent(...)` | Manager | Edits an agent's name or email, or resets a password |
-| `toggle_agent_status(...)` | Manager | Activates or deactivates an agent and returns their open tickets to the queue |
-| `delete_staff_agent(...)` | Manager | Removes an agent and unassigns their tickets |
-| `get_agents_overview()` | Manager | Per-agent assigned, resolved and average QA rating |
-| `reopen_ticket(ticket_id)` | Customer / Staff | Reopens a resolved ticket |
-
-Validation runs in layers: client forms (Zod and Angular Reactive Forms), route guards, Supabase Auth (JWT), RLS, and checks inside the stored procedures. Database `CHECK` constraints enforce the rating range (1 to 5) and field lengths.
-
-## Known limitations
-- `register_customer` pre-confirms the email address, so there is no email verification. That is fine for a demo; a production system should verify emails.
-- [CONFIRM: how role and `is_active` changes on `profiles` are blocked for normal users, for example column-level grants or a trigger. A policy of `id = auth.uid()` alone does not prevent a user from editing those columns. Describe the mechanism here.]
-- [CONFIRM: how customers are prevented from changing fields such as `assigned_to` or `status` on their own tickets, for example column-level grants or RPCs.]
-- [CONFIRM: automated tests. Say "none yet" if there are none, or list what exists.]
-
-## Run locally
-
-Requirements: Node.js 20 or higher, npm 10 or higher, and a Supabase project.
-
-```bash
-git clone https://github.com/zyadmoataz/Customer-Support-Operations-Platform.git
-cd Customer-Support-Operations-Platform
-```
-
-**Customer Portal**
-```bash
-cd customer-portal
-cp .env.example .env     # set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
-npm install
-npm run dev              # http://localhost:5173
-```
-
-**Support Workspace**
-```bash
-cd support-workspace
-cp src/environments/environment.example.ts src/environments/environment.ts   # set supabaseUrl and supabaseKey
-npm install
-npx ng serve             # http://localhost:4200
-```
-
-[CONFIRM: where the SQL schema, policies and functions live in the repo (for example `supabase/migrations`) and how to apply them. Never commit real keys.]
-
-## Deploy (Vercel monorepo)
-
-| Setting | Customer Portal | Support Workspace |
-|:---|:---|:---|
-| Root directory | `customer-portal` | `support-workspace` |
-| Framework preset | Vite | Angular |
-| Build command | `npm run build` | `npm run build` |
-| Output directory | `dist` | `dist` [CONFIRM: Angular output path] |
-
 ## Try the full flow
 1. In the Customer Portal, sign in as the customer and create a ticket with an attachment.
 2. In the Support Workspace, sign in as the agent, claim the ticket, post an internal note and a public reply.
@@ -132,5 +62,4 @@ npx ng serve             # http://localhost:4200
 5. As the manager, rate the resolved ticket and check the agent's average rating in the Manager Panel.
 6. As the manager, deactivate an agent and confirm their open tickets return to the queue.
 
-## License
-[CONFIRM: MIT, only if a LICENSE file exists in the repo. Otherwise delete this section.]
+
