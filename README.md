@@ -12,8 +12,6 @@ A multi-role enterprise support-ticketing ecosystem pairing two distinct fronten
 - **Support Workspace (Angular 18):** [https://customer-support-operations-platfor.vercel.app/login](https://customer-support-operations-platfor.vercel.app/login)
 - **Customer Portal (React 19):** [https://customer-support-operations-platfor.vercel.app/support/login](https://customer-support-operations-platfor.vercel.app/support/login)
 
-<img width="1919" height="430" alt="optima-overview" src="https://github.com/user-attachments/assets/42174fbb-a5f7-4e50-a5cf-04c668f42c9c" />
-
 ---
 
 ## Architecture & Security Design
