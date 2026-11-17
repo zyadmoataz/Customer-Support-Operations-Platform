@@ -6,60 +6,59 @@
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-A support-ticketing system with two frontends on one Supabase backend: a **React customer portal** for submitting and tracking tickets, and an **Angular staff workspace** for triage, resolution and manager QA audits. Access rules are enforced in the database with Row-Level Security (RLS) and role-checked stored procedures, not only in the UI.
+A multi-role enterprise support-ticketing ecosystem pairing two distinct frontends on a shared **Supabase PostgreSQL** backend: a **React 19 Customer Portal** for submitting and tracking tickets, and an **Angular 18 Staff Workspace** for triage, SLA resolution, and manager QA audits. Access rules are enforced directly in the database via **Row-Level Security (RLS)** and role-checked `PL/pgSQL` stored procedures—never relying solely on UI checks.
 
-**Live demo**
-- Support Workspace (Angular): https://customer-support-operations-platfor.vercel.app/login
-- Customer Portal (React): https://customer-support-operations-platfor.vercel.app/support/login
+**Live Demos:**
+- **Support Workspace (Angular 18):** [https://customer-support-operations-platfor.vercel.app/login](https://customer-support-operations-platfor.vercel.app/login)
+- **Customer Portal (React 19):** [https://customer-support-operations-platfor.vercel.app/support/login](https://customer-support-operations-platfor.vercel.app/support/login)
 
 <img width="1919" height="430" alt="optima-overview" src="https://github.com/user-attachments/assets/42174fbb-a5f7-4e50-a5cf-04c668f42c9c" />
 
-## The idea
-Customer-facing and internal support interfaces have different needs and different risks. CSOP keeps them as **two separate apps** that share one database. Staff-only data, such as internal notes and agent metrics, is hidden from customers by RLS policies at the database level, so a bug in a frontend cannot expose it.
+---
 
-## Roles
+## Architecture & Security Design
 
-| Role | App | What they can do |
-|:---|:---|:---|
-| **Customer** | Customer Portal | Create tickets, track status, upload attachments (up to 10 MB), exchange public messages, read resolution notes, reopen resolved tickets, manage their profile |
-| **Support Agent** | Support Workspace | See the unassigned queue, claim tickets, update status, write internal notes and public replies, resolve tickets with a required summary |
-| **Operations Manager** | Support Workspace | Oversee the full queue, assign tickets to active agents, audit resolved tickets with a 1 to 5 rating and feedback, onboard, edit, deactivate and remove agents, view analytics |
+Customer-facing and internal support interfaces have fundamentally different operational workflows and security boundaries. CSOP isolates them into **two independent applications** sharing one PostgreSQL schema. Staff-only records—such as internal triage notes (`is_internal = true`) and agent QA metrics—are filtered by **PostgreSQL Row-Level Security (RLS)** policies at the database engine layer so no client-side query manipulation can ever leak internal data.
 
-## Features
+| Role | Application | Capabilities & Enforced Permissions |
+| :--- | :--- | :--- |
+| **Customer** | Customer Portal (`React 19`) | Create tickets, track live SLA status, upload attachments (up to 10 MB), exchange public messages, read resolution reports, and reopen resolved tickets (`reopen_ticket` RPC). |
+| **Support Agent** | Support Workspace (`Angular 18`) | Monitor unassigned queue, 1-click claim tickets (`in_progress`), post internal notes (`is_internal = true`) and public replies, and lock resolved tickets with mandatory resolution summaries. |
+| **Operations Manager** | Support Workspace (`Angular 18`) | Oversee full queue, assign tickets to active agents, audit resolved tickets with 1–5 star QA ratings, onboard/deactivate staff (automatically returning open tickets to queue), and inspect workload analytics. |
 
-### Customer Portal (React 19)
-- Ticket dashboard with live counts (total, open, in progress, resolved)
-- Table and card views
-- Server-side pagination and filters: status, priority, category, date range (7, 30 or 90 days) and keyword search
-- Ticket detail with SLA stage, assignee, resolution report, attachments and a public conversation thread
-- Reopen resolved tickets (`reopen_ticket` RPC)
-- Registration with a live password-strength checklist, plus a Help Center and FAQ
+---
 
-### Support Workspace (Angular 18)
-- Agent queue with one-click claiming (moves the ticket to `in_progress`)
-- Two-channel conversation: public replies, and internal notes (`is_internal = true`) that RLS hides from customers
-- Resolution report that locks the ticket
-- Manager QA audit: 1 to 5 star rating and feedback on resolved tickets
-- Staff management: onboard agents, edit, deactivate and remove. Deactivating an agent revokes access and returns their open tickets to the queue
-- Performance view: assigned count, resolved count and average QA rating per agent
-- Analytics: category and priority distribution and workload balance
+## Key Engineering Highlights
 
-## Tech stack
+### Customer Portal (`React 19`)
+- Live ticket counter dashboard (`total`, `open`, `in_progress`, `resolved`) with switchable Table and Card layouts.
+- Server-side pagination and URL-synced filters: status, priority, category, date range (`7`, `30`, or `90` days), and debounced keyword search.
+- Detailed ticket timeline displaying SLA stage, assigned specialist, resolution report, file attachments, and public thread.
+- Secure registration flow with real-time password-strength validation, plus a searchable Help Center & FAQ.
+
+### Support Workspace (`Angular 18`)
+- Real-time agent queue with 1-click claiming and optimistic UI updates via **Angular Signals**.
+- Dual-channel conversation view separating public customer replies from RLS-protected internal team notes.
+- Manager QA Audit module supporting 1–5 star ratings and written coaching feedback on closed tickets.
+- Automated staff lifecycle management: deactivating an agent immediately revokes session access and returns their open tickets to the unassigned queue via transactional RPC.
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
-|:---|:---|
-| Customer Portal | React 19, Vite, TypeScript, TanStack Query v5, Zod, Tailwind CSS, Framer Motion [CONFIRM: React Router] |
-| Support Workspace | Angular 18 (standalone components, Signals), TypeScript, Tailwind CSS, GSAP, Reactive Forms |
-| Backend | Supabase: PostgreSQL, Auth (JWT), Storage, RLS, PL/pgSQL functions |
-| Hosting | Vercel (monorepo, two projects) |
+| :--- | :--- |
+| **Customer Portal** | React 19, Vite, TypeScript, React Router, TanStack Query v5, Zod, Tailwind CSS, Framer Motion |
+| **Support Workspace** | Angular 18 (Standalone Components, Signals), TypeScript, Tailwind CSS, GSAP, Reactive Forms |
+| **Backend & Security** | Supabase (PostgreSQL, JWT Auth, Storage Buckets, Row-Level Security, `PL/pgSQL` RPC Functions) |
+| **Deployment** | Vercel (Multi-App Monorepo Configuration) |
 
+---
 
-## Try the full flow
-1. In the Customer Portal, sign in as the customer and create a ticket with an attachment.
-2. In the Support Workspace, sign in as the agent, claim the ticket, post an internal note and a public reply.
-3. Back in the Customer Portal, confirm only the public reply is visible.
-4. As the agent, resolve the ticket with a resolution note.
-5. As the manager, rate the resolved ticket and check the agent's average rating in the Manager Panel.
-6. As the manager, deactivate an agent and confirm their open tickets return to the queue.
+## End-to-End Verification Flow
 
-
+1. In the **Customer Portal**, sign in as a customer and submit a ticket with a file attachment.
+2. In the **Support Workspace**, sign in as an agent, claim the ticket, and post both an **internal note** and a **public reply**.
+3. Return to the **Customer Portal** and verify that only the public reply is returned by Supabase RLS.
+4. As the agent, resolve the ticket with a closing summary.
+5. Sign in as the **Operations Manager**, submit a QA rating on the resolved ticket, and inspect the updated agent scorecard in the Manager Analytics view.
